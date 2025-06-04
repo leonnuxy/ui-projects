@@ -1,0 +1,39 @@
+{
+  "name": "frontend-projects-hub",
+  "version": "1.0.0",
+  "description": "A curated collection of frontend projects and web applications",
+  "main": "index.html",
+  "scripts": {
+    "start": "node scripts/dev-server.js",
+    "dev": "node scripts/dev-server.js",
+    "serve": "npx serve .",
+    "live": "npx live-server .",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "gh-pages -d .",
+    "validate": "node scripts/validate-projects.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/ui-projects.git"
+  },
+  "keywords": [
+    "frontend",
+    "portfolio",
+    "web-development",
+    "javascript",
+    "html",
+    "css",
+    "responsive-design"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/your-username/ui-projects/issues"
+  },
+  "homepage": "https://your-username.github.io/ui-projects",
+  "devDependencies": {
+    "serve": "^14.2.1",
+    "live-server": "^1.2.2",
+    "gh-pages": "^6.0.0"
+  }
+}

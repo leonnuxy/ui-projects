@@ -1,0 +1,154 @@
+/* Bistro Luxe - Custom Styles */
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?display=swap&family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700');
+
+/* CSS Variables for consistent theming */
+:root {
+  /* Gold palette */
+  --gold-50: #fefce8;
+  --gold-100: #fef9c3;
+  --gold-200: #fef08a;
+  --gold-300: #fde047;
+  --gold-400: #facc15;
+  --gold-500: #eab308;
+  --gold-600: #ca8a04;
+  --gold-700: #a16207;
+  --gold-800: #854d0e;
+  --gold-900: #713f12;
+
+  /* Dark palette */
+  --dark-50: #f8f7f4;
+  --dark-100: #f1efea;
+  --dark-200: #e3dfd4;
+  --dark-300: #d0c8b8;
+  --dark-400: #b8ab95;
+  --dark-500: #a8997f;
+  --dark-600: #9b8a73;
+  --dark-700: #817261;
+  --dark-800: #6a5d52;
+  --dark-900: #564d44;
+  --dark-950: #171612;
+
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Cormorant Garamond', serif;
+}
+
+/* Custom component classes */
+.card-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-500));
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(234, 179, 8, 0.3);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.4);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+}
+
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(23, 22, 18, 0.8), rgba(23, 22, 18, 0.6));
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes glow {
+  0% { 
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.5); 
+  }
+  100% { 
+    box-shadow: 0 0 30px rgba(234, 179, 8, 0.8); 
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .card-glass {
+    backdrop-filter: blur(8px);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus states for accessibility */
+.btn-gold:focus {
+  outline: 2px solid var(--gold-400);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Print styles */
+@media print {
+  .card-glass {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .btn-gold {
+    background: var(--gold-600);
+    color: white;
+  }
+}

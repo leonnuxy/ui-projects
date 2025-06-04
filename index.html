@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Projects Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              'sans': ['Inter', 'sans-serif'],
+              'mono': ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              'primary': '#6366f1',
+              'primary-dark': '#4f46e5',
+              'secondary': '#1f2937',
+              'accent': '#06b6d4',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .project-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .tech-tag {
+            background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header -->
+    <header class="gradient-bg text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="text-center">
+                <h1 class="text-5xl md:text-6xl font-bold mb-6">
+                    Frontend Projects Hub
+                </h1>
+                <p class="text-xl md:text-2xl opacity-90 max-w-3xl mx-auto">
+                    A collection of modern, responsive web applications and UI projects
+                </p>
+                <div class="mt-8 flex justify-center space-x-4">
+                    <a href="#projects" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">
+                        View Projects
+                    </a>
+                    <a href="https://github.com" target="_blank" class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-primary transition duration-300">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Explore a diverse collection of frontend projects showcasing modern web technologies and design principles
+                </p>
+            </div>
+
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Technologies & Skills</h2>
+                <p class="text-xl text-gray-600">
+                    Tools and technologies used across projects
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="tech-tag rounded-lg p-4 text-center">
+                    <i class="fab fa-html5 text-3xl text-orange-500 mb-2"></i>
+                    <p class="font-medium">HTML5</p>
+                </div>
+                <div class="tech-tag rounded-lg p-4 text-center">
+                    <i class="fab fa-css3-alt text-3xl text-blue-500 mb-2"></i>
+                    <p class="font-medium">CSS3</p>
+                </div>
+                <div class="tech-tag rounded-lg p-4 text-center">
+                    <i class="fab fa-js-square text-3xl text-yellow-500 mb-2"></i>
+                    <p class="font-medium">JavaScript</p>
+                </div>
+                <div class="tech-tag rounded-lg p-4 text-center">
+                    <i class="fab fa-react text-3xl text-cyan-500 mb-2"></i>
+                    <p class="font-medium">React</p>
+                </div>
+                <div class="tech-tag rounded-lg p-4 text-center">
+                    <i class="fab fa-vue text-3xl text-green-500 mb-2"></i>
+                    <p class="font-medium">Vue.js</p>
+                </div>
+                <div class="tech-tag rounded-lg p-4 text-center">
+                    <i class="fas fa-wind text-3xl text-teal-500 mb-2"></i>
+                    <p class="font-medium">Tailwind</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Let's Connect</h3>
+                <p class="text-gray-400 mb-8">
+                    Interested in collaborating or have questions about any project?
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com" target="_blank" class="text-2xl hover:text-primary transition duration-300">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="text-2xl hover:text-primary transition duration-300">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="mailto:your.email@example.com" class="text-2xl hover:text-primary transition duration-300">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-700">
+                    <p class="text-gray-400">
+                        &copy; 2024 Frontend Projects Hub. Built with modern web technologies.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="projects.js"></script>
+</body>
+</html>
