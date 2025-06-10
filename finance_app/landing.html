@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowFinance - Master Your Money</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cursive': ['Caveat', 'cursive'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+            min-height: 100vh;
+            color: #f8f8f8 !important;
+            overflow-x: hidden;
+        }
+        
+        .cursive-font {
+            font-family: 'Caveat', cursive !important;
+        }
+        
+        .floating-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            backdrop-filter: blur(20px) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+            margin: 1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-header:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+        }
+        
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1rem 2rem !important;
+        }
+        
+        .logo-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+        }
+        
+        .logo-icon {
+            width: 2rem !important;
+            height: 2rem !important;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.875rem !important;
+            font-weight: bold !important;
+        }
+        
+        .logo-text {
+            font-family: 'Caveat', cursive !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            justify-content: center !important;
+            flex: 2 !important;
+        }
+        
+        .auth-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+        
+        .nav-link {
+            color: #d1d5db !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            font-size: 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .cta-nav-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 2rem !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-nav-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+            background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+        }
+        
+        .hero-section {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 100vh !important;
+            padding: 0 1.5rem !important;
+            position: relative !important;
+        }
+        
+        .hero-glow {
+            position: relative !important;
+            max-width: 64rem !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+        }
+        
+        .hero-glow::before {
+            content: '' !important;
+            position: absolute !important;
+            top: -30% !important;
+            left: -30% !important;
+            width: 160% !important;
+            height: 160% !important;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 60%) !important;
+            z-index: -1 !important;
+            animation: breathe 6s ease-in-out infinite !important;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .hero-title {
+            font-family: 'Caveat', cursive !important;
+            font-size: clamp(3rem, 8vw, 5rem) !important;
+            font-weight: 700 !important;
+            color: white !important;
+            margin-bottom: 2rem !important;
+            line-height: 1.1 !important;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.875rem) !important;
+            color: #d1d5db !important;
+            margin-bottom: 3rem !important;
+            line-height: 1.6 !important;
+            font-style: italic !important;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+            border-radius: 2rem !important;
+            transition: all 0.4s ease !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2) !important;
+            color: white !important;
+            padding: 1.25rem 3rem !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.35) !important;
+            background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%) !important;
+        }
+        
+        .stats-container {
+            margin-top: 5rem !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 3rem !important;
+            flex-wrap: wrap !important;
+        }
+        
+        .stat-item {
+            text-align: center !important;
+        }
+        
+        .stat-number {
+            font-family: 'Caveat', cursive !important;
+            font-size: 2rem !important;
+            font-weight: 700 !important;
+            color: white !important;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem !important;
+            font-style: italic !important;
+            color: #9ca3af !important;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-header {
+                margin: 0.5rem !important;
+            }
+            
+            .header-content {
+                padding: 0.75rem 1.5rem !important;
+            }
+            
+            .nav-links {
+                gap: 1rem !important;
+            }
+            
+            .hero-section {
+                padding: 0 1rem !important;
+            }
+            
+            .stats-container {
+                gap: 2rem !important;
+                margin-top: 3rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <nav class="floating-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">₹</div>
+                <span class="logo-text">Flow</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#why-flow" class="nav-link">Why Flow</a>
+                <a href="#built-to-track" class="nav-link">Features</a>
+                <a href="#have-questions" class="nav-link">Questions</a>
+            </div>
+            
+            <div class="auth-buttons">
+                <a href="dashboard.html" class="nav-link mr-4">Sign In</a>
+                <a href="dashboard.html" class="cta-nav-button">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="master-money-flow">
+        <div class="hero-glow">
+            <h1 class="hero-title">
+                Master Your 
+                <span class="gradient-text">Money Flow</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Transform financial chaos into elegant simplicity
+            </p>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <a href="dashboard.html" class="cta-button">
+                    Begin Your Journey
+                </a>
+            </div>
+            
+            <div style="color: #9ca3af; font-style: italic; font-size: 1rem;">
+                No signup required
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">250K+</div>
+                    <div class="stat-label">Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">$2.5B</div>
+                    <div class="stat-label">Managed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.9%</div>
+                    <div class="stat-label">Reliable</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Use Flow Section -->
+    <section class="py-20 px-6" id="why-flow">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="cursive-font text-4xl font-bold text-white mb-16">
+                Why Use <span class="gradient-text">Flow</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-gray-800 hover:border-indigo-500 transition-all duration-300 hover:transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="cursive-font text-2xl font-bold text-white mb-4">Smart Insights</h3>
+                    <p class="text-gray-300 italic">Understand your spending patterns with AI-powered analytics</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-gray-800 hover:border-indigo-500 transition-all duration-300 hover:transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="cursive-font text-2xl font-bold text-white mb-4">Bank-Level Security</h3>
+                    <p class="text-gray-300 italic">Your financial data is protected with military-grade encryption</p>
+                </div>
+                
+                <div class="bg-black bg-opacity-50 p-8 rounded-2xl backdrop-blur-lg border border-gray-800 hover:border-indigo-500 transition-all duration-300 hover:transform hover:scale-105">
+                    <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="cursive-font text-2xl font-bold text-white mb-4">Lightning Fast</h3>
+                    <p class="text-gray-300 italic">Real-time updates and insights without any delays</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Built to Track and Monitor Your Finances -->
+    <section class="py-20 px-6" id="built-to-track">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="cursive-font text-4xl font-bold text-white mb-16">
+                Built to <span class="gradient-text">Track and Monitor</span> Your Finances
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-black bg-opacity-40 backdrop-blur-xl p-8 rounded-3xl border border-gray-800 hover:border-indigo-500 transition-all duration-500 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="cursive-font text-2xl font-bold text-white mb-4">Expense Tracking</h3>
+                    <p class="text-gray-300 italic text-lg mb-6">Automatically categorize and track every penny spent. Identify expense patterns and optimize your spending habits.</p>
+                    <ul class="text-left space-y-3 text-gray-300">
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Auto-categorization of expenses
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Custom expense categories
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Spending analytics & trends
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-black bg-opacity-40 backdrop-blur-xl p-8 rounded-3xl border border-gray-800 hover:border-indigo-500 transition-all duration-500 flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="cursive-font text-2xl font-bold text-white mb-4">Budget Planning</h3>
+                    <p class="text-gray-300 italic text-lg mb-6">Set realistic budgets and receive alerts before you overspend. Stay on track with your financial goals.</p>
+                    <ul class="text-left space-y-3 text-gray-300">
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Customizable budget templates
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Spending limit alerts
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            Goal tracking & forecasting
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Have Questions -->
+    <section class="py-20 px-6" id="have-questions">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="cursive-font text-4xl font-bold text-white mb-16 text-center">
+                Have <span class="gradient-text">Questions?</span>
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- FAQ Item 1 -->
+                <div class="bg-black bg-opacity-50 backdrop-blur-lg border border-gray-800 rounded-xl overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-white text-lg font-semibold">Is my financial data secure?</span>
+                        <svg class="w-6 h-6 text-indigo-400 transform rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-300 italic">
+                        Absolutely. We use bank-level 256-bit encryption to protect your data. We never store your account credentials, and we employ multiple layers of security to ensure your financial information remains private and secure.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="bg-black bg-opacity-50 backdrop-blur-lg border border-gray-800 rounded-xl overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-white text-lg font-semibold">How does Flow make money?</span>
+                        <svg class="w-6 h-6 text-indigo-400 transform rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-300 italic">
+                        Flow offers a freemium model. Our basic features are completely free to use. We earn revenue through premium subscription plans that offer advanced features, personalized financial advice, and priority support.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="bg-black bg-opacity-50 backdrop-blur-lg border border-gray-800 rounded-xl overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-white text-lg font-semibold">Can I connect all my financial accounts?</span>
+                        <svg class="w-6 h-6 text-indigo-400 transform rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-300 italic">
+                        Yes, Flow supports connections with over 10,000 financial institutions worldwide. This includes banks, credit cards, investment accounts, cryptocurrency wallets, and more. We're constantly expanding our supported institutions.
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="bg-black bg-opacity-50 backdrop-blur-lg border border-gray-800 rounded-xl overflow-hidden">
+                    <button class="w-full flex items-center justify-between p-6 text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="text-white text-lg font-semibold">Is there a mobile app?</span>
+                        <svg class="w-6 h-6 text-indigo-400 transform rotate-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden px-6 pb-6 text-gray-300 italic">
+                        Yes! Flow is available on both iOS and Android with full feature parity. Your data syncs seamlessly across all your devices, allowing you to manage your finances on the go.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ready to Flow CTA -->
+    <section class="py-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-black bg-opacity-30 backdrop-blur-2xl border border-gray-800 rounded-3xl p-12 relative overflow-hidden">
+                <!-- Animated glow effect -->
+                <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(99,102,241,0.1)_0%,transparent_50%)] animate-pulse"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <h2 class="cursive-font text-4xl font-bold text-white mb-6">
+                        Ready to <span class="gradient-text">Flow?</span>
+                    </h2>
+                    <p class="text-gray-300 italic text-xl mb-10 max-w-xl mx-auto">
+                        Your financial peace of mind awaits. Start your journey to financial clarity today.
+                    </p>
+                    <a href="dashboard.html" class="cta-button inline-block">
+                        Start Flowing
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="py-8 px-6 text-center text-gray-500">
+        <div class="max-w-6xl mx-auto border-t border-gray-800 pt-8">
+            <div class="cursive-font text-xl mb-2">Flow</div>
+            <div class="text-sm italic mb-6">© 2025 • Master Your Money</div>
+            
+            <div class="flex justify-center space-x-8 mb-6">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Support</a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+            </div>
+            
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-500 hover:text-indigo-400 transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-400 transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-400 transition-colors duration-300">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.floating-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.7)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.4)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+
+        // Add subtle parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-glow');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+            }
+        });
+        
+        // FAQ Toggle functionality
+        function toggleFaq(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('svg');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Mobile responsiveness
+        document.addEventListener('DOMContentLoaded', function() {
+            function handleResize() {
+                const navLinks = document.querySelector('.nav-links');
+                const logoText = document.querySelector('.logo-text');
+                const authButtons = document.querySelector('.auth-buttons');
+                
+                if (window.innerWidth < 768) {
+                    if (logoText) logoText.style.fontSize = '1.25rem';
+                    if (navLinks) navLinks.style.display = 'none';
+                    // Show mobile menu button here if needed
+                } else {
+                    if (logoText) logoText.style.fontSize = '1.5rem';
+                    if (navLinks) navLinks.style.display = 'flex';
+                }
+            }
+            
+            window.addEventListener('resize', handleResize);
+            handleResize(); // Call once on load
+        });
+    </script>
+</body>
+</html>

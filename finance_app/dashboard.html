@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"/>
+<title>FlowFinance Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            color: #F3F4F6;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 280px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: transparent;
+        }
+        
+        /* Mobile Sidebar */
+        .mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 280px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 50;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .sidebar-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Cards */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Buttons */
+        .btn {
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+            color: white;
+            box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #F3F4F6;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+        
+        /* Navigation */
+        .nav-link {
+            border-radius: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            color: #60A5FA;
+        }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(29, 78, 216, 0.2));
+            color: #60A5FA;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .table th, .table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            white-space: nowrap;
+        }
+        
+        .table th {
+            text-align: left;
+            font-weight: 600;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Touch Targets */
+        .icon-button {
+            color: #9CA3AF;
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            touch-action: manipulation;
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+        }
+        
+        .icon-button:hover {
+            color: #F3F4F6;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav-button {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .mobile-nav-button {
+                display: flex;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+        }
+        
+        /* Glassmorphism effects */
+        .glass-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(59, 130, 246, 0.5);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+<!-- Mobile Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Mobile Sidebar -->
+<aside class="mobile-sidebar" id="mobileSidebar">
+<div class="flex flex-col h-full p-6 space-y-4">
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+<span class="material-icons text-white text-sm">trending_up</span>
+</div>
+<h1 class="text-xl font-bold">FlowFinance</h1>
+</div>
+<button class="icon-button" id="closeMobileSidebar">
+<span class="material-icons">close</span>
+</button>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="nav-link active flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="dashboard" href="#dashboard">
+<span class="material-icons">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="accounts" href="#accounts">
+<span class="material-icons">account_balance</span>
+<span>Accounts</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="transactions" href="#transactions">
+<span class="material-icons">receipt_long</span>
+<span>Transactions</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="budgets" href="#budgets">
+<span class="material-icons">pie_chart</span>
+<span>Budgets</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="insights" href="#insights">
+<span class="material-icons">insights</span>
+<span>Insights</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" href="#" id="openUploadModalMobile">
+<span class="material-icons">upload_file</span>
+<span>Upload</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="settings" href="#settings">
+<span class="material-icons">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-white/10">
+<p class="text-xs text-gray-500">© 2024 FlowFinance</p>
+</div>
+</div>
+</aside>
+
+<!-- Desktop Sidebar -->
+<aside class="sidebar flex flex-col p-6 space-y-4">
+<div class="flex items-center space-x-3 mb-8">
+<div class="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+<span class="material-icons text-white text-sm">trending_up</span>
+</div>
+<h1 class="text-xl font-bold">FlowFinance</h1>
+</div>
+<nav class="flex-grow space-y-2">
+<a class="nav-link active flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="dashboard" href="#dashboard">
+<span class="material-icons">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="accounts" href="#accounts">
+<span class="material-icons">account_balance</span>
+<span>Accounts</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="transactions" href="#transactions">
+<span class="material-icons">receipt_long</span>
+<span>Transactions</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="budgets" href="#budgets">
+<span class="material-icons">pie_chart</span>
+<span>Budgets</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="insights" href="#insights">
+<span class="material-icons">insights</span>
+<span>Insights</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" href="#" id="openUploadModal">
+<span class="material-icons">upload_file</span>
+<span>Upload</span>
+</a>
+<a class="nav-link flex items-center space-x-3 px-4 py-3 text-gray-300 hover:text-white transition-colors" data-page="settings" href="#settings">
+<span class="material-icons">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-white/10">
+<p class="text-xs text-gray-500">© 2024 FlowFinance</p>
+</div>
+</aside>
+
+<div class="main-content flex flex-col">
+<header class="header p-4 flex justify-between items-center shadow-lg">
+<div class="flex items-center">
+<!-- Mobile Hamburger Menu -->
+<button class="mobile-nav-button icon-button mr-3" id="openMobileSidebar">
+<span class="material-icons">menu</span>
+</button>
+
+<div class="relative mr-4 hidden md:block">
+<span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
+<input class="glass-input text-gray-200 py-2 pl-10 pr-4 w-64" placeholder="Search transactions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="icon-button relative">
+<span class="material-icons">notifications</span>
+<span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-blue-500 ring-2 ring-slate-800"></span>
+</button>
+<div class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white/5 transition-colors">
+<img alt="User avatar" class="w-8 h-8 rounded-full border-2 border-blue-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTvfh-CmrM9Ob2BHl6-JgzUQzgIHbaesvQ4fl6PenyPC7uzYZjacPd6hJT2b30OWm0xJ4QvYhZLpQW15jvi2Fccoy_pElPaB4gwgl0fNxNrF7adY32ZsNELHjlsI7BeI7hkh3uK1TyC9MCLJ-_5gNmL137vppljFroXov1ROgpuVkJiOxxi70VJAoMfuinJMFefDrFhn-xPJpMXkAK0UVUMnYjBx73VxLau0QU9eAULFJfqf7RnNxV-nvLY_SAtEBuUI8n1C0oS50n"/>
+<span class="text-sm font-medium text-gray-300 hidden sm:inline">John Doe</span>
+<span class="material-icons text-gray-400 text-sm">expand_more</span>
+</div>
+</div>
+</header>
+
+<main class="flex-grow p-6 overflow-y-auto">
+<div class="page-content" id="dashboard-page">
+<div class="mb-8">
+<h2 class="text-3xl font-bold text-white mb-2">Welcome back, John 👋</h2>
+<p class="text-gray-400">Here's what's happening with your finances today</p>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
+<div class="card lg:col-span-1">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-sm font-medium text-gray-400 uppercase tracking-wide">Net Worth</h3>
+<p class="text-3xl font-bold text-white mt-1">$45,600</p>
+</div>
+<div class="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center">
+<span class="material-icons text-green-400">trending_up</span>
+</div>
+</div>
+<div class="flex items-center text-sm">
+<span class="text-green-400 font-medium">+2.7%</span>
+<span class="text-gray-400 ml-1">this month</span>
+</div>
+</div>
+
+<div class="card">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-sm font-medium text-gray-400 uppercase tracking-wide">Checking</h3>
+<p class="text-2xl font-bold text-white mt-1">$12,345</p>
+</div>
+<div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+<span class="material-icons text-blue-400">account_balance</span>
+</div>
+</div>
+<p class="text-sm text-gray-400">Primary Account</p>
+</div>
+
+<div class="card">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-sm font-medium text-gray-400 uppercase tracking-wide">Savings</h3>
+<p class="text-2xl font-bold text-white mt-1">$25,000</p>
+</div>
+<div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center">
+<span class="material-icons text-purple-400">savings</span>
+</div>
+</div>
+<p class="text-sm text-gray-400">Emergency Fund</p>
+</div>
+
+<div class="card">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-sm font-medium text-gray-400 uppercase tracking-wide">Investments</h3>
+<p class="text-2xl font-bold text-white mt-1">$8,255</p>
+</div>
+<div class="w-12 h-12 bg-yellow-500/20 rounded-full flex items-center justify-center">
+<span class="material-icons text-yellow-400">show_chart</span>
+</div>
+</div>
+<p class="text-sm text-gray-400">Portfolio Value</p>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="card lg:col-span-2">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-semibold text-white">Recent Transactions</h3>
+<a class="text-sm text-blue-400 hover:text-blue-300 nav-link transition-colors" data-page="transactions" href="#transactions">View All</a>
+</div>
+<div class="table-container">
+<table class="w-full table">
+<thead>
+<tr>
+<th>Date</th>
+<th>Description</th>
+<th>Category</th>
+<th class="text-right">Amount</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Oct 26</td><td>Grocery Store</td><td><span class="px-2 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs">Food</span></td><td class="text-right text-red-400 font-medium">-$75.20</td></tr>
+<tr><td>Oct 25</td><td>Salary Deposit</td><td><span class="px-2 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Income</span></td><td class="text-right text-green-400 font-medium">+$2,500.00</td></tr>
+<tr><td>Oct 24</td><td>Coffee Shop</td><td><span class="px-2 py-1 bg-orange-500/20 text-orange-400 rounded-full text-xs">Food</span></td><td class="text-right text-red-400 font-medium">-$5.50</td></tr>
+<tr><td>Oct 23</td><td>Netflix</td><td><span class="px-2 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs">Bills</span></td><td class="text-right text-red-400 font-medium">-$12.99</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h3 class="text-lg font-semibold text-white mb-6">Quick Actions</h3>
+<div class="space-y-3">
+<button class="btn btn-primary w-full" id="uploadStatementCTA">
+<span class="material-icons mr-2 text-base">upload_file</span>
+Upload Statement
+</button>
+<button class="btn btn-secondary w-full">
+<span class="material-icons mr-2 text-base">send</span>
+Send Money
+</button>
+<button class="btn btn-secondary w-full">
+<span class="material-icons mr-2 text-base">request_page</span>
+Pay Bills
+</button>
+</div>
+
+<div class="mt-6 pt-6 border-t border-white/10">
+<h4 class="text-sm font-medium text-gray-400 mb-3">Monthly Budget</h4>
+<div class="space-y-3">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-300">Spent</span>
+<span class="text-white">$1,240 / $2,000</span>
+</div>
+<div class="w-full bg-gray-700 rounded-full h-2">
+<div class="bg-gradient-to-r from-blue-500 to-blue-600 h-2 rounded-full" style="width: 62%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Other pages remain the same... -->
+<div class="page-content hidden" id="accounts-page">
+<h2 class="text-2xl font-semibold mb-6 text-white">Accounts</h2>
+<!-- Account content here -->
+</div>
+
+<div class="page-content hidden" id="transactions-page">
+<h2 class="text-2xl font-semibold mb-6 text-white">Transactions</h2>
+<!-- Transaction content here -->
+</div>
+
+<div class="page-content hidden" id="budgets-page">
+<h2 class="text-2xl font-semibold mb-6 text-white">Budgets</h2>
+<!-- Budget content here -->
+</div>
+
+<div class="page-content hidden" id="insights-page">
+<h2 class="text-2xl font-semibold mb-6 text-white">Insights</h2>
+<!-- Insights content here -->
+</div>
+
+<div class="page-content hidden" id="settings-page">
+<h2 class="text-2xl font-semibold mb-6 text-white">Settings</h2>
+<!-- Settings content here -->
+</div>
+</main>
+</div>
+
+<script>
+        // Navigation and mobile sidebar functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page-content');
+        const openMobileSidebarButton = document.getElementById('openMobileSidebar');
+        const closeMobileSidebarButton = document.getElementById('closeMobileSidebar');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function showPage(pageId) {
+            pages.forEach(page => {
+                if (page.id === pageId + '-page') {
+                    page.classList.remove('hidden');
+                } else {
+                    page.classList.add('hidden');
+                }
+            });
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+            window.location.hash = pageId;
+            closeMobileSidebar();
+        }
+
+        function openMobileSidebar() {
+            mobileSidebar.classList.add('open');
+            sidebarOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileSidebar() {
+            mobileSidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        // Event listeners
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.dataset.page;
+                if (pageId) {
+                    showPage(pageId);
+                }
+            });
+        });
+
+        if (openMobileSidebarButton) {
+            openMobileSidebarButton.addEventListener('click', openMobileSidebar);
+        }
+
+        if (closeMobileSidebarButton) {
+            closeMobileSidebarButton.addEventListener('click', closeMobileSidebar);
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', closeMobileSidebar);
+        }
+
+        // Initialize with dashboard page
+        const initialPage = window.location.hash.substring(1) || 'dashboard';
+        showPage(initialPage);
+    </script>
+</body>
+</html>

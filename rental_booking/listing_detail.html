@@ -1,0 +1,591 @@
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Be+Vietnam+Pro%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
+    />
+
+    <title>Stitch Design</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  </head>
+  <body>
+    <div
+      class="relative flex size-full min-h-screen flex-col bg-[#181611] dark group/design-root overflow-x-hidden"
+      style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'
+    >
+      <div class="layout-container flex h-full grow flex-col">
+        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#393528] px-10 py-3">
+          <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4 text-white">
+              <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+              <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">StayZen</h2>
+            </div>
+            <div class="flex items-center gap-9">
+              <a class="text-white text-sm font-medium leading-normal" href="#">Explore</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Wishlists</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Trips</a>
+              <a class="text-white text-sm font-medium leading-normal" href="#">Messages</a>
+            </div>
+          </div>
+          <div class="flex flex-1 justify-end gap-8">
+            <label class="flex flex-col min-w-40 !h-10 max-w-64">
+              <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+                <div
+                  class="text-[#bab29c] flex border-none bg-[#393528] items-center justify-center pl-4 rounded-l-xl border-r-0"
+                  data-icon="MagnifyingGlass"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  placeholder="Search"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-full placeholder:text-[#bab29c] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                  value=""
+                />
+              </div>
+            </label>
+            <div
+              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCsDs90gBDB_qgVoEOu9jUu42H0I2Ewm1qlkDxzxCh4b55ZMgaXqBbxT7E2tKx7dM_xM7VJ2zImzCwAO4mP4V9ghmgg_rjGH-MfQdRQJyk6rGhV4gr9bYRmqONN-RenzSaho8oVVEkWJK8ulFlkisCLluamx_wvgKtPGpkrtW9BXSrVTHlUuQhWqoVm8OzynVukxLCHdTIvif37l5MKzni8YJgjNx9nK1uzvFquLKXeurg0VllocPm_5ipz_rqEop0iQaDbG91lKGeB");'
+            ></div>
+          </div>
+        </header>
+        <div class="px-40 flex flex-1 justify-center py-5">
+          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+            <div class="flex flex-wrap gap-2 p-4">
+              <a class="text-[#bab29c] text-base font-medium leading-normal" href="#">United States</a>
+              <span class="text-[#bab29c] text-base font-medium leading-normal">/</span>
+              <span class="text-white text-base font-medium leading-normal">California</span>
+            </div>
+            <h1 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 text-left pb-3 pt-5">Cozy Cabin Retreat in the Woods</h1>
+            <p class="text-[#bab29c] text-sm font-normal leading-normal pb-3 pt-1 px-4">4 guests · 2 bedrooms · 2 beds · 1 bath</p>
+            <div class="flex w-full grow bg-[#181611] @container py-3">
+              <div class="w-full gap-1 overflow-hidden bg-[#181611] @[480px]:gap-2 aspect-[3/2] grid grid-cols-[2fr_1fr_1fr]">
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none row-span-2"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBGwmow3Rv2Yy7MXCAg8N904vZy5CMoIvfVzDGOd_jLGGXwcsS17PuF6io_YE5CCCbZ2swc1gbBqul3FwoIGHEBCGgFEtLaS0CckJZ8g8Fq6SbGyKAKUo3qkTcijDpgtorMstQi-suiN8pL13M2aoCXg0skJ64ht1Z7acpMGtDat1CUIklY_f_KPS5bxzzFSkwjWnWuifUdstqIA81KpZwg3xFIK30m_7I1M8gV61azVJjzlz-FMbnvPsJItvCw1K8Ta7J06e877nw7");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCTjyhlbd199fS63mmclzm3TywcjXyw9Tlkh5P2SFItY-KIo2PNMMWLhPVka27r-UISCGkdFbl-JG0jH2w_ozTPCxGRN46PYTnj3-JmDMO1Qp6Aan0ONeYXnUgPo4xSLUUcFT0mB46tIwPfMqXyoYGI6u0UwOa-hmj5h8EYRGM4k3P7UyGCZMVmpArHnZKeMDBLAVg0evgvZBp6Z1O-tanilQcqdfswnz4QVsVGbrsNS0PfsneAI2Hx_DsQm9jPjSxSJVVLyGZ-soMm");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCmpW0IkpAihWq22SB1eo1yjDIpfC-actUyrVMKB_RqsynF7YGtEd9tIdafazqEquB9e2-Wfn6E5X5fy3aJbqWcRra1DShnNB5Bd0Ph7m-JbDS6xdB6Nn6ciOITyTSXSdWMxR3wCdIczfYWpuVWi4qmIpBvasgqLMbHw6doLFXt5GaOm2Y2StHwPIdw2mxwwlqYp7iqJ9jqIqI_apJRvwowFQucmFI6cP_hTtxcxAd9vU0e0erTtRUXj6Hx5MiEBl44i3vFuymk98ga");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB36DAZxOd2STLPK02P40cYLvR39Ed6bJbJEGpq6ic7ovmtTgLS5Brp7x8UAqs5QOxSDdVKAJsE2zI13oAEd6PyuX_wC0Jtz7yABdbuNilRt9syh5YnjOt4t7GczCYPqm47MP-aW6Rvp2QXlgPHtkIyo6Gje1fVBRkyGiBLm1ciwr9iogieD84sjpv7vGf7szZiBd9NiIx9ms-99UR2jdlX4FeEScq5Sb-hTa1SBiQZo2RZ_Nu91YkqU_adVg-V-O6ToUnFA6d8-2Cm");'
+                ></div>
+                <div
+                  class="w-full bg-center bg-no-repeat bg-cover aspect-auto rounded-none"
+                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB7Ytfdd98AyH_YiQVgn29-FFDbSOZ9tkYVenNd9_TpdIhzdrLmuSotzLj9JudRgJwINtCmXMkhTPPNUsdOlfM8YAQyIqXhcBL00X2cPh945Y8xQBaqbnrNX8EyCpmEpHtjYb3LQ-2VYtbuyMSNw8h-PDP9NYxYkjszGDmM2IyuStvCtBaqoSPZ6iCkJw4C_3YdibQvUyDF9vnG2A0z0ybZ0ZBTvNsez-4Uj-rYK4hGgiIqeNcRSm3BQS1m-t9d1x7AL0HHuHVuCO3l");'
+                ></div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">About this place</h2>
+            <p class="text-white text-base font-normal leading-normal pb-3 pt-1 px-4">
+              Escape to our charming cabin nestled deep within the serene woods. This cozy retreat offers a perfect blend of rustic charm and modern comfort, ideal for a peaceful
+              getaway. Enjoy the tranquility of nature, explore nearby trails, or simply relax by the fireplace. Our cabin is equipped with all the amenities you need for a
+              memorable stay, including a fully equipped kitchen, comfortable bedrooms, and a spacious living area.
+            </p>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">What this place offers</h2>
+            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#544e3b] bg-[#27241b] p-4 items-center">
+                <div class="text-white" data-icon="SwimmingPool" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M88,149.39a8,8,0,0,0,8-8V128h64v15.29a8,8,0,0,0,16,0V32a8,8,0,0,0-16,0V48H96V32a8,8,0,0,0-16,0V141.39A8,8,0,0,0,88,149.39ZM96,112V96h64v16Zm64-48V80H96V64ZM24,168a8,8,0,0,1,8-8c14.42,0,22.19,5.18,28.44,9.34C66,173.06,70.42,176,80,176s14-2.94,19.56-6.66c6.24-4.16,14-9.34,28.43-9.34s22.2,5.18,28.44,9.34c5.58,3.72,10,6.66,19.57,6.66s14-2.94,19.56-6.66c6.25-4.16,14-9.34,28.44-9.34a8,8,0,0,1,0,16c-9.58,0-14,2.94-19.56,6.66-6.25,4.16-14,9.34-28.44,9.34s-22.2-5.18-28.44-9.34C142,178.94,137.57,176,128,176s-14,2.94-19.56,6.66c-6.24,4.16-14,9.34-28.43,9.34s-22.19-5.18-28.44-9.34C46,178.94,41.58,176,32,176A8,8,0,0,1,24,168Zm208,40a8,8,0,0,1-8,8c-9.58,0-14,2.94-19.56,6.66-6.25,4.16-14,9.34-28.44,9.34s-22.2-5.18-28.44-9.34C142,218.94,137.57,216,128,216s-14,2.94-19.56,6.66c-6.24,4.16-14,9.34-28.43,9.34s-22.19-5.18-28.44-9.34C46,218.94,41.58,216,32,216a8,8,0,0,1,0-16c14.42,0,22.19,5.18,28.44,9.34C66,213.06,70.42,216,80,216s14-2.94,19.56-6.66c6.24-4.16,14-9.34,28.43-9.34s22.2,5.18,28.44,9.34c5.58,3.72,10,6.66,19.57,6.66s14-2.94,19.56-6.66c6.25-4.16,14-9.34,28.44-9.34A8,8,0,0,1,232,208Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-base font-bold leading-tight">Pool</h2>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#544e3b] bg-[#27241b] p-4 items-center">
+                <div class="text-white" data-icon="WifiHigh" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M140,204a12,12,0,1,1-12-12A12,12,0,0,1,140,204ZM237.08,87A172,172,0,0,0,18.92,87,8,8,0,0,0,29.08,99.37a156,156,0,0,1,197.84,0A8,8,0,0,0,237.08,87ZM205,122.77a124,124,0,0,0-153.94,0A8,8,0,0,0,61,135.31a108,108,0,0,1,134.06,0,8,8,0,0,0,11.24-1.3A8,8,0,0,0,205,122.77Zm-32.26,35.76a76.05,76.05,0,0,0-89.42,0,8,8,0,0,0,9.42,12.94,60,60,0,0,1,70.58,0,8,8,0,1,0,9.42-12.94Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-base font-bold leading-tight">Wifi</h2>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#544e3b] bg-[#27241b] p-4 items-center">
+                <div class="text-white" data-icon="Television" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M216,64H147.31l34.35-34.34a8,8,0,1,0-11.32-11.32L128,60.69,85.66,18.34A8,8,0,0,0,74.34,29.66L108.69,64H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM40,80H144V200H40ZM216,200H160V80h56V200Zm-16-84a12,12,0,1,1-12-12A12,12,0,0,1,200,116Zm0,48a12,12,0,1,1-12-12A12,12,0,0,1,200,164Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-base font-bold leading-tight">TV</h2>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#544e3b] bg-[#27241b] p-4 items-center">
+                <div class="text-white" data-icon="CookingPot" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M88,48V16a8,8,0,0,1,16,0V48a8,8,0,0,1-16,0Zm40,8a8,8,0,0,0,8-8V16a8,8,0,0,0-16,0V48A8,8,0,0,0,128,56Zm32,0a8,8,0,0,0,8-8V16a8,8,0,0,0-16,0V48A8,8,0,0,0,160,56Zm92.8,46.4L224,124v60a32,32,0,0,1-32,32H64a32,32,0,0,1-32-32V124L3.2,102.4a8,8,0,0,1,9.6-12.8L32,104V88A16,16,0,0,1,48,72H208a16,16,0,0,1,16,16v16l19.2-14.4a8,8,0,0,1,9.6,12.8ZM208,88H48v96a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-base font-bold leading-tight">Kitchen</h2>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#544e3b] bg-[#27241b] p-4 items-center">
+                <div class="text-white" data-icon="Flame" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M173.79,51.48a221.25,221.25,0,0,0-41.67-34.34,8,8,0,0,0-8.24,0A221.25,221.25,0,0,0,82.21,51.48C54.59,80.48,40,112.47,40,144a88,88,0,0,0,176,0C216,112.47,201.41,80.48,173.79,51.48ZM96,184c0-27.67,22.53-47.28,32-54.3,9.48,7,32,26.63,32,54.3a32,32,0,0,1-64,0Zm77.27,15.93A47.8,47.8,0,0,0,176,184c0-44-42.09-69.79-43.88-70.86a8,8,0,0,0-8.24,0C122.09,114.21,80,140,80,184a47.8,47.8,0,0,0,2.73,15.93A71.88,71.88,0,0,1,56,144c0-34.41,20.4-63.15,37.52-81.19A216.21,216.21,0,0,1,128,33.54a215.77,215.77,0,0,1,34.48,29.27C193.49,95.5,200,125,200,144A71.88,71.88,0,0,1,173.27,199.93Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-base font-bold leading-tight">Fireplace</h2>
+              </div>
+              <div class="flex flex-1 gap-3 rounded-lg border border-[#544e3b] bg-[#27241b] p-4 items-center">
+                <div class="text-white" data-icon="Garage" data-size="24px" data-weight="regular">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                    <path
+                      d="M240,192h-8V98.67a16,16,0,0,0-7.12-13.31l-88-58.67a16,16,0,0,0-17.75,0l-88,58.67A16,16,0,0,0,24,98.67V192H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM40,98.67,128,40l88,58.66V192H192V136a8,8,0,0,0-8-8H72a8,8,0,0,0-8,8v56H40ZM176,144v16H136V144Zm-56,16H80V144h40ZM80,176h40v16H80Zm56,0h40v16H136Z"
+                    ></path>
+                  </svg>
+                </div>
+                <h2 class="text-white text-base font-bold leading-tight">Free parking</h2>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">4.8 · 25 reviews</h2>
+            <div class="flex flex-col gap-8 overflow-x-hidden bg-[#181611] p-4">
+              <div class="flex flex-col gap-3 bg-[#181611]">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDrYBTsMSpjktejRnqpAYBh0NfusSVCm8xGCjY57gNpTDggCz4khOhc2vEjKhwmRmRlIX4e7l2zUyW-nyEHqyh8yTBInJxWCNnd1QJN83cL8If5i3VmSWiKegukDUA4Tkph2sF0rNAgltssgp_3ZVWNhffpg4nOBeDz8OsN-CFkH9srtVvpdXoXlBBMXc_KIy3UYrqrpEyZl51OIGoYtvTXJQRuxZOpW7ZAQPINYx1GzwhGX-idO_lmQ80gUkMCD8xu81GBdzCCotri");'
+                  ></div>
+                  <div class="flex-1">
+                    <p class="text-white text-base font-medium leading-normal">Sophia Carter</p>
+                    <p class="text-[#bab29c] text-sm font-normal leading-normal">May 2023</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-white text-base font-normal leading-normal">
+                  Absolutely loved our stay at the cabin! The location was perfect, surrounded by nature, and the cabin itself was so cozy and well-equipped. We especially enjoyed
+                  the fireplace and the comfortable beds. Highly recommend!
+                </p>
+                <div class="flex gap-9 text-[#bab29c]">
+                  <button class="flex items-center gap-2">
+                    <div class="text-inherit" data-icon="ThumbsUp" data-size="20px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path
+                          d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <p class="text-inherit">2</p>
+                  </button>
+                  <button class="flex items-center gap-2">
+                    <div class="text-inherit" data-icon="ThumbsDown" data-size="20px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path
+                          d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 bg-[#181611]">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBYvvuUhf6RovZ7Gkh2X0kgKaQN-r9ASYKZxOiI_L_d3lPYC7tn3iOXIn8y4oHCmXq-ja6IRrdxEWPaLeuLkp-RpCPGWuxjOZX7mxjmK1i5bxKtt5HfvGd17gJcUwJg_CC_6U0XrcvOgR3N2vcH6Wa7rojfaNTASkQ-QYHegipvdeRLDwObD1z-eMW5hE87XfxHb7GiXuFO3JY73OtfXTXfFVjiCclG1OZbj3J-JuBg8YJ4zlYGlCxuziVMDJp9Sn9kkwAflZxt42RX");'
+                  ></div>
+                  <div class="flex-1">
+                    <p class="text-white text-base font-medium leading-normal">Ethan Bennett</p>
+                    <p class="text-[#bab29c] text-sm font-normal leading-normal">April 2023</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-[#786f54]" data-icon="Star" data-size="20px" data-weight="regular">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M239.2,97.29a16,16,0,0,0-13.81-11L166,81.17,142.72,25.81h0a15.95,15.95,0,0,0-29.44,0L90.07,81.17,30.61,86.32a16,16,0,0,0-9.11,28.06L66.61,153.8,53.09,212.34a16,16,0,0,0,23.84,17.34l51-31,51.11,31a16,16,0,0,0,23.84-17.34l-13.51-58.6,45.1-39.36A16,16,0,0,0,239.2,97.29Zm-15.22,5-45.1,39.36a16,16,0,0,0-5.08,15.71L187.35,216v0l-51.07-31a15.9,15.9,0,0,0-16.54,0l-51,31h0L82.2,157.4a16,16,0,0,0-5.08-15.71L32,102.35a.37.37,0,0,1,0-.09l59.44-5.14a16,16,0,0,0,13.35-9.75L128,32.08l23.2,55.29a16,16,0,0,0,13.35,9.75L224,102.26S224,102.32,224,102.33Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-white text-base font-normal leading-normal">
+                  The cabin was great overall, but we had a minor issue with the wifi connectivity. Other than that, everything was fantastic, and we had a wonderful time exploring
+                  the nearby trails.
+                </p>
+                <div class="flex gap-9 text-[#bab29c]">
+                  <button class="flex items-center gap-2">
+                    <div class="text-inherit" data-icon="ThumbsUp" data-size="20px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path
+                          d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <p class="text-inherit">1</p>
+                  </button>
+                  <button class="flex items-center gap-2">
+                    <div class="text-inherit" data-icon="ThumbsDown" data-size="20px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path
+                          d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3 bg-[#181611]">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB03nEwq5fOcDpOf24vjpJ7WxKPZUZNsNxRFmw09auJ9YoltJbMdggt_Mrjy4T7pAJQdnZBGTUSBn8OLUouCajhU-v_P6o2itgYyC45Hn9SUhD9bNRlW6vUG4DGF9ofRixab_wLGXmYCKczFCq3vo7FNuZ_1qxsiK9Dzvx6G4uDtl0Iqn899PKbK-vZTuSqrZcXIqo7pumMEVP_1CyPfFXTo9O40XJ7dR1kCh1Iw4msIqimqV4C2lehdHCSiEYRgNMwSa9PukCw5amt");'
+                  ></div>
+                  <div class="flex-1">
+                    <p class="text-white text-base font-medium leading-normal">Olivia Hayes</p>
+                    <p class="text-[#bab29c] text-sm font-normal leading-normal">March 2023</p>
+                  </div>
+                </div>
+                <div class="flex gap-0.5">
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="text-white" data-icon="Star" data-size="20px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                      <path
+                        d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <p class="text-white text-base font-normal leading-normal">
+                  Our family had an amazing time at the cabin. The kids loved the pool, and we all enjoyed the peaceful atmosphere. The cabin was clean, spacious, and had
+                  everything we needed for a comfortable stay. We'll definitely be back!
+                </p>
+                <div class="flex gap-9 text-[#bab29c]">
+                  <button class="flex items-center gap-2">
+                    <div class="text-inherit" data-icon="ThumbsUp" data-size="20px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path
+                          d="M234,80.12A24,24,0,0,0,216,72H160V56a40,40,0,0,0-40-40,8,8,0,0,0-7.16,4.42L75.06,96H32a16,16,0,0,0-16,16v88a16,16,0,0,0,16,16H204a24,24,0,0,0,23.82-21l12-96A24,24,0,0,0,234,80.12ZM32,112H72v88H32ZM223.94,97l-12,96a8,8,0,0,1-7.94,7H88V105.89l36.71-73.43A24,24,0,0,1,144,56V80a8,8,0,0,0,8,8h64a8,8,0,0,1,7.94,9Z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <p class="text-inherit">3</p>
+                  </button>
+                  <button class="flex items-center gap-2">
+                    <div class="text-inherit" data-icon="ThumbsDown" data-size="20px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                        <path
+                          d="M239.82,157l-12-96A24,24,0,0,0,204,40H32A16,16,0,0,0,16,56v88a16,16,0,0,0,16,16H75.06l37.78,75.58A8,8,0,0,0,120,240a40,40,0,0,0,40-40V184h56a24,24,0,0,0,23.82-27ZM72,144H32V56H72Zm150,21.29a7.88,7.88,0,0,1-6,2.71H152a8,8,0,0,0-8,8v24a24,24,0,0,1-19.29,23.54L88,150.11V56H204a8,8,0,0,1,7.94,7l12,96A7.87,7.87,0,0,1,222,165.29Z"
+                        ></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Where you'll be</h2>
+            <div class="flex px-4 py-3">
+              <div
+                class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl object-cover"
+                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzLpZudzZGZYAzucfd90MkHR5zqMVDi1-zpR8Ekc2gNrNByA1OrK47BwRzXsScLqOCdkYuO9dMQLHOGofuzr27kncCHc6qXJB8Fmb7DcoY6asFYLMvzL_Dw0yP3O7btKJrc2X4c9II4s_5eJpeTVjCnv9T4Qsi0wL6uVrbLyAKcxBs-kBcjwixiIfRVFyMyCmTN6TE00EhtQmMz7XKuO6-cH8RTVkfCWIZocW_D-N15CnCA0QrdwnkZKbTT2wpiWfpFdcr1bBmUP4p");'
+              ></div>
+            </div>
+            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Select check-in dates</h2>
+            <div class="flex flex-wrap items-center justify-center gap-6 p-4">
+              <div class="flex min-w-72 max-w-[336px] flex-1 flex-col gap-0.5">
+                <div class="flex items-center p-1 justify-between">
+                  <button>
+                    <div class="text-white flex size-10 items-center justify-center" data-icon="CaretLeft" data-size="18px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path>
+                      </svg>
+                    </div>
+                  </button>
+                  <p class="text-white text-base font-bold leading-tight flex-1 text-center pr-10">August 2024</p>
+                </div>
+                <div class="grid grid-cols-7">
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">S</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">M</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">T</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">W</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">T</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">F</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">S</p>
+                  <button class="h-12 w-full text-white col-start-4 text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">1</div>
+                  </button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">2</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">3</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">4</div></button>
+                  <button class="h-12 w-full text-[#181611] rounded-l-full bg-[#393528] text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full bg-[#f3c334]">5</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">6</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">7</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">8</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">9</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">10</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">11</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">12</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">13</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">14</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">15</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">16</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">17</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">18</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">19</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">20</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">21</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">22</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">23</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">24</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">25</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">26</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">27</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">28</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">29</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">30</div>
+                  </button>
+                </div>
+              </div>
+              <div class="flex min-w-72 max-w-[336px] flex-1 flex-col gap-0.5">
+                <div class="flex items-center p-1 justify-between">
+                  <p class="text-white text-base font-bold leading-tight flex-1 text-center pl-10">September 2024</p>
+                  <button>
+                    <div class="text-white flex size-10 items-center justify-center" data-icon="CaretRight" data-size="18px" data-weight="regular">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="currentColor" viewBox="0 0 256 256">
+                        <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+                <div class="grid grid-cols-7">
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">S</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">M</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">T</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">W</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">T</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">F</p>
+                  <p class="text-white text-[13px] font-bold leading-normal tracking-[0.015em] flex h-12 w-full items-center justify-center pb-0.5">S</p>
+                  <button class="h-12 w-full bg-[#393528] text-white col-start-4 text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">1</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">2</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">3</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">4</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">5</div>
+                  </button>
+                  <button class="h-12 w-full bg-[#393528] text-white text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full">6</div>
+                  </button>
+                  <button class="h-12 w-full text-[#181611] rounded-r-full bg-[#393528] text-sm font-medium leading-normal">
+                    <div class="flex size-full items-center justify-center rounded-full bg-[#f3c334]">7</div>
+                  </button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">8</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">9</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">10</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">11</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">12</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">13</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">14</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">15</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">16</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">17</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">18</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">19</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">20</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">21</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">22</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">23</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">24</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">25</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">26</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">27</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">28</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">29</div></button>
+                  <button class="h-12 w-full text-white text-sm font-medium leading-normal"><div class="flex size-full items-center justify-center rounded-full">30</div></button>
+                </div>
+              </div>
+            </div>
+            <div class="flex px-4 py-3">
+              <button
+                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#f3c334] text-[#181611] text-base font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Reserve</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
