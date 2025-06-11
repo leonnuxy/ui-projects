@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayEase - Explore Properties</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cursive': ['Caveat', 'cursive'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+            min-height: 100vh;
+            color: #f8f8f8 !important;
+            overflow-x: hidden;
+        }
+        
+        .cursive-font {
+            font-family: 'Caveat', cursive !important;
+        }
+        
+        .floating-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            backdrop-filter: blur(20px) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+            margin: 1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-header:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+        }
+        
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1rem 2rem !important;
+        }
+        
+        .logo-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+        }
+        
+        .logo-icon {
+            width: 2rem !important;
+            height: 2rem !important;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.875rem !important;
+            font-weight: bold !important;
+        }
+        
+        .logo-text {
+            font-family: 'Caveat', cursive !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            justify-content: center !important;
+            flex: 2 !important;
+        }
+        
+        .auth-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+        
+        .nav-link {
+            color: #d1d5db !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            font-size: 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .cta-nav-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 2rem !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-nav-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+            background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Search Section */
+        .search-section {
+            margin-bottom: 3rem;
+        }
+
+        .search-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-input {
+            width: 100%;
+            max-width: 600px;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Property Grid */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .property-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .property-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .property-price {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+        }
+
+        .property-content {
+            padding: 1.5rem;
+        }
+
+        .property-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .property-features {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .property-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-header {
+                margin: 0.5rem;
+            }
+            
+            .header-content {
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <nav class="floating-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">StayEase</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="home.html" class="nav-link">Explore</a>
+                <a href="search.html" class="nav-link">Search</a>
+                <a href="history.html" class="nav-link">Trips</a>
+                <a href="contactus.html" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="auth-buttons">
+                <a href="#" class="nav-link mr-4">Sign In</a>
+                <a href="#" class="cta-nav-button">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Where would you like to stay?" value="Where to?">
+            </div>
+        </section>
+
+        <!-- Featured Properties Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Featured <span class="gradient-text">Accommodations</span></h2>
+                <p class="section-subtitle">Discover extraordinary places to create unforgettable memories</p>
+            </div>
+            
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="property-price">$120/night</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Modern Apartment in City Center</h3>
+                        <p class="property-description">Experience city living at its finest with our stylish apartment featuring contemporary design and premium amenities.</p>
+                        <div class="property-features">
+                            <div class="feature-item">
+                                <span>👥 4 guests</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🏠 2 bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🚿 2 bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="property-rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text">4.9 (124 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="property-price">$85/night</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Cozy Cabin Retreat in the Woods</h3>
+                        <p class="property-description">Escape to nature in our charming cabin, perfect for a peaceful getaway surrounded by beautiful forest views.</p>
+                        <div class="property-features">
+                            <div class="feature-item">
+                                <span>👥 6 guests</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🏠 3 bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🚿 2 bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="property-rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text">4.8 (89 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');">
+                        <div class="property-price">$250/night</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Luxury Villa with Ocean View</h3>
+                        <p class="property-description">Indulge in luxury with breathtaking ocean views, private pool, and top-notch amenities for an unforgettable stay.</p>
+                        <div class="property-features">
+                            <div class="feature-item">
+                                <span>👥 8 guests</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🏠 4 bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🚿 3 bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="property-rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text">5.0 (67 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1502005229762-cf1b2da02f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="property-price">$95/night</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Historic Brownstone</h3>
+                        <p class="property-description">Step into history with this beautifully restored brownstone offering classic charm with modern comforts.</p>
+                        <div class="property-features">
+                            <div class="feature-item">
+                                <span>👥 5 guests</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🏠 3 bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🚿 2 bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="property-rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text">4.7 (156 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="property-price">$180/night</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Mountain Lodge Retreat</h3>
+                        <p class="property-description">Experience mountain serenity in this rustic yet luxurious lodge with panoramic views and cozy fireplace.</p>
+                        <div class="property-features">
+                            <div class="feature-item">
+                                <span>👥 7 guests</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🏠 4 bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🚿 3 bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="property-rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text">4.9 (203 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                        <div class="property-price">$140/night</div>
+                    </div>
+                    <div class="property-content">
+                        <h3 class="property-title">Lakefront Cottage</h3>
+                        <p class="property-description">Wake up to stunning lake views in this peaceful cottage, perfect for relaxation and water activities.</p>
+                        <div class="property-features">
+                            <div class="feature-item">
+                                <span>👥 4 guests</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🏠 2 bedrooms</span>
+                            </div>
+                            <div class="feature-item">
+                                <span>🚿 1 bathroom</span>
+                            </div>
+                        </div>
+                        <div class="property-rating">
+                            <span>⭐⭐⭐⭐⭐</span>
+                            <span class="rating-text">4.8 (98 reviews)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.floating-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.7)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.4)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.property-card, .search-container').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

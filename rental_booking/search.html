@@ -1,344 +1,616 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Be+Vietnam+Pro%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayEase - Search Properties</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cursive': ['Caveat', 'cursive'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+            min-height: 100vh;
+            color: #f8f8f8 !important;
+            overflow-x: hidden;
+        }
+        
+        .cursive-font {
+            font-family: 'Caveat', cursive !important;
+        }
+        
+        .floating-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            backdrop-filter: blur(20px) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+            margin: 1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-header:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+        }
+        
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1rem 2rem !important;
+        }
+        
+        .logo-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+        }
+        
+        .logo-icon {
+            width: 2rem !important;
+            height: 2rem !important;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.875rem !important;
+            font-weight: bold !important;
+        }
+        
+        .logo-text {
+            font-family: 'Caveat', cursive !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            justify-content: center !important;
+            flex: 2 !important;
+        }
+        
+        .auth-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+        
+        .nav-link {
+            color: #d1d5db !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            font-size: 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .cta-nav-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 2rem !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-nav-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+            background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+        }
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div
-      class="relative flex size-full min-h-screen flex-col bg-[#181611] dark group/design-root overflow-x-hidden"
-      style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#393528] px-10 py-3">
-          <div class="flex items-center gap-8">
-            <div class="flex items-center gap-4 text-white">
-              <div class="size-4">
-                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-              <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">StayZen</h2>
+        /* Search Section */
+        .search-section {
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .search-input-container {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-item {
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .tab-item.active {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .tab-item:hover {
+            color: white;
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Results Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .result-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .result-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .result-image {
+            width: 200px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            margin: 1rem;
+            flex-shrink: 0;
+        }
+
+        .result-content {
+            flex: 1;
+            padding: 1.5rem 1.5rem 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .result-header {
+            margin-bottom: 1rem;
+        }
+
+        .result-price {
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 0.25rem;
+        }
+
+        .result-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-details {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .result-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            width: fit-content;
+            font-size: 0.9rem;
+        }
+
+        .result-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-header {
+                margin: 0.5rem;
+            }
+            
+            .header-content {
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+
+            .result-card {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .result-image {
+                width: 100%;
+                height: 200px;
+                margin: 1rem 1rem 0 1rem;
+            }
+
+            .result-content {
+                padding: 0 1.5rem 1.5rem 1.5rem;
+            }
+
+            .tab-container {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+
+            .tab-item {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <nav class="floating-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">StayEase</span>
             </div>
-            <div class="flex items-center gap-9">
-              <a class="text-white text-sm font-medium leading-normal" href="#">Explore</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Wishlist</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Trips</a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home.html" class="nav-link">Explore</a>
+                <a href="history.html" class="nav-link">Trips</a>
+                <a href="contactus.html" class="nav-link">Contact</a>
             </div>
-          </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <label class="flex flex-col min-w-40 !h-10 max-w-64">
-              <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                <div
-                  class="text-[#bab29c] flex border-none bg-[#393528] items-center justify-center pl-4 rounded-l-xl border-r-0"
-                  data-icon="MagnifyingGlass"
-                  data-size="24px"
-                  data-weight="regular"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                    <path
-                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  placeholder="Search"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-full placeholder:text-[#bab29c] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                  value=""
-                />
-              </div>
-            </label>
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#393528] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-            >
-              <div class="text-white" data-icon="Globe" data-size="20px" data-weight="regular">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM101.63,168h52.74C149,186.34,140,202.87,128,215.89,116,202.87,107,186.34,101.63,168ZM98,152a145.72,145.72,0,0,1,0-48h60a145.72,145.72,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.79a161.79,161.79,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154.37,88H101.63C107,69.66,116,53.13,128,40.11,140,53.13,149,69.66,154.37,88Zm19.84,16h38.46a88.15,88.15,0,0,1,0,48H174.21a161.79,161.79,0,0,0,0-48Zm32.16-16H170.94a142.39,142.39,0,0,0-20.26-45A88.37,88.37,0,0,1,206.37,88ZM105.32,43A142.39,142.39,0,0,0,85.06,88H49.63A88.37,88.37,0,0,1,105.32,43ZM49.63,168H85.06a142.39,142.39,0,0,0,20.26,45A88.37,88.37,0,0,1,49.63,168Zm101.05,45a142.39,142.39,0,0,0,20.26-45h35.43A88.37,88.37,0,0,1,150.68,213Z"
-                  ></path>
-                </svg>
-              </div>
-            </button>
-            <div
-              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD1oAINFN68ooVJzkR6_9CXGLgKgOlJatPflWiV7cQpd7TXjpqT4z4iORbVhmw09_gUYCRheQfUMulF1aDDtxp4hDTfKPFx-meJ67LXchlbpsGv_5u-eQS5NpF14-7pOEaS-skoJoMpgptkLl9G7QMEMu54ghHeOAicPOTOpVcaiS2XMKe9nNu9jFJcxwOKtyxmct0OSOD1m69Ndb8hSADu7QEzX4pKuruiQt8uTw-HZpeK55nZFAi9sRYQO1AHqFmcV1Ou2Rbl4Z4X");'
-            ></div>
-          </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="px-4 py-3">
-              <label class="flex flex-col min-w-40 h-12 w-full">
-                <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                  <div
-                    class="text-[#bab29c] flex border-none bg-[#393528] items-center justify-center pl-4 rounded-l-xl border-r-0"
-                    data-icon="MagnifyingGlass"
-                    data-size="24px"
-                    data-weight="regular"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path
-                        d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <input
-                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-full placeholder:text-[#bab29c] px-4 rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                    value="Where to?"
-                  />
-                  <div class="flex items-center justify-center rounded-r-xl border-l-0 border-none bg-[#393528] pr-2 pr-4">
-                    <button
-                      class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] h-auto min-w-0 px-0"
-                    >
-                      <div class="text-[#bab29c]" data-icon="XCircle" data-size="24px" data-weight="regular">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                          <path
-                            d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"
-                          ></path>
-                        </svg>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </label>
+            
+            <div class="auth-buttons">
+                <a href="#" class="nav-link mr-4">Sign In</a>
+                <a href="#" class="cta-nav-button">Register</a>
             </div>
-            <div class="pb-3">
-              <div class="flex border-b border-[#544e3b] px-4 gap-8">
-                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-white text-white pb-[13px] pt-4" href="#">
-                  <p class="text-white text-sm font-bold leading-normal tracking-[0.015em]">Rooms</p>
-                </a>
-                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#bab29c] pb-[13px] pt-4" href="#">
-                  <p class="text-[#bab29c] text-sm font-bold leading-normal tracking-[0.015em]">Amazing views</p>
-                </a>
-                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#bab29c] pb-[13px] pt-4" href="#">
-                  <p class="text-[#bab29c] text-sm font-bold leading-normal tracking-[0.015em]">Treehouses</p>
-                </a>
-                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#bab29c] pb-[13px] pt-4" href="#">
-                  <p class="text-[#bab29c] text-sm font-bold leading-normal tracking-[0.015em]">Cabins</p>
-                </a>
-                <a class="flex flex-col items-center justify-center border-b-[3px] border-b-transparent text-[#bab29c] pb-[13px] pt-4" href="#">
-                  <p class="text-[#bab29c] text-sm font-bold leading-normal tracking-[0.015em]">Farms</p>
-                </a>
-              </div>
-            </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">1,000+ rooms</h2>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$120/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Cozy Cabin Retreat</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.8 · 2 beds · Mountain View</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBFiQjvkW4sB_g_vmAezGGl_xr4A_oDxCd5QzQNGfYO9NmCOWy2j2SH4Wz2g7eiEdxi4j4rNevaynNLv2dgwGnrBErVclsukJSNq7nE3k-emmrIQgA5NdvC4zVN0ueV79m7GojLJZgRJlkhCdIu8ZezvychEk6ZFcVgjLoRnB9hcJ0f34ix0hFM6INzJNTaur5Dg_DSrw9wfBxlquDrDRVjQETkkTHkY_zDmU9c-trmgymIDSr_PsYB8UJ9LZ2yzZroTuxOclkuCMi4");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$150/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Modern Apartment in City Center</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.9 · 1 bed · City Center</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCy1sAoqLiX8Uq4uvKFeoPgVu8S0S1T8A3Hu0B6G38KSCZAVk9QKVQjCylYUlXVX_oYazYYo-5LRPkcnPDcaN3pnGYHKNQ0JgHrOteTeK3MsmZXdSBONLX2FwLhHtXpZJTizVb78KDUQMeonWELJ04TnbQ3CspH9Ek99BlDm_AeZT2Y0djKNMmXiiZRD9mDQoFz_x8hlv6sME_cl-rz86x2xtEI5W-EX2i5PyRxvDhykeAsv6ncawTEo2C9rKGrLGBP3nxYRSzahEnv");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$250/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Beachfront Villa</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.7 · 3 beds · Beachfront</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB4Vjn52FRk7QZ0F88M6lx4j19c08gdKZ8aznp0aS_YEVx4UJE0B0IC9av1Dtx7cRN8T9Co8YAed-79kPx5Y6pRhqRPXV81S7N8zxTr00J_yU1uLpc8Dj6Ae8wwvCKWGaDKcgBGTfiD_p3btJisw2hY-Nd0ip8LWlVMy8YWCgjI_-aJNO9HqJ5tLPnQ33cBbnOsSs0V19bc-rAGFDZA3AXlM92n7Lo8SCavOB83xUEk9z_ATa8COOsSOPsgyU_LX6clk0V3Tyowoc3E");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$100/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Rustic Farmhouse</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.6 · 2 beds · Countryside</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCu9m1ymj10zYJmyhQsgA28hWuifkL_rIVK21Y7XOaQFsE-sGn9T8fZ6EF9_b0XpMWtkDxjoArtN8miz_h06OyKtmaTJkb2EnLSZVv-_88pd0IkbwOY_VWxSzdpGTbvxQnrid7oawITwpxTIvcnP7gPIeQ2z3al08ZEWYg7fHAhNOXdCu3V-bR1UZuWli_pWLm2cMpS3h-SAa8TvH0DVDITrfmmsXZWJHO1Oz-tW7dp6rhZwN-dPXaDswnvsiiR-EmjNy7DMpbzdRdY");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$300/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Luxury Penthouse</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">5.0 · 2 beds · City Skyline</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCY_btyMP9KIN7XRqfrxdXj9GymQWuMW1RYtmr5UmYwWN0qrE_-rE-DBm0-jaVsLL1HUHFxy0Ar8AmqpeXc4MvTwvLl7OC1wF9HkLZUtZt5agk2hU3sYqeV6ur0MOiTSJ4TfzVNUiMCE9kKYPcHQ2G7H8R_GY03dOeQIYMzNaSbsgGasGwwKQzKIVcJ5GltQwe0wrG7EC7JutYtoT7U643rHRLEFcswpXbxt8HS2t1f0WkkPWf3UU09HEIJA87683r2okGTudGLP719");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$180/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Mountain Chalet</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.5 · 4 beds · Mountain View</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCO4UZgyCmu2Gi8pRzvKM-sRINElYUPiOpb4fokUkakx4OlU7_uNFZrp7UIPN_5xgB-ZYfEateuZGJIEM5ldlhl-qdM4336YAUxVaBu2D8yWpy-8pwmmYmGe0BU1kXjS411yrvqXNZOMTIndfxQiTXrs_wDeVDq6MXu-FDy-yNzQ0JvhrRE6UnTVu67ON3fUth2XPNhgFhX9tMXf0qTW1xkkw9GpCf5MsRBHDKcinZ_i6WONzAt2wMZdBleSMVMPqTU3jCAWJe9Wrmt");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$140/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Lakefront Cottage</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.7 · 2 beds · Lakefront</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQdzrbADUQH0RQuSU1Bk5HQqzefCaJTI_a0yaueSunDWpndOyGhxFrkRrbGWJXJ47ZG2qfiXsDD2Kv63EyTngTGg6lRSLM8DvciPUp6yRlLyQ2ZMWCp6LWVhx0eanGNOk1Ohsr_kh-fO0C2J7r4Jak8pZLAzabg7oxGyEj5RG8UKlpV4lnljErMINZNIDHEX8lXee1vlCAzu5XC5Uxa8LNdfdXSIYAzSwOA3sQjOA7p03nO6gNNRlUT37iBnTP5kpxqzkrIukQFwsz");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$200/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Desert Oasis</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.9 · 1 bed · Desert View</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCt3p75HNW0iFxZ2zl2K7qor6SKEMO4p4LXHVln5VvGtZJYpo5UHUxT8ItME84dixf6k21qWc5ABIjdQ8OyCObh0gI7AKUinsvCbjQDn5UqPGpTXX5PAVMEvw6RY--uCgcoBrKwfTkxenDqSWNTzADDkpHFRqUxwoAQtppyghUrXh866VW9fisfU6-WlIOseJDezTVEWA0-xx7WLH8ghT25NHj5hsctSxOmZQuyKLTQc_PYfS3fQTmLTrRb6i9gBDqm3VOWz9m69Pck");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$160/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Forest Retreat</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.8 · 3 beds · Forest View</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDfnd11z3GeFNRbzl1PsS8yMiJDmlo1W3hc0ivkgoCL13jkeB1MAw2kzKNTJiIzVmwhoHaN-5H0o8kOiafkKli4ZnLnAjYN6xuU6prg56uFk_FggLbcOCxkq-ZDshjXp6YYSKHVna9gSJ6Z6drWRyoPBiN5CWOcwufV9cTZUKO5GiMOb9lZ2M60K88qN6SRIGIsAl9XaDIOvOYOft_nlXPle2auKOUIqLtO1EYPjWdKcq2LlhC7c9EIq8HVYCtPQ6npeWO04T6MzTJm");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-[2_2_0px] flex-col gap-4">
-                  <div class="flex flex-col gap-1">
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">$130/night</p>
-                    <p class="text-white text-base font-bold leading-tight">Urban Loft</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">4.7 · 2 beds · City Center</p>
-                  </div>
-                  <button
-                    class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 px-4 flex-row-reverse bg-[#393528] text-white text-sm font-medium leading-normal w-fit"
-                  >
-                    <span class="truncate">View Details</span>
-                  </button>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAh9eW1Tm5k1DvL1kgkuNKWgItYJXUPerTI3-f3_zAqJOuQ0_5j5YVNUEPl_FOdExHpPhgYOqxwNBbOCvNn6aqOZ3o9DMeM4YanYDr44u_lU8_OkWr5FCvOnWImZWY_nR9-DN-ktmJL4-Ay2bmJQOhDB8STf3jKrDoCMcqxIHRGMPQfHdY8dXP-DToDt6J-LGYUmNOQtDKO8GA6kSqj4em8hZbfl2kKhKiz8GR8ktxcBfd83mrAPAomCIYYVzsjZQMWT1ovduB0iDEQ");'
-                ></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Search Section -->
+        <section class="search-section">
+            <div class="search-container">
+                <div class="search-input-container">
+                    <input type="text" class="search-input" placeholder="Where would you like to stay?" value="Where to?">
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Tabs -->
+        <section class="filter-tabs">
+            <div class="tab-container">
+                <a href="#" class="tab-item active">Rooms</a>
+                <a href="#" class="tab-item">Amazing views</a>
+                <a href="#" class="tab-item">Treehouses</a>
+                <a href="#" class="tab-item">Cabins</a>
+                <a href="#" class="tab-item">Farms</a>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">1,000+ <span class="gradient-text">Available Stays</span></h2>
+            </div>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$120/night</div>
+                            <h3 class="result-title">Cozy Cabin Retreat</h3>
+                            <div class="result-details">4.8 ⭐ • 2 beds • Mountain View</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$150/night</div>
+                            <h3 class="result-title">Modern Apartment in City Center</h3>
+                            <div class="result-details">4.9 ⭐ • 1 bed • City Center</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$250/night</div>
+                            <h3 class="result-title">Beachfront Villa</h3>
+                            <div class="result-details">4.7 ⭐ • 3 beds • Beachfront</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1502005229762-cf1b2da02f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$100/night</div>
+                            <h3 class="result-title">Rustic Farmhouse</h3>
+                            <div class="result-details">4.6 ⭐ • 2 beds • Countryside</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$300/night</div>
+                            <h3 class="result-title">Luxury Penthouse</h3>
+                            <div class="result-details">5.0 ⭐ • 2 beds • City Skyline</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$180/night</div>
+                            <h3 class="result-title">Mountain Chalet</h3>
+                            <div class="result-details">4.5 ⭐ • 4 beds • Mountain View</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$140/night</div>
+                            <h3 class="result-title">Lakefront Cottage</h3>
+                            <div class="result-details">4.7 ⭐ • 2 beds • Lakefront</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$200/night</div>
+                            <h3 class="result-title">Desert Oasis</h3>
+                            <div class="result-details">4.9 ⭐ • 1 bed • Desert View</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$160/night</div>
+                            <h3 class="result-title">Forest Retreat</h3>
+                            <div class="result-details">4.8 ⭐ • 3 beds • Forest View</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="result-image" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
+                    <div class="result-content">
+                        <div class="result-header">
+                            <div class="result-price">$130/night</div>
+                            <h3 class="result-title">Urban Loft</h3>
+                            <div class="result-details">4.7 ⭐ • 2 beds • City Center</div>
+                        </div>
+                        <button class="result-button">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.floating-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.7)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.4)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+            });
+        });
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.result-card, .search-container, .filter-tabs').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
 </html>

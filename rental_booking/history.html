@@ -1,185 +1,677 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Be+Vietnam+Pro%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayEase - Your Trips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cursive': ['Caveat', 'cursive'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+            min-height: 100vh;
+            color: #f8f8f8 !important;
+            overflow-x: hidden;
+        }
+        
+        .cursive-font {
+            font-family: 'Caveat', cursive !important;
+        }
+        
+        .floating-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            backdrop-filter: blur(20px) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+            margin: 1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-header:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+        }
+        
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1rem 2rem !important;
+        }
+        
+        .logo-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+        }
+        
+        .logo-icon {
+            width: 2rem !important;
+            height: 2rem !important;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.875rem !important;
+            font-weight: bold !important;
+        }
+        
+        .logo-text {
+            font-family: 'Caveat', cursive !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            justify-content: center !important;
+            flex: 2 !important;
+        }
+        
+        .auth-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+        
+        .nav-link {
+            color: #d1d5db !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            font-size: 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .cta-nav-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 2rem !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-nav-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+            background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+        }
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div
-      class="relative flex size-full min-h-screen flex-col bg-[#181611] dark group/design-root overflow-x-hidden"
-      style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <div class="gap-1 px-6 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col w-80">
-            <div class="flex h-full min-h-[700px] flex-col justify-between bg-[#181611] p-4">
-              <div class="flex flex-col gap-4">
-                <div class="flex gap-3">
-                  <div
-                    class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAOrQFQOxsxnWObZ2fz2bKNyM2dmOGSz6elHzXljJCyEy1HXE271gYotHgQLznaqTcNlZnPakIrQecv48upXJpNP8hSt6HPTyZeV_jItT3w6U7-Byjh-hGGbLSgC64K9cHzN-o7uWd71rGUsO-23dJTWmjL903bVvdmRRohKuYF_ecLJdGpH8yfOb5V54GA7-5qbtKmGByaxAUQdLw0F3SBEMcgriN30Goay1XOqnk_djHz1HGxu1Fod4IR8dlXmoSjb5Q33b3QDx_l");'
-                  ></div>
-                  <h1 class="text-white text-base font-medium leading-normal">Hi, Sarah</h1>
-                </div>
-                <div class="flex flex-col gap-2">
-                  <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="text-white" data-icon="House" data-size="24px" data-weight="regular">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                          d="M218.83,103.77l-80-75.48a1.14,1.14,0,0,1-.11-.11,16,16,0,0,0-21.53,0l-.11.11L37.17,103.77A16,16,0,0,0,32,115.55V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V160h32v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V115.55A16,16,0,0,0,218.83,103.77ZM208,208H160V160a16,16,0,0,0-16-16H112a16,16,0,0,0-16,16v48H48V115.55l.11-.1L128,40l79.9,75.43.11.1Z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <p class="text-white text-sm font-medium leading-normal">Home</p>
-                  </div>
-                  <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="text-white" data-icon="MagnifyingGlass" data-size="24px" data-weight="regular">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                          d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <p class="text-white text-sm font-medium leading-normal">Explore</p>
-                  </div>
-                  <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="text-white" data-icon="Heart" data-size="24px" data-weight="regular">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                          d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <p class="text-white text-sm font-medium leading-normal">Wishlists</p>
-                  </div>
-                  <div class="flex items-center gap-3 px-3 py-2 rounded-full bg-[#393528]">
-                    <div class="text-white" data-icon="Briefcase" data-size="24px" data-weight="fill">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                          d="M152,112a8,8,0,0,1-8,8H112a8,8,0,0,1,0-16h32A8,8,0,0,1,152,112Zm80-40V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V72A16,16,0,0,1,40,56H80V48a24,24,0,0,1,24-24h48a24,24,0,0,1,24,24v8h40A16,16,0,0,1,232,72ZM96,56h64V48a8,8,0,0,0-8-8H104a8,8,0,0,0-8,8Zm120,57.61V72H40v41.61A184,184,0,0,0,128,136,184,184,0,0,0,216,113.61Z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <p class="text-white text-sm font-medium leading-normal">Trips</p>
-                  </div>
-                  <div class="flex items-center gap-3 px-3 py-2">
-                    <div class="text-white" data-icon="Tray" data-size="24px" data-weight="regular">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                          d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,16V152h-28.7A15.86,15.86,0,0,0,168,156.69L148.69,176H107.31L88,156.69A15.86,15.86,0,0,0,76.69,152H48V48Zm0,160H48V168H76.69L96,187.31A15.86,15.86,0,0,0,107.31,192h41.38A15.86,15.86,0,0,0,160,187.31L179.31,168H208v40Z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <p class="text-white text-sm font-medium leading-normal">Inbox</p>
-                  </div>
-                </div>
-              </div>
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Trip Status Tabs */
+        .trip-tabs {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-item {
+            color: #d1d5db;
+            text-decoration: none;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .tab-item.active {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .tab-item:hover {
+            color: white;
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        /* Trip Cards */
+        .trips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .trip-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .trip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .trip-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .trip-status {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            font-family: 'Caveat', cursive;
+            font-size: 1rem;
+        }
+
+        .status-completed {
+            background: rgba(34, 197, 94, 0.8);
+            color: white;
+        }
+
+        .status-upcoming {
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+        }
+
+        .status-cancelled {
+            background: rgba(239, 68, 68, 0.8);
+            color: white;
+        }
+
+        .trip-content {
+            padding: 1.5rem;
+        }
+
+        .trip-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .trip-dates {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .trip-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .trip-price {
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .trip-rating {
+            color: #ffd700;
+        }
+
+        .trip-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .action-button {
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .empty-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border-radius: 2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.35);
+            background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-header {
+                margin: 0.5rem;
+            }
+            
+            .header-content {
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .trips-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trip-actions {
+                justify-content: center;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <nav class="floating-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">StayEase</span>
             </div>
-          </div>
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="flex flex-wrap justify-between gap-3 p-4">
-              <div class="flex min-w-72 flex-col gap-3">
-                <p class="text-white tracking-light text-[32px] font-bold leading-tight">Trips</p>
-                <p class="text-[#bab29c] text-sm font-normal leading-normal">You don't have any upcoming trips</p>
-              </div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home.html" class="nav-link">Explore</a>
+                <a href="search.html" class="nav-link">Search</a>
+                <a href="contactus.html" class="nav-link">Contact</a>
             </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Past</h2>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a cozy cabin near Lake Serenity</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">Jul 12 - 15</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAaSxjwfhZxXG2whyfbx1vovyDzlODX1IjAGByhZfOMwTOW7F-aXvINfIabcz6PCcvvZMOqzmoswBuwFlFDzJFSwHq--3Vzd7qqQKc_lR_MRlZqrIFgD2YCdmu-ONVDxps0ajPFMiqLwTMRWz9PYYYRUIwlQ7tQOLvg85Td2ZUi9nLh2hEgAx98uLE41gQ9766hUWbpY1dTEWvjgX1XmR2nFXICmajzxqHj-FQQXnBF-See8ds45ugNcufxzDzu6glbjLkaAQVtXiXs");'
-                ></div>
-              </div>
+            
+            <div class="auth-buttons">
+                <a href="#" class="nav-link mr-4">Sign In</a>
+                <a href="#" class="cta-nav-button">Register</a>
             </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a modern apartment in downtown Metropolis</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">Jun 20 - 25</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBEsoaXXUgCQwygwZkUeKy3rx8-KPvHVKf1MSzP1RBbFWuMOVRiP0gDgMJNXCzzNCMGMZc2zOlAoNTRiEKQzLvuhYKbVa1rwLNyQLWthi7LMx_k1iZfbVWgKtmgRagWhYSsWlvMsI0KzEZkpJn4WwX0WxdJimLp9zyzFVD-o8h5XN7jkChH-AecRGxpM_i1hOQmZb6V1OPHG6diZnbIGpJj93jCzSjZv8KhhmMlJc32e0JHk2H8M-yIbXxlQtIRTc5adJZxRau3QUUo");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a charming cottage by the sea</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">May 5 - 10</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDqjq9hrQouiw-XCpLHcoQq6403sjLVGODWI8Tg331kI3PgOR4QU6yLx7Ik6kMRGxh-tut2H4ST_Iw4i-J8QReemCgxeNgk5BvrV-dMVb-ddC2ameSCYbZUWaELeVm6sj34KmU2i8gR1Pk9PMOgNDu0XV0ty_2uHKwWh7-Cqpkmni8RLYN72-2V5gf1N0CCw7bk7mDynz4FaupgEj8dg3EydrmZDDEUonVtxLVIgi_Z_BTrcSPaBRnCRpumhJVhwSG2hUttWD1z0E7L");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a luxurious villa in the countryside</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">Apr 1 - 7</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6kAPkNE0akvr5RYcLax5CHb9118lLBEKMt4AD_nA0KYdZU5EHHXCmqlEQxEckxENxVkBpmbSQXgb4ZpVzc3c2s-LokSAJUnY67RF7_TgfikERQY5o8_ri3GiCaGe1IQQODAJd0MFjS9ZkdEeukwzxdc3F7a_okZNRydRspzfmtCmyPveAb40nFuIF4Gx6foX7Ny9OVtqPaC2P6LQiSpIevwkmgYJ6qafjqMsn7Kzv-1LCs2KlPCwas1ry0FuP1Hzo3tyUnlpHjNXR");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a rustic farmhouse in the mountains</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">Mar 15 - 20</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAxzVAO81VTW4jynQ0fa_8a4kPwjK-Hk8OsLDyVvsiTsrX9n2rvTmMC1Vyp95Mj-y5ydnlrKT7p5sW6WJGMiAt7lfoUKAE_P98OgaP85Ri0tEFFFeZjuG0I10AX2SYxJ-a-kIKZTpP8hkkyTCWBPk3mJNz4EtCQwWP4-ENBP_4ezLFcDMCHptaJHk0KvSGXphLI_sbFDVa1gayxWlDTw7pVwiCXvtGLFIDKJlEcXDc8OnAftMqyNyEiluu0g738x5q4U0oryBt0MOQI");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a stylish loft in the city center</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">Feb 2 - 5</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAcUHyCd0719qe3DksunRSRDf4KsMJBrO4kEsxR0jU6-XNBjBq053U9KcXvebeV6e5YpLh2GYLabfpeN3nXp1eG7zc8cBYtoz-TdTU9iz-b6ge_L9IimtexU_PMSe3nhDdYbVwJl9PDTpWcyQU7GoBXK_ILwMtp3phFMZ2wurxPPb8giQpAte5U8HsSS6KshPISAWaf0KjB0hoznmBZaryzkoo6Hxm0yxgFI6GpalPe4XT1MzHq07JAaJt_c7w7sbQYgofkIT51g0Sv");'
-                ></div>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex items-stretch justify-between gap-4 rounded-xl">
-                <div class="flex flex-col gap-1 flex-[2_2_0px]">
-                  <p class="text-white text-base font-bold leading-tight">Stay in a quaint guesthouse in the suburbs</p>
-                  <p class="text-[#bab29c] text-sm font-normal leading-normal">Jan 10 - 12</p>
-                </div>
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex-1"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBBDY05o71CHvQmmC_5cXJwF3pL2wuw_huLwZeVdmFUJHlw1sYtkzz9ZjgH-IjtQth5I0lugb-qq5JOj84ZIliCDCqkyn_6ETVgoFUzK_iN0F0fCTWlNQmdBFAp8r0awQpBimDEX6VAYFO1Nrj8NpA_FJtFkaYOna5OPjFHq-3tSDjEhCwh9sBGj7OVRMwSGEuEHFmEO3MLcgAqYBA7WcGmEQYc-m9sYLLD8oHXKI9H83Ynt7ttC-NGr0ooozQGOGk3rLmpFiWe0Ts-");'
-                ></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="section-header">
+            <h1 class="section-title">Your <span class="gradient-text">Journey</span> History</h1>
+            <p class="section-subtitle">Relive your amazing adventures and plan new ones</p>
+        </section>
+
+        <!-- Trip Status Tabs -->
+        <section class="trip-tabs">
+            <div class="tab-container">
+                <a href="#" class="tab-item active" data-status="all">All Trips</a>
+                <a href="#" class="tab-item" data-status="upcoming">Upcoming</a>
+                <a href="#" class="tab-item" data-status="completed">Completed</a>
+                <a href="#" class="tab-item" data-status="cancelled">Cancelled</a>
+            </div>
+        </section>
+
+        <!-- Trip Cards -->
+        <section class="trips-grid">
+            <div class="trip-card" data-status="completed">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="trip-status status-completed">Completed</div>
+                </div>
+                <div class="trip-content">
+                    <h3 class="trip-title">Cozy Mountain Cabin</h3>
+                    <div class="trip-dates">March 15-20, 2024</div>
+                    <div class="trip-details">
+                        <div class="trip-price">$600 total</div>
+                        <div class="trip-rating">⭐⭐⭐⭐⭐ 4.8</div>
+                    </div>
+                    <div class="trip-actions">
+                        <a href="#" class="action-button btn-primary">Book Again</a>
+                        <a href="#" class="action-button btn-secondary">Leave Review</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card" data-status="upcoming">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2080&q=80');">
+                    <div class="trip-status status-upcoming">Upcoming</div>
+                </div>
+                <div class="trip-content">
+                    <h3 class="trip-title">Luxury Ocean Villa</h3>
+                    <div class="trip-dates">July 10-17, 2024</div>
+                    <div class="trip-details">
+                        <div class="trip-price">$1,750 total</div>
+                        <div class="trip-rating">⭐⭐⭐⭐⭐ 5.0</div>
+                    </div>
+                    <div class="trip-actions">
+                        <a href="#" class="action-button btn-primary">View Details</a>
+                        <a href="#" class="action-button btn-secondary">Cancel Trip</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card" data-status="completed">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="trip-status status-completed">Completed</div>
+                </div>
+                <div class="trip-content">
+                    <h3 class="trip-title">Modern City Apartment</h3>
+                    <div class="trip-dates">January 5-12, 2024</div>
+                    <div class="trip-details">
+                        <div class="trip-price">$840 total</div>
+                        <div class="trip-rating">⭐⭐⭐⭐⭐ 4.9</div>
+                    </div>
+                    <div class="trip-actions">
+                        <a href="#" class="action-button btn-primary">Book Again</a>
+                        <a href="#" class="action-button btn-secondary">Share Experience</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card" data-status="upcoming">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="trip-status status-upcoming">Upcoming</div>
+                </div>
+                <div class="trip-content">
+                    <h3 class="trip-title">Mountain Lodge Retreat</h3>
+                    <div class="trip-dates">August 22-29, 2024</div>
+                    <div class="trip-details">
+                        <div class="trip-price">$1,260 total</div>
+                        <div class="trip-rating">⭐⭐⭐⭐⭐ 4.9</div>
+                    </div>
+                    <div class="trip-actions">
+                        <a href="#" class="action-button btn-primary">Manage Booking</a>
+                        <a href="#" class="action-button btn-secondary">Contact Host</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card" data-status="cancelled">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1502005229762-cf1b2da02f3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="trip-status status-cancelled">Cancelled</div>
+                </div>
+                <div class="trip-content">
+                    <h3 class="trip-title">Historic Brownstone</h3>
+                    <div class="trip-dates">June 3-8, 2024</div>
+                    <div class="trip-details">
+                        <div class="trip-price">$475 refunded</div>
+                        <div class="trip-rating">⭐⭐⭐⭐ 4.7</div>
+                    </div>
+                    <div class="trip-actions">
+                        <a href="#" class="action-button btn-primary">Book Similar</a>
+                        <a href="#" class="action-button btn-secondary">View Refund</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trip-card" data-status="completed">
+                <div class="trip-image" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
+                    <div class="trip-status status-completed">Completed</div>
+                </div>
+                <div class="trip-content">
+                    <h3 class="trip-title">Peaceful Lakefront Cottage</h3>
+                    <div class="trip-dates">December 18-23, 2023</div>
+                    <div class="trip-details">
+                        <div class="trip-price">$700 total</div>
+                        <div class="trip-rating">⭐⭐⭐⭐⭐ 4.8</div>
+                    </div>
+                    <div class="trip-actions">
+                        <a href="#" class="action-button btn-primary">Book Again</a>
+                        <a href="#" class="action-button btn-secondary">View Photos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Empty State (hidden by default) -->
+        <section class="empty-state" style="display: none;" id="empty-state">
+            <div class="empty-icon">🏠</div>
+            <h2 class="empty-title">No Trips Found</h2>
+            <p class="empty-text">You haven't booked any trips yet. Start exploring amazing destinations!</p>
+            <a href="home.html" class="cta-button">Start Exploring</a>
+        </section>
+    </main>
+
+    <script>
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.floating-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.7)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.4)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab-item').forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Filter trips based on status
+                const status = this.getAttribute('data-status');
+                filterTrips(status);
+            });
+        });
+
+        function filterTrips(status) {
+            const tripCards = document.querySelectorAll('.trip-card');
+            const emptyState = document.getElementById('empty-state');
+            let visibleCount = 0;
+
+            tripCards.forEach(card => {
+                const tripStatus = card.getAttribute('data-status');
+                
+                if (status === 'all' || tripStatus === status) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show empty state if no trips match the filter
+            if (visibleCount === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
+        }
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.trip-card, .trip-tabs').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
 </html>

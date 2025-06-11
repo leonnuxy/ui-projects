@@ -1,164 +1,696 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Be+Vietnam+Pro%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayEase - Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cursive': ['Caveat', 'cursive'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+            min-height: 100vh;
+            color: #f8f8f8 !important;
+            overflow-x: hidden;
+        }
+        
+        .cursive-font {
+            font-family: 'Caveat', cursive !important;
+        }
+        
+        .floating-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            backdrop-filter: blur(20px) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+            margin: 1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-header:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+        }
+        
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1rem 2rem !important;
+        }
+        
+        .logo-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+        }
+        
+        .logo-icon {
+            width: 2rem !important;
+            height: 2rem !important;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.875rem !important;
+            font-weight: bold !important;
+        }
+        
+        .logo-text {
+            font-family: 'Caveat', cursive !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            justify-content: center !important;
+            flex: 2 !important;
+        }
+        
+        .auth-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+        
+        .nav-link {
+            color: #d1d5db !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            font-size: 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .cta-nav-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 2rem !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-nav-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+            background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+        }
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+        /* Main Content */
+        .main-content {
+            margin-top: 100px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div
-      class="relative flex size-full min-h-screen flex-col bg-[#181611] dark group/design-root overflow-x-hidden"
-      style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#393528] px-10 py-3">
-          <div class="flex items-center gap-4 text-white">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
-              </svg>
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .form-input::placeholder, .form-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2);
+            color: white;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.35);
+            background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            color: white;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-value {
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-top: 3rem;
+        }
+
+        .faq-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question-text {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .faq-toggle {
+            color: #6366f1;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-answer-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-header {
+                margin: 0.5rem;
+            }
+            
+            .header-content {
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-form, .contact-info {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <nav class="floating-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">StayEase</span>
             </div>
-            <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">StayEase</h2>
-          </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
-              <a class="text-white text-sm font-medium leading-normal" href="#">Explore</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Stays</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Contact</a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="home.html" class="nav-link">Explore</a>
+                <a href="search.html" class="nav-link">Search</a>
+                <a href="history.html" class="nav-link">Trips</a>
             </div>
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#393528] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-            >
-              <div class="text-white" data-icon="Globe" data-size="20px" data-weight="regular">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM101.63,168h52.74C149,186.34,140,202.87,128,215.89,116,202.87,107,186.34,101.63,168ZM98,152a145.72,145.72,0,0,1,0-48h60a145.72,145.72,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.79a161.79,161.79,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154.37,88H101.63C107,69.66,116,53.13,128,40.11,140,53.13,149,69.66,154.37,88Zm19.84,16h38.46a88.15,88.15,0,0,1,0,48H174.21a161.79,161.79,0,0,0,0-48Zm32.16-16H170.94a142.39,142.39,0,0,0-20.26-45A88.37,88.37,0,0,1,206.37,88ZM105.32,43A142.39,142.39,0,0,0,85.06,88H49.63A88.37,88.37,0,0,1,105.32,43ZM49.63,168H85.06a142.39,142.39,0,0,0,20.26,45A88.37,88.37,0,0,1,49.63,168Zm101.05,45a142.39,142.39,0,0,0,20.26-45h35.43A88.37,88.37,0,0,1,150.68,213Z"
-                  ></path>
-                </svg>
-              </div>
-            </button>
-            <div
-              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCFyMPsNcHJx5wcAxENVZw7MYOKjt3RuGcdh_t-v0c5IpZNxl1qokr7VNVeaVRR9Q0LJNu1MXNp_Kks8w4beXP2w9LKauR-2iI5Y3Z0DHMtv5LjRiZFIrmcOGFbGqVvyM9LVqPOor6VgZI9RGS9HN07QIAMXDpD-1ru8JYrpdXCOGBnw453ZEH7xauUvsn6roewes6_KmQPDMjqp4NyhdBwe6TDKijMCcdumwwMLq9gBDIjJ7q_XBOPMJm9Z67n1W5wwCA5h0Jq1U0h");'
-            ></div>
-          </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="flex flex-wrap justify-between gap-3 p-4">
-              <div class="flex min-w-72 flex-col gap-3">
-                <p class="text-white tracking-light text-[32px] font-bold leading-tight">Contact Us</p>
-                <p class="text-[#bab29c] text-sm font-normal leading-normal">
-                  We're here to help! Reach out with any questions or feedback, and our team will get back to you promptly.
-                </p>
-              </div>
+            
+            <div class="auth-buttons">
+                <a href="#" class="nav-link mr-4">Sign In</a>
+                <a href="#" class="cta-nav-button">Register</a>
             </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Your Name</p>
-                <input
-                  placeholder="Enter your name"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-14 placeholder:text-[#bab29c] p-4 text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Email Address</p>
-                <input
-                  placeholder="Enter your email"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-14 placeholder:text-[#bab29c] p-4 text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Subject</p>
-                <input
-                  placeholder="Enter the subject"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-14 placeholder:text-[#bab29c] p-4 text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-white text-base font-medium leading-normal pb-2">Message</p>
-                <textarea
-                  placeholder="Type your message here"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none min-h-36 placeholder:text-[#bab29c] p-4 text-base font-normal leading-normal"
-                ></textarea>
-              </label>
-            </div>
-            <div class="flex px-4 py-3 justify-start">
-              <button
-                class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#f3c334] text-[#181611] text-sm font-bold leading-normal tracking-[0.015em]"
-              >
-                <span class="truncate">Submit</span>
-              </button>
-            </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Frequently Asked Questions</h2>
-            <div class="flex flex-col p-4 gap-3">
-              <details class="flex flex-col rounded-xl bg-[#393528] px-4 py-2 group">
-                <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
-                  <p class="text-white text-sm font-medium leading-normal">How do I book a room?</p>
-                  <div class="text-white group-open:rotate-180" data-icon="CaretDown" data-size="20px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-                    </svg>
-                  </div>
-                </summary>
-                <p class="text-[#bab29c] text-sm font-normal leading-normal pb-2"></p>
-              </details>
-              <details class="flex flex-col rounded-xl bg-[#393528] px-4 py-2 group">
-                <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
-                  <p class="text-white text-sm font-medium leading-normal">What is the cancellation policy?</p>
-                  <div class="text-white group-open:rotate-180" data-icon="CaretDown" data-size="20px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-                    </svg>
-                  </div>
-                </summary>
-                <p class="text-[#bab29c] text-sm font-normal leading-normal pb-2"></p>
-              </details>
-              <details class="flex flex-col rounded-xl bg-[#393528] px-4 py-2 group">
-                <summary class="flex cursor-pointer items-center justify-between gap-6 py-2">
-                  <p class="text-white text-sm font-medium leading-normal">Are there any additional fees?</p>
-                  <div class="text-white group-open:rotate-180" data-icon="CaretDown" data-size="20px" data-weight="regular">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
-                    </svg>
-                  </div>
-                </summary>
-                <p class="text-[#bab29c] text-sm font-normal leading-normal pb-2"></p>
-              </details>
-            </div>
-          </div>
         </div>
-        <footer class="flex justify-center">
-          <div class="flex max-w-[960px] flex-1 flex-col">
-            <footer class="flex flex-col gap-6 px-5 py-10 text-center @container">
-              <div class="flex flex-wrap items-center justify-center gap-6 @[480px]:flex-row @[480px]:justify-around">
-                <a class="text-[#bab29c] text-base font-normal leading-normal min-w-40" href="#">About</a>
-                <a class="text-[#bab29c] text-base font-normal leading-normal min-w-40" href="#">Contact</a>
-                <a class="text-[#bab29c] text-base font-normal leading-normal min-w-40" href="#">Privacy Policy</a>
-                <a class="text-[#bab29c] text-base font-normal leading-normal min-w-40" href="#">Terms of Service</a>
-              </div>
-              <p class="text-[#bab29c] text-base font-normal leading-normal">@2024 StayEase. All rights reserved.</p>
-            </footer>
-          </div>
-        </footer>
-      </div>
-    </div>
-  </body>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="section-header">
+            <h1 class="section-title">Get in <span class="gradient-text">Touch</span></h1>
+            <p class="section-subtitle">We're here to help make your travel dreams come true. Reach out with any questions, concerns, or just to say hello!</p>
+        </section>
+
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2 class="form-title">Send us a Message</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" id="name" name="name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Subject</label>
+                        <input type="text" id="subject" name="subject" class="form-input" placeholder="What's this about?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us how we can help you..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2 class="info-title">Contact Information</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <div class="info-label">Our Office</div>
+                        <div class="info-value">123 Travel Street, Wanderlust City, WL 12345</div>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-content">
+                        <div class="info-label">Phone</div>
+                        <div class="info-value">+1 (555) 123-STAY</div>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-content">
+                        <div class="info-label">Email</div>
+                        <div class="info-value">hello@stayease.com</div>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-content">
+                        <div class="info-label">Support Hours</div>
+                        <div class="info-value">24/7 - We're always here for you</div>
+                    </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-icon">🌐</div>
+                    <div class="info-content">
+                        <div class="info-label">Social Media</div>
+                        <div class="info-value">@StayEase on all platforms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="faq-title">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-question-text">How do I cancel my booking?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-text">
+                        You can cancel your booking directly from your account dashboard. Go to "Your Trips" and select the booking you'd like to cancel. Please note that cancellation policies vary by property.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-question-text">Is my payment information secure?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-text">
+                        Absolutely! We use industry-standard encryption and never store your full payment details. All transactions are processed through secure, PCI-compliant payment processors.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-question-text">Can I modify my reservation?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-text">
+                        Yes, in most cases you can modify your reservation through your account dashboard. However, changes are subject to availability and the property's modification policy.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-question-text">What if I have issues during my stay?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-text">
+                        Our 24/7 support team is always available to help. You can reach us through the contact information above, or use the emergency contact details provided in your booking confirmation.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-question-text">How do I leave a review?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-text">
+                        After your stay, you'll receive an email invitation to leave a review. You can also access this from your trip history in your account dashboard. Your feedback helps other travelers and improves our service!
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.floating-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.7)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.4)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+
+        // FAQ Toggle functionality
+        function toggleFAQ(questionElement) {
+            const answer = questionElement.nextElementSibling;
+            const toggle = questionElement.querySelector('.faq-toggle');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('.faq-toggle').textContent = '+';
+                    item.previousElementSibling.querySelector('.faq-toggle').style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                toggle.textContent = '+';
+                toggle.style.transform = 'rotate(0deg)';
+            } else {
+                answer.classList.add('active');
+                toggle.textContent = '−';
+                toggle.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success message (you would replace this with actual form submission)
+            const submitButton = document.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            
+            submitButton.textContent = 'Message Sent! ✓';
+            submitButton.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            
+            setTimeout(() => {
+                submitButton.textContent = originalText;
+                submitButton.style.background = 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)';
+                this.reset(); // Reset form
+            }, 3000);
+        });
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.contact-form, .contact-info, .faq-section, .info-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
 </html>

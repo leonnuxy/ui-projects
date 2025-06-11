@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="tailwind.config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
       .golden-gradient {
         background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
@@ -48,356 +50,615 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .hover-lift:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+      }
+      @keyframes glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+        50% { box-shadow: 0 0 30px rgba(251, 191, 36, 0.6); }
+      }
+      .animate-glow {
+        animation: glow 2s infinite;
+      }
+      .card-stack {
+        position: relative;
+      }
+      .card-stack .card-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card-stack .card-item:nth-child(1) {
+        z-index: 3;
+        transform: rotate(-2deg) translate(0px, 0px);
+      }
+      .card-stack .card-item:nth-child(2) {
+        z-index: 2;
+        transform: rotate(1deg) translate(8px, 8px);
+      }
+      .card-stack:hover .card-item:nth-child(1) {
+        transform: rotate(2deg) translate(-8px, -8px);
+        z-index: 2;
+      }
+      .card-stack:hover .card-item:nth-child(2) {
+        transform: rotate(-1deg) translate(0px, 0px);
+        z-index: 3;
+      }
+      @keyframes shuffle {
+        0% { transform: rotate(-2deg) translate(0px, 0px); }
+        50% { transform: rotate(2deg) translate(-8px, -8px); }
+        100% { transform: rotate(-2deg) translate(0px, 0px); }
+      }
+      .card-stack:hover .card-item {
+        animation: shuffle 1s ease-in-out;
+      }
+      .card-stack.manual-control .card-item:nth-child(1) {
+        z-index: 2;
+        transform: rotate(2deg) translate(-8px, -8px);
+      }
+      .card-stack.manual-control .card-item:nth-child(2) {
+        z-index: 3;
+        transform: rotate(-1deg) translate(0px, 0px);
       }
     </style>
   </head>
-  <body>
-    <div
-      class="relative flex size-full min-h-screen flex-col dark-gradient dark group/design-root overflow-x-hidden"
-      style='font-family: "Inter", "sans-serif";'
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <!-- Mobile Navigation Overlay -->
-        <div id="mobile-nav-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden transition-opacity duration-300"></div>
-        
-        <!-- Mobile Navigation Menu -->
-        <nav id="mobile-nav" class="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-dark-950/95 backdrop-blur-lg border-l border-gold-400/30 z-50 transform translate-x-full transition-transform duration-300 ease-out">
-          <div class="flex flex-col h-full">
-            <div class="flex items-center justify-between p-6 border-b border-gold-400/30">
-              <h3 class="text-xl font-display font-bold text-white">Menu</h3>
-              <button id="close-mobile-nav" class="p-2 text-gold-400 hover:text-white transition-colors touch-manipulation">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-            </div>
-            <div class="flex-1 p-6 space-y-6">
-              <a class="block text-white text-lg font-medium font-body hover:text-gold-400 transition-colors duration-300 py-3 border-b border-gray-700/50 touch-manipulation" href="#menu">Menu</a>
-              <a class="block text-white text-lg font-medium font-body hover:text-gold-400 transition-colors duration-300 py-3 border-b border-gray-700/50 touch-manipulation" href="#private-dining">Private Dining</a>
-              <a class="block text-white text-lg font-medium font-body hover:text-gold-400 transition-colors duration-300 py-3 border-b border-gray-700/50 touch-manipulation" href="#events">Events</a>
-              <a class="block text-white text-lg font-medium font-body hover:text-gold-400 transition-colors duration-300 py-3 border-b border-gray-700/50 touch-manipulation" href="#about">About</a>
-            </div>
-            <div class="p-6 space-y-3 border-t border-gold-400/30">
-              <button data-action="reservation" class="btn-gold w-full flex items-center justify-center h-12 px-6 text-dark-950 font-bold tracking-wide font-body touch-manipulation">
-                Reserve Table
-              </button>
-              <button class="btn-outline-gold w-full flex items-center justify-center h-12 px-6 text-gold-400 font-bold tracking-wide font-body touch-manipulation">
-                Order Takeout
-              </button>
-            </div>
-          </div>
+  <body class="dark-gradient min-h-screen font-body">
+    <!-- Header/Navigation Section - Fixed Floating -->
+    <header class="fixed top-0 left-0 right-0 flex items-center justify-between whitespace-nowrap px-6 md:px-10 py-4 z-50">
+      <div class="flex items-center gap-4 text-white animate-fade-in">
+        <div class="size-8 text-gold-400">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+              fill="currentColor"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+        </div>
+        <h2 class="text-white text-2xl md:text-3xl font-display font-bold leading-tight tracking-wide">Bistro Luxe</h2>
+      </div>
+      
+      <div class="flex flex-1 justify-end gap-4 md:gap-8">
+        <nav class="hidden md:flex items-center gap-8 lg:gap-10">
+          <a class="text-white text-base font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300 tracking-wide" href="#menu">Menu</a>
+          <a class="text-white text-base font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300 tracking-wide" href="#private-dining">Private Dining</a>
+          <a class="text-white text-base font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300 tracking-wide" href="#events">Events</a>
+          <a class="text-white text-base font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300 tracking-wide" href="#about">About</a>
         </nav>
-
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-gold-400/30 px-4 lg:px-10 py-4 backdrop-blur-sm bg-dark-950/80 relative z-30">
-          <div class="flex items-center gap-3 text-white animate-fade-in">
-            <div class="size-6 text-gold-400">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
-                  fill="currentColor"
-                ></path>
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <h2 class="text-white text-xl lg:text-2xl font-display font-bold leading-tight tracking-wide">Bistro Luxe</h2>
-          </div>
-          
-          <!-- Desktop Navigation -->
-          <div class="hidden lg:flex flex-1 justify-end gap-8">
-            <div class="flex items-center gap-9">
-              <a class="text-white text-sm font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300" href="#menu">Menu</a>
-              <a class="text-white text-sm font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300" href="#private-dining">Private Dining</a>
-              <a class="text-white text-sm font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300" href="#events">Events</a>
-              <a class="text-white text-sm font-medium leading-normal font-body hover:text-gold-400 transition-colors duration-300" href="#about">About</a>
-            </div>
-            <div class="flex gap-3">
-              <button data-action="reservation" class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                <span class="truncate">Reserve Table</span>
-              </button>
-              <button class="btn-outline-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-gold-400 text-sm font-bold leading-normal tracking-wide font-body">
-                <span class="truncate">Order Takeout</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Mobile Hamburger Menu Button -->
-          <button id="mobile-menu-toggle" class="lg:hidden p-2 text-gold-400 hover:text-white transition-colors touch-manipulation">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
+        
+        <div class="flex gap-3">
+          <button data-action="reservation" class="btn-gold flex min-w-[100px] md:min-w-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-4 md:px-6 text-dark-950 text-sm md:text-base font-bold leading-normal tracking-wide font-body">
+            <i class="fas fa-bag-shopping mr-2"></i><span class="truncate">Takeout</span>
           </button>
-        </header>
-        <div class="px-4 lg:px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="@container">
-              <div class="@[480px]:px-4 @[480px]:py-3">
-                <div
-                  class="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-dark-950 @[480px]:rounded-2xl min-h-96 relative animate-slide-up"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCuPhzV4GFRygZQ3Sw185huaRddgc8Ve_91tJ-ad-ahAZFV4bgjX8t8CDuwPkCIv-rvHubC4DQBeu29AxqBkUFI5ZvadQsau5xQVjVFWQ5DObITW_JvqEEuVzqBciafARglQKoBHGEDAEozUwLZHhbyJeonjNoR3cc8gmeERtvManRXzswX2igtitsYs4L5LjFrPExTkFXWSoId70PtDPWUAnDMnXKHCkqH-ul-8KYcQMJ3kYcHvvdrDxMizBhuQ12tHonnVWol3BFi");'
-                >
-                  <div class="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/40 to-transparent"></div>
-                  <div class="relative z-10 p-8">
-                    <div class="inline-block px-4 py-2 rounded-full bg-gold-400/20 backdrop-blur-sm border border-gold-400/30 mb-4">
-                      <span class="text-gold-400 text-sm font-medium font-body">Fine Dining Excellence</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="section-header">
-              <h1 class="text-display-md text-white text-shadow animate-fade-in">
-                <span class="decorative-line"></span>
-                Bistro Luxe
-                <span class="decorative-line"></span>
-              </h1>
-              <p class="text-accent-lg text-gold-400 animate-fade-in">Modern Culinary Excellence</p>
-              <p class="text-body-lg text-gray-300 max-w-3xl mx-auto animate-slide-up">
-                A modern dining experience in the heart of the city, offering a sophisticated menu and an elegant atmosphere where culinary artistry meets exceptional service.
-              </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout-container flex h-full grow flex-col">
+      <div class="flex flex-col">
+
+        <!-- Hero Section -->
+<section class="hero-section relative h-screen bg-center bg-no-repeat bg-cover overflow-hidden"
+         style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCuPhzV4GFRygZQ3Sw185huaRddgc8Ve_91tJ-ad-ahAZFV4bgjX8t8CDuwPkCIv-rvHubC4DQBeu29AxqBkUFI5ZvadQsau5xQVjVFWQ5DObITW_JvqEEuVzqBciafARglQKoBHGEDAEozUwLZHhbyJeonjNoR3cc8gmeERtvManRXzswX2igtitsYs4L5LjFrPExTkFXWSoId70PtDPWUAnDMnXKHCkqH-ul-8KYcQMJ3kYcHvvdrDxMizBhuQ12tHonnVWol3BFi");'>
+  <!-- Dark overlay for better text readability -->
+  <div class="absolute inset-0 bg-gradient-to-b from-dark-950/60 via-dark-950/70 to-dark-950/90"></div>
+  
+  <!-- Content container -->
+  <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 py-20">
+    <!-- Badge -->
+    <div class="inline-block px-6 py-3 rounded-full bg-gold-400/20 backdrop-blur-sm border border-gold-400/30 mb-8 animate-fade-in">
+      <span class="text-gold-400 text-sm font-medium font-body tracking-wide">Fine Dining Excellence</span>
+    </div>
+    
+    <!-- Main title -->
+    <h1 class="text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-bold leading-tight text-center mb-6 text-shadow animate-fade-in tracking-tight">
+      Bistro Luxe
+    </h1>
+    
+    <!-- Subtitle -->
+    <h2 class="text-gold-400 text-xl md:text-2xl lg:text-3xl font-accent font-normal text-center mb-8 tracking-wide animate-slide-up">
+      Modern Culinary Excellence
+    </h2>
+    
+    <!-- Description -->
+    <p class="text-gray-200 text-lg md:text-xl lg:text-2xl font-body font-light leading-relaxed text-center max-w-4xl mx-auto mb-12 animate-slide-up tracking-wide" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
+      A modern dining experience in the heart of the city, offering a sophisticated menu and an elegant atmosphere where culinary artistry meets exceptional service.
+    </p>
+    
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 animate-slide-up">
+      <button class="btn-gold flex min-w-[180px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 text-dark-950 text-lg font-bold leading-normal tracking-wide font-body">
+        <span class="truncate">Make Reservation</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+        <!-- Menu Section -->
+<section id="menu" class="animate-on-scroll py-20" data-animation="slideUp">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-white text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-6 flex items-center justify-center">
+        <span class="w-16 h-0.5 bg-gold-400 mr-8"></span>
+        Menu
+        <span class="w-16 h-0.5 bg-gold-400 ml-8"></span>
+      </h2>
+      <p class="text-gray-300 text-xl md:text-2xl font-body font-light leading-relaxed max-w-3xl mx-auto tracking-wide">
+        Explore our diverse menu featuring seasonal dishes and classic favorites crafted with the finest ingredients.
+      </p>
+    </div>
+    
+    <div class="flex justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl w-full">
+        <!-- Lebanese Lemon Garlic Chicken Card -->
+        <div class="card-glass rounded-3xl shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC672_dnE_N5AnA9XUS34bm2oH6cOEziwyJgtHuPRJxL0cMe-aBWJjgW4U0JpzeH4tRbR1oQSsIrzLFHSx9siY-H7kPzrgqcwlymoPVOLgEEQ3C7ACaHKnBzG169AEbGaku2t4Na6SS3-4mUPoFkZeb4TnYTIebXZc_swhHQusUKKZRjYPS8gajsbOqdm2KJcNbZQ358NPE9MDgtneOaiUg0b8cT943CCaR8hhJLDUsJpeicMGLAmHQ-1jDhkwP_OMD6_U66K9GgmDh");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Frost/blur effect at bottom with gradual gradient -->
+          <div class="absolute bottom-0 left-0 right-0 h-24 backdrop-blur-sm bg-gradient-to-t from-dark-950/60 via-dark-950/30 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[400px]">
+            <!-- Title positioned in the clear area above frost -->
+            <div class="flex-1 flex items-end justify-start p-6 pb-4">
+              <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide">Lebanese Lemon Garlic Chicken <i class="fa-solid fa-fire text-gold-400"></i></h3>
             </div>
             
-            <!-- Menu Section -->
-            <section id="menu" class="section animate-on-scroll" data-animation="slideUp">
-              <div class="container">
-                <div class="section-header">
-                  <h2 class="text-display-sm text-white">
-                    <span class="decorative-line"></span>
-                    Menu
-                    <span class="decorative-line"></span>
-                  </h2>
-                  <p class="text-body-lg text-gray-300">Explore our diverse menu featuring seasonal dishes and classic favorites crafted with the finest ingredients.</p>
-                </div>
-                <div class="grid md:grid-cols-2 max-w-4xl mx-auto">
-                  <div class="card card-glass hover-lift">
-                    <div class="card-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC672_dnE_N5AnA9XUS34bm2oH6cOEziwyJgtHuPRJxL0cMe-aBWJjgW4U0JpzeH4tRbR1oQSsIrzLFHSx9siY-H7kPzrgqcwlymoPVOLgEEQ3C7ACaHKnBzG169AEbGaku2t4Na6SS3-4mUPoFkZeb4TnYTIebXZc_swhHQusUKKZRjYPS8gajsbOqdm2KJcNbZQ358NPE9MDgtneOaiUg0b8cT943CCaR8hhJLDUsJpeicMGLAmHQ-1jDhkwP_OMD6_U66K9GgmDh");'>
-                      <span class="card-badge">Seasonal</span>
-                    </div>
-                    <div class="card-content">
-                      <h3 class="text-heading-md text-white mb-3">Seasonal Delights</h3>
-                      <p class="text-body-md text-gold-200 mb-6">Fresh, locally sourced ingredients crafted into extraordinary dishes that celebrate the season.</p>
-                      <button class="btn btn-gold">View Details</button>
-                    </div>
-                  </div>
-                  
-                  <div class="card card-glass hover-lift">
-                    <div class="card-image" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuClxrNyQrqDxqby1DxQ6vPpHg08P9ZrmsiifOP4a26UdJVAnfeVAi4RTCWwioTvVZapeLFBEB-SPuO2hUw2y3CqKeB6CzBlHZN4stMrRgU68erDavWYHj4VyYMc-InaMQpZ0Um5sAhL5b5S3geRHYrSUFXJwoL7he1x8JZNrV_CiZ5KKZhpVVTzeBQafpqbU1B-FLrQdfXa3k-C0ehtyxTMrnHqRm42J3BmwZdrn_8UYz1TrGvGwf-v3Sch-fS4LW4M7dzeS2KY5MdA");'>
-                      <span class="card-badge">Classic</span>
-                    </div>
-                    <div class="card-content">
-                      <h3 class="text-heading-md text-white mb-3">Classic Favorites</h3>
-                      <p class="text-body-md text-gold-200 mb-6">Timeless dishes with a modern twist and contemporary presentation that honors tradition.</p>
-                      <button class="btn btn-gold">View Details</button>
-                    </div>
-                  </div>
-                </div>
+            <!-- Bottom info section positioned in frost area -->
+            <div class="flex items-center justify-between p-6 pt-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Yogurt</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Olive oil</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">+8</span>
               </div>
-            </section>
+              <div class="flex items-center text-gold-200 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                20 mins
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Smoked Salmon Dip Card -->
+        <div class="card-glass rounded-3xl shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuClxrNyQrqDxqby1DxQ6vPpHg08P9ZrmsiifOP4a26UdJVAnfeVAi4RTCWwioTvVZapeLFBEB-SPuO2hUw2y3CqKeB6CzBlHZN4stMrRgU68erDavWYHj4VyYMc-InaMQpZ0Um5sAhL5b5S3geRHYrSUFXJwoL7he1x8JZNrV_CiZ5KKZhpVVTzeBQafpqbU1B-FLrQdfXa3k-C0ehtyxTMrnHqRm42J3BmwZdrn_8UYz1TrGvGwf-v3Sch-fS4LW4M7dzeS2KY5MdA");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Frost/blur effect at bottom with gradual gradient -->
+          <div class="absolute bottom-0 left-0 right-0 h-24 backdrop-blur-sm bg-gradient-to-t from-dark-950/60 via-dark-950/30 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[400px]">
+            <!-- Availability badge at top -->
+            <div class="absolute top-4 right-4 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full">
+              <span class="text-white text-xs font-medium">2 ingredients unavailable</span>
+            </div>
+            
+            <!-- Title positioned in the clear area above frost -->
+            <div class="flex-1 flex items-end justify-start p-6 pb-4">
+              <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide">Smoked Salmon Dip <i class="fa-solid fa-fire text-gold-400"></i></h3>
+            </div>
+            
+            <!-- Bottom info section positioned in frost area -->
+            <div class="flex items-center justify-between p-6 pt-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Cream</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Cheese</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">+3</span>
+              </div>
+              <div class="flex items-center text-gold-200 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                12 mins
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Truffle Risotto Card -->
+        <div class="card-glass rounded-3xl shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://www.foleyfoodandwinesociety.com/wp-content/uploads/sites/2/2024/12/Mushroom-Risotto.png");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Frost/blur effect at bottom with gradual gradient -->
+          <div class="absolute bottom-0 left-0 right-0 h-24 backdrop-blur-sm bg-gradient-to-t from-dark-950/60 via-dark-950/30 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[400px]">
+            <!-- Chef's choice badge at top -->
+            <div class="absolute top-4 right-4 bg-gold-400 px-2 py-1 rounded-full">
+              <img src="chefs-icon.png" alt="Chef's Choice" class="w-12 h-12">
+            </div>
+            
+            <!-- Title positioned in the clear area above frost -->
+            <div class="flex-1 flex items-end justify-start p-6 pb-4">
+              <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide">Truffle Risotto <i class="fa-solid fa-fire text-gold-400"></i></h3>
+            </div>
+            
+            <!-- Bottom info section positioned in frost area -->
+            <div class="flex items-center justify-between p-6 pt-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Arborio rice</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Truffle</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">+5</span>
+              </div>
+              <div class="flex items-center text-gold-200 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                35 mins
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Chocolate Soufflé Card -->
+        <div class="card-glass rounded-3xl shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://images.unsplash.com/photo-1624353365286-3f8d62daad51?q=80&w=1970&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Frost/blur effect at bottom with gradual gradient -->
+          <div class="absolute bottom-0 left-0 right-0 h-24 backdrop-blur-sm bg-gradient-to-t from-dark-950/60 via-dark-950/30 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[400px]">
+            <!-- Title positioned in the clear area above frost -->
+            <div class="flex-1 flex items-end justify-start p-6 pb-4">
+              <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide">Chocolate Soufflé <i class="fa-solid fa-cookie-bite text-gold-400"></i></h3>
+            </div>
+            
+            <!-- Bottom info section positioned in frost area -->
+            <div class="flex items-center justify-between p-6 pt-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Dark chocolate</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">Eggs</span>
+                <span class="bg-gold-400/20 text-gold-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">+4</span>
+              </div>
+              <div class="flex items-center text-gold-200 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                25 mins
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <!-- Private Dining Section -->
-            <div id="private-dining" class="animate-on-scroll" data-animation="slideUp">
-            <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide px-4 pb-3 pt-8 flex items-center">
-              <span class="w-8 h-0.5 bg-gold-400 mr-4"></span>
-              Private Dining
-              <span class="w-8 h-0.5 bg-gold-400 ml-4"></span>
-            </h3>
-            <p class="text-gray-300 text-lg font-body font-normal leading-relaxed pb-6 pt-1 px-4 text-center">Host your special events in our private dining rooms, tailored to your needs.</p>
-            <div class="horizontal-scroll flex overflow-x-auto overflow-y-hidden [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory">
-              <div class="flex items-stretch p-4 gap-6 min-w-full">
-                <div class="card-glass flex h-full flex-1 flex-col gap-4 rounded-2xl shadow-2xl min-w-72 hover-lift">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col relative overflow-hidden"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCm_RCNGRfvglE98EDmThbZ0mMPnEXVS1p1zU2X4q6N-QYaFc0CKky-yTBd8eFiusujHCvw2RYJ10ZWtF2nnGzSeY_2c3Qn9iXIHEkrdAiyPhUnf1vJhp7lO98jzQ5GUpaV-HkHe6aRgGXZPDa7V4BjRf0b7cbmKm5Jh-T7WkixFJP1CNlVsRZWIOtSr0AQcWVFel4IjAqqHcNnusEPazQJsYvNgXh_cW-_-dChLn5PZ-RVQ9z2ozIx-DOpzEcp3z1d7oXv1Fs5hDja");'
-                  >
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4">
-                      <span class="bg-gold-400 text-dark-950 px-3 py-1 rounded-full text-xs font-bold font-body">Intimate</span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col flex-1 justify-between p-6 pt-0 gap-4">
-                    <div>
-                      <p class="text-white text-lg font-display font-semibold leading-normal mb-2">Intimate Gatherings</p>
-                      <p class="text-gold-200 text-sm font-body font-normal leading-relaxed">Perfect for small groups and special occasions</p>
-                    </div>
-                    <button class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                      <span class="truncate">View Details</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-glass flex h-full flex-1 flex-col gap-4 rounded-2xl shadow-2xl min-w-72 hover-lift">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col relative overflow-hidden"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXMj012P19wZkTewn3oQM1cnMNDvRlUWEXWJ9gGqdKqxeDolKRvnthRlMbjiUxDmNshzpRazmHHH6MpRuf7vbDG0qVFvMy5QaixS5xBxc4ZVSnOIxerLt3MtYGRNtTT88Qkd1XSSy9_MvzTxJrKWy1rI_4WcUIqDrO3zPJXvIIJLLLEWRggTyk_rKKbv5VTGckNyBviDwobJKJgToSYd3MrIr4UJy-Gl4KzwkLHrT92rJOBK0e-r4dMhkU8rp9W3Gvyd6rzEEmpkqi");'
-                  >
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4">
-                      <span class="bg-gold-400 text-dark-950 px-3 py-1 rounded-full text-xs font-bold font-body">Large</span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col flex-1 justify-between p-6 pt-0 gap-4">
-                    <div>
-                      <p class="text-white text-lg font-display font-semibold leading-normal mb-2">Large Celebrations</p>
-                      <p class="text-gold-200 text-sm font-body font-normal leading-relaxed">Accommodating up to 50 guests with premium service</p>
-                    </div>
-                    <button class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                      <span class="truncate">View Details</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+        <!-- Private Dining Section -->
+<section id="private-dining" class="animate-on-scroll py-20" data-animation="slideUp">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-white text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-6 flex items-center justify-center">
+        <span class="w-16 h-0.5 bg-gold-400 mr-8"></span>
+        Private Dining
+        <span class="w-16 h-0.5 bg-gold-400 ml-8"></span>
+      </h2>
+      <p class="text-gray-300 text-xl md:text-2xl font-body font-light leading-relaxed max-w-3xl mx-auto tracking-wide">
+        Host your special events in our private dining rooms, tailored to your needs and elevated by exceptional service.
+      </p>
+    </div>
+    
+    <div class="flex justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
+        <div class="card-glass rounded-[8rem] shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCm_RCNGRfvglE98EDmThbZ0mMPnEXVS1p1zU2X4q6N-QYaFc0CKky-yTBd8eFiusujHCvw2RYJ10ZWtF2nnGzSeY_2c3Qn9iXIHEkrdAiyPhUnf1vJhp7lO98jzQ5GUpaV-HkHe6aRgGXZPDa7V4BjRf0b7cbmKm5Jh-T7WkixFJP1CNlVsRZWIOtSr0AQcWVFel4IjAqqHcNnusEPazQJsYvNgXh_cW-_-dChLn5PZ-RVQ9z2ozIx-DOpzEcp3z1d7oXv1Fs5hDja");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Modern frost effect at bottom -->
+          <div class="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md bg-gradient-to-t from-dark-950/80 via-dark-950/40 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[600px]">
+            <!-- Title and description positioned above frost -->
+            <div class="flex-1 flex flex-col justify-end p-8 pb-6">
+              <h3 class="text-white text-xl font-display font-bold leading-tight mb-3 tracking-wide">Intimate Gatherings</h3>
+              <p class="text-gray-200 text-sm font-body font-light leading-relaxed tracking-wide max-w-md">Perfect for small groups and special occasions with personalized attention and curated menus.</p>
             </div>
+            
+            <!-- Button positioned in frost area and centered -->
+            <div class="p-8 pt-4 flex justify-center">
+              <button class="btn-gold flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body hover-lift">
+                <span class="truncate">View Details</span>
+              </button>
             </div>
-
-            <!-- Events Section -->
-            <div id="events" class="animate-on-scroll" data-animation="slideUp">
-            <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide px-4 pb-3 pt-8 flex items-center">
-              <span class="w-8 h-0.5 bg-gold-400 mr-4"></span>
-              Events
-              <span class="w-8 h-0.5 bg-gold-400 ml-4"></span>
-            </h3>
-            <p class="text-gray-300 text-lg font-body font-normal leading-relaxed pb-6 pt-1 px-4 text-center">Stay updated on our upcoming events, from wine tastings to chef collaborations.</p>
-            <div class="horizontal-scroll flex overflow-x-auto overflow-y-hidden [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory">
-              <div class="flex items-stretch p-4 gap-6 min-w-full">
-                <div class="card-glass flex h-full flex-1 flex-col gap-4 rounded-2xl shadow-2xl min-w-72 hover-lift">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col relative overflow-hidden"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHd3bRQjxQavA2FTrkhhsHlAemaEPI4EfdpnPmN4O1O8J0xQyb2PTY8hyflGp1wMpidRYDXnC53Im0yvYj6AQTIRTvn_z6un0au95Ds-PaxFzOwtztDYaatEr16mRSErz_6K5ozQFqw1R50mDAnrj9-NnuKgcLMqSoy3s4ume1mGfZKydPMZ2VFcotEHnVfRZI9zvdDppJ0S8sbHmm0CMC6zDBcwsKm81oC6BNFhdfytE3__SxSdIkDDua64vWYn3SX-G3vxzQEt5M");'
-                  >
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4">
-                      <span class="bg-gold-400 text-dark-950 px-3 py-1 rounded-full text-xs font-bold font-body">Wine</span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col flex-1 justify-between p-6 pt-0 gap-4">
-                    <div>
-                      <p class="text-white text-lg font-display font-semibold leading-normal mb-2">Wine Tasting</p>
-                      <p class="text-gold-200 text-sm font-body font-normal leading-relaxed">Explore fine wines with our master sommelier</p>
-                    </div>
-                    <button class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                      <span class="truncate">View Details</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-glass flex h-full flex-1 flex-col gap-4 rounded-2xl shadow-2xl min-w-72 hover-lift">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl flex flex-col relative overflow-hidden"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5aVWtEgszpYwM68ouWAOaZjKkBFU0ikJjjqBVXO0gYic_BpWcCudseY3cReBTc96hRoKUSxgsqNSG89seu6ExYkqeFfKdfjNV2CX6Fqtgyvi3mxAuEvGhWBVpJ1-2SR3T8RH5ZM9mlvM4cUnZ_aJphbqOczbu05NK1QNeu5PDZideqxHnqPDV20PAQN6Ki7SPDrtCeYbcDuF2b70kTIqqDePJhEHFv1tPXP9Vps_sP2xgm7x0kvvyMSjXhr9VhOTe8RrLQ4QpWqZJ");'
-                  >
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent"></div>
-                    <div class="absolute top-4 right-4">
-                      <span class="bg-gold-400 text-dark-950 px-3 py-1 rounded-full text-xs font-bold font-body">Chef</span>
-                    </div>
-                  </div>
-                  <div class="flex flex-col flex-1 justify-between p-6 pt-0 gap-4">
-                    <div>
-                      <p class="text-white text-lg font-display font-semibold leading-normal mb-2">Chef Collaboration</p>
-                      <p class="text-gold-200 text-sm font-body font-normal leading-relaxed">Exclusive dishes from world-renowned chefs</p>
-                    </div>
-                    <button class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                      <span class="truncate">View Details</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+        
+        <div class="card-glass rounded-[8rem] shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXMj012P19wZkTewn3oQM1cnMNDvRlUWEXWJ9gGqdKqxeDolKRvnthRlMbjiUxDmNshzpRazmHHH6MpRuf7vbDG0qVFvMy5QaixS5xBxc4ZVSnOIxerLt3MtYGRNtTT88Qkd1XSSy9_MvzTxJrKWy1rI_4WcUIqDrO3zPJXvIIJLLLEWRggTyk_rKKbv5VTGckNyBviDwobJKJgToSYd3MrIr4UJy-Gl4KzwkLHrT92rJOBK0e-r4dMhkU8rp9W3Gvyd6rzEEmpkqi");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Modern frost effect at bottom -->
+          <div class="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md bg-gradient-to-t from-dark-950/80 via-dark-950/40 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[600px]">
+            <!-- Title and description positioned above frost -->
+            <div class="flex-1 flex flex-col justify-end p-8 pb-6">
+              <h3 class="text-white text-xl font-display font-bold leading-tight mb-3 tracking-wide">Large Celebrations</h3>
+              <p class="text-gray-200 text-sm font-body font-light leading-relaxed tracking-wide max-w-md">Accommodating up to 50 guests with premium service and elegant ambiance for memorable events.</p>
             </div>
-            </div>
-
-            <!-- About Section -->
-            <div id="about" class="animate-on-scroll" data-animation="slideUp">
-            <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide px-4 pb-3 pt-8 flex items-center">
-              <span class="w-8 h-0.5 bg-gold-400 mr-4"></span>
-              About
-              <span class="w-8 h-0.5 bg-gold-400 ml-4"></span>
-            </h3>
-            <p class="text-gray-300 text-lg font-body font-normal leading-relaxed pb-6 pt-1 px-4 text-center">Learn more about our story, our team, and our commitment to culinary excellence.</p>
-            <div class="horizontal-scroll flex overflow-x-auto overflow-y-hidden [-ms-scrollbar-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory">
-              <div class="flex items-stretch p-4 gap-6 min-w-full">
-                <div class="card-glass flex h-full flex-1 flex-col gap-4 rounded-2xl shadow-2xl min-w-72 hover-lift">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col relative overflow-hidden"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAc1xzjriR4Du6lJXLDJBdztcjrpPaaD-XcqPXLU_hwaenp7Em7bcql6inQQGMmdWPssXyvIfiLqzO5hnVImChHy5yTKuTzfnqM-aaGitrDbQLgeYgTozO4BKP5UP_txzaLy8uFW4982TWoHOpU3Y7FUUvAXwV1LTm67IbUrtqQqU5w83Gp0ymaG93nvVYXoVktYJzNxmFYkBNcPiwIzvYWsYer_G-HAhIRw5AyoQuD0oliKLrpzEKgGqM2SL7xonbqEAmaliD9sLad");'
-                  >
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent"></div>
-                  </div>
-                  <div class="flex flex-col flex-1 justify-between p-6 pt-0 gap-4">
-                    <div>
-                      <p class="text-white text-lg font-display font-semibold leading-normal mb-2">Our Story</p>
-                      <p class="text-gold-200 text-sm font-body font-normal leading-relaxed">Founded in 2010 with a passion for fine dining excellence</p>
-                    </div>
-                    <button class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                      <span class="truncate">View Details</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-glass flex h-full flex-1 flex-col gap-4 rounded-2xl shadow-2xl min-w-72 hover-lift">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col relative overflow-hidden"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJiJ36FwOZDNXpsGY-fcVLoay1rZUswOSMgsqna6vlcpAKep4VVSmtp0rd-EOhDvQQpt7gooRjWXJvLWkwrlLHezkhY0uGGFTBebUXEPbDrjO4mwgk4EpXPJZ__Wx3-sqtcsayqVFktP9dBScue3FjdNlzf8bI4niviwqAHXLPnflhwN4jo42Bak3DQd6Jl8yu9LhlusIfHzl8iYm0BpRWjAcYtSlcm3aRewkjDbV9D8yg-2bmPZQyCDv1lZJfaW4ViPeLYnC2WycM");'
-                  >
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark-950/60 to-transparent"></div>
-                  </div>
-                  <div class="flex flex-col flex-1 justify-between p-6 pt-0 gap-4">
-                    <div>
-                      <p class="text-white text-lg font-display font-semibold leading-normal mb-2">Our Team</p>
-                      <p class="text-gold-200 text-sm font-body font-normal leading-relaxed">Meet our talented culinary professionals</p>
-                    </div>
-                    <button class="btn-gold flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-11 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body">
-                      <span class="truncate">View Details</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Location & Hours -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 pt-12">
-              <div class="text-center">
-                <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide pb-4 flex items-center justify-center">
-                  <span class="w-6 h-0.5 bg-gold-400 mr-3"></span>
-                  Location
-                  <span class="w-6 h-0.5 bg-gold-400 ml-3"></span>
-                </h3>
-                <div class="card-glass rounded-2xl p-6">
-                  <p class="text-gray-300 text-lg font-body font-normal leading-relaxed">456 Oak Avenue</p>
-                  <p class="text-gray-300 text-lg font-body font-normal leading-relaxed">Cityville, State 54321</p>
-                </div>
-              </div>
-              <div class="text-center">
-                <h3 class="text-white text-2xl font-display font-bold leading-tight tracking-wide pb-4 flex items-center justify-center">
-                  <span class="w-6 h-0.5 bg-gold-400 mr-3"></span>
-                  Hours
-                  <span class="w-6 h-0.5 bg-gold-400 ml-3"></span>
-                </h3>
-                <div class="card-glass rounded-2xl p-6">
-                  <p class="text-gray-300 text-lg font-body font-normal leading-relaxed">Monday - Friday</p>
-                  <p class="text-gold-400 font-medium">5 PM - 11 PM</p>
-                  <p class="text-gray-300 text-lg font-body font-normal leading-relaxed mt-2">Saturday - Sunday</p>
-                  <p class="text-gold-400 font-medium">12 PM - 11 PM</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- CTA Section -->
-            <div class="flex px-4 py-12 justify-center">
-              <button data-action="reservation" class="btn-gold flex min-w-[160px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 px-8 text-dark-950 text-lg font-bold leading-normal tracking-wide font-body animate-glow">
-                <span class="truncate">Make a Reservation</span>
+            
+            <!-- Button positioned in frost area and centered -->
+            <div class="p-8 pt-4 flex justify-center">
+              <button class="btn-gold flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-6 text-dark-950 text-sm font-bold leading-normal tracking-wide font-body hover-lift">
+                <span class="truncate">View Details</span>
               </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+        <!-- Events Section -->
+<section id="events" class="animate-on-scroll py-20" data-animation="slideUp">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-white text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-6 flex items-center justify-center">
+        <span class="w-16 h-0.5 bg-gold-400 mr-8"></span>
+        Events
+        <span class="w-16 h-0.5 bg-gold-400 ml-8"></span>
+      </h2>
+      <p class="text-gray-300 text-xl md:text-2xl font-body font-light leading-relaxed max-w-3xl mx-auto tracking-wide">
+        Stay updated on our upcoming events, from wine tastings to chef collaborations that showcase culinary excellence.
+      </p>
+    </div>
+    
+    <div class="flex justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full">
+        <div class="card-glass rounded-full shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHd3bRQjxQavA2FTrkhhsHlAemaEPI4EfdpnPmN4O1O8J0xQyb2PTY8hyflGp1wMpidRYDXnC53Im0yvYj6AQTIRTvn_z6un0au95Ds-PaxFzOwtztDYaatEr16mRSErz_6K5ozQFqw1R50mDAnrj9-NnuKgcLMqSoy3s4ume1mGfZKydPMZ2VFcotEHnVfRZI9zvdDppJ0S8sbHmm0CMC6zDBcwsKm81oC6BNFhdfytE3__SxSdIkDDua64vWYn3SX-G3vxzQEt5M");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Modern frost effect at bottom -->
+          <div class="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md bg-gradient-to-t from-dark-950/80 via-dark-950/40 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[500px]">
+            <!-- Title and description positioned at bottom and centered -->
+            <div class="flex-1 flex flex-col justify-end items-center text-center p-10 pb-16">
+              <h3 class="text-white text-2xl font-display font-bold leading-tight mb-4 tracking-wide">Wine Tasting</h3>
+              <p class="text-gray-200 text-base font-body font-light leading-relaxed tracking-wide max-w-xs">Explore fine wines with our master sommelier in intimate tasting sessions</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-glass rounded-full shadow-2xl hover-lift transition-all duration-300 overflow-hidden relative">
+          <!-- Full card background image -->
+          <div
+            class="absolute inset-0 bg-center bg-no-repeat bg-cover"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5aVWtEgszpYwM68ouWAOaZjKkBFU0ikJjjqBVXO0gYic_BpWcCudseY3cReBTc96hRoKUSxgsqNSG89seu6ExYkqeFfKdfjNV2CX6Fqtgyvi3mxAuEvGhWBVpJ1-2SR3T8RH5ZM9mlvM4cUnZ_aJphbqOczbu05NK1QNeu5PDZideqxHnqPDV20PAQN6Ki7SPDrtCeYbcDuF2b70kTIqqDePJhEHFv1tPXP9Vps_sP2xgm7x0kvvyMSjXhr9VhOTe8RrLQ4QpWqZJ");'
+          ></div>
+          
+          <!-- Dark gradient overlay -->
+          <div class="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-950/50 to-transparent"></div>
+          
+          <!-- Modern frost effect at bottom -->
+          <div class="absolute bottom-0 left-0 right-0 h-32 backdrop-blur-md bg-gradient-to-t from-dark-950/80 via-dark-950/40 to-transparent"></div>
+          
+          <!-- Content container -->
+          <div class="relative z-10 flex flex-col h-full min-h-[500px]">
+            <!-- Title and description positioned at bottom and centered -->
+            <div class="flex-1 flex flex-col justify-end items-center text-center p-10 pb-16">
+              <h3 class="text-white text-2xl font-display font-bold leading-tight mb-4 tracking-wide">Chef Collaboration</h3>
+              <p class="text-gray-200 text-base font-body font-light leading-relaxed tracking-wide max-w-xs">Exclusive dishes from world-renowned chefs in limited-time collaborations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+        <!-- About Section -->
+<section id="about" class="animate-on-scroll py-20" data-animation="slideUp">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-white text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-6 flex items-center justify-center">
+        <span class="w-16 h-0.5 bg-gold-400 mr-8"></span>
+        About
+        <span class="w-16 h-0.5 bg-gold-400 ml-8"></span>
+      </h2>
+      <p class="text-gray-300 text-xl md:text-2xl font-body font-light leading-relaxed max-w-3xl mx-auto tracking-wide">
+        Learn more about our story, our team, and our commitment to culinary excellence and exceptional hospitality.
+      </p>
+    </div>
+    
+    <div class="flex justify-center items-center mb-20 gap-8">
+      <!-- Left Navigation Button -->
+      <button id="prevCard" class="nav-btn bg-gold-400/20 hover:bg-gold-400/40 backdrop-blur-sm border border-gold-400/30 rounded-full p-4 transition-all duration-300 hover:scale-110">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Card Stack -->
+      <div id="cardStack" class="card-stack max-w-lg w-full h-[576px]">
+        <!-- Our Story Card -->
+        <div class="card-item card-glass flex flex-col gap-6 rounded-2xl shadow-2xl transition-all duration-300 w-full h-full">
+          <div
+            class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-2xl flex flex-col relative overflow-hidden"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAc1xzjriR4Du6lJXLDJBdztcjrpPaaD-XcqPXLU_hwaenp7Em7bcql6inQQGMmdWPssXyvIfiLqzO5hnVImChHy5yTKuTzfnqM-aaGitrDbQLgeYgTozO4BKP5UP_txzaLy8uFW4982TWoHOpU3Y7FUUvAXwV1LTm67IbUrtqQqU5w83Gp0ymaG93nvVYXoVktYJzNxmFYkBNcPiwIzvYWsYer_G-HAhIRw5AyoQuD0oliKLrpzEKgGqM2SL7xonbqEAmaliD9sLad");'
+          >
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/70 to-transparent"></div>
+          </div>
+          <div class="flex flex-col flex-1 p-8 pt-0 gap-6">
+            <div>
+              <h3 class="text-white text-2xl font-display font-semibold leading-tight mb-4 tracking-wide">Our Story</h3>
+              <p class="text-gold-200 text-lg font-body font-normal leading-relaxed tracking-wide">Founded in 2010 with a passion for fine dining excellence and a commitment to creating memorable experiences.</p>
+            </div>
+            <button class="btn-gold flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 text-dark-950 text-base font-bold leading-normal tracking-wide font-body">
+              <span class="truncate">View Details</span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Our Team Card -->
+        <div class="card-item card-glass flex flex-col gap-6 rounded-2xl shadow-2xl transition-all duration-300 w-full h-full">
+          <div
+            class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-t-2xl flex flex-col relative overflow-hidden"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJiJ36FwOZDNXpsGY-fcVLoay1rZUswOSMgsqna6vlcpAKep4VVSmtp0rd-EOhDvQQpt7gooRjWXJvLWkwrlLHezkhY0uGGFTBebUXEPbDrjO4mwgk4EpXPJZ__Wx3-sqtcsayqVFktP9dBScue3FjdNlzf8bI4niviwqAHXLPnflhwN4jo42Bak3DQd6Jl8yu9LhlusIfHzl8iYm0BpRWjAcYtSlcm3aRewkjDbV9D8yg-2bmPZQyCDv1lZJfaW4ViPeLYnC2WycM");'
+          >
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-950/70 to-transparent"></div>
+          </div>
+          <div class="flex flex-col flex-1 p-8 pt-0 gap-6">
+            <div>
+              <h3 class="text-white text-2xl font-display font-semibold leading-tight mb-4 tracking-wide">Our Team</h3>
+              <p class="text-gold-200 text-lg font-body font-normal leading-relaxed tracking-wide">Meet our talented culinary professionals dedicated to delivering exceptional dining experiences.</p>
+            </div>
+            <button class="btn-gold flex min-w-[140px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-8 text-dark-950 text-base font-bold leading-normal tracking-wide font-body">
+              <span class="truncate">View Details</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Navigation Button -->
+      <button id="nextCard" class="nav-btn bg-gold-400/20 hover:bg-gold-400/40 backdrop-blur-sm border border-gold-400/30 rounded-full p-4 transition-all duration-300 hover:scale-110">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Location & Hours -->
+    <div class="flex justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+        <div class="text-center">
+          <h3 class="text-white text-3xl md:text-4xl font-display font-bold leading-tight tracking-wide mb-8 flex items-center justify-center">
+            <span class="w-12 h-0.5 bg-gold-400 mr-6"></span>
+            Location
+            <span class="w-12 h-0.5 bg-gold-400 ml-6"></span>
+          </h3>
+          <div class="card-glass rounded-2xl p-10 h-40 flex flex-col justify-center">
+            <p class="text-gray-300 text-xl font-body font-normal leading-relaxed tracking-wide">456 Oak Avenue</p>
+            <p class="text-gray-300 text-xl font-body font-normal leading-relaxed tracking-wide">Cityville, State 54321</p>
+          </div>
+        </div>
+        <div class="text-center">
+          <h3 class="text-white text-3xl md:text-4xl font-display font-bold leading-tight tracking-wide mb-8 flex items-center justify-center">
+            <span class="w-12 h-0.5 bg-gold-400 mr-6"></span>
+            Hours
+            <span class="w-12 h-0.5 bg-gold-400 ml-6"></span>
+          </h3>
+          <div class="card-glass rounded-2xl p-10 h-40 flex flex-col justify-center">
+            <p class="text-gray-300 text-xl font-body font-normal leading-relaxed tracking-wide">Monday - Friday</p>
+            <p class="text-gold-400 font-medium text-xl tracking-wide">5 PM - 11 PM</p>
+            <p class="text-gray-300 text-xl font-body font-normal leading-relaxed tracking-wide mt-3">Saturday - Sunday</p>
+            <p class="text-gold-400 font-medium text-xl tracking-wide">12 PM - 11 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      </div>
+    </div>
+    
+    <!-- CTA Section - Full Width at Bottom -->
+    <!-- CTA Section -->
+<section class="w-full bg-dark-900/50 py-24 text-center border-t border-gold-400/20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-white text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight tracking-tight mb-8">
+      Ready to Dine?
+    </h2>
+    <p class="text-gray-300 text-xl md:text-2xl lg:text-3xl font-body font-light leading-relaxed mb-12 max-w-4xl mx-auto tracking-wide">
+      Reserve your table today and experience culinary excellence in the heart of the city.
+    </p>
+    <button data-action="reservation" class="btn-gold flex min-w-[280px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-16 px-12 text-dark-950 text-xl font-bold leading-normal tracking-wide font-body animate-glow mx-auto hover-lift">
+      <span class="truncate">Make a Reservation</span>
+    </button>
+  </div>
+</section>
+
     
     <!-- Main JavaScript Module -->
     <script src="script.js"></script>
+    
+    <!-- Card Navigation Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cardStack = document.getElementById('cardStack');
+        const prevBtn = document.getElementById('prevCard');
+        const nextBtn = document.getElementById('nextCard');
+        let isFlipped = false;
+
+        function toggleCards() {
+          if (isFlipped) {
+            cardStack.classList.remove('manual-control');
+          } else {
+            cardStack.classList.add('manual-control');
+          }
+          isFlipped = !isFlipped;
+        }
+
+        prevBtn.addEventListener('click', toggleCards);
+        nextBtn.addEventListener('click', toggleCards);
+
+        // Optional: Auto-toggle every 5 seconds
+        // setInterval(toggleCards, 5000);
+      });
+    </script>
   </body>
-<!DOCTYPE html>
 </html>

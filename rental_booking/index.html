@@ -1,154 +1,603 @@
-<html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Be+Vietnam+Pro%3Awght%40400%3B500%3B700%3B900&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900"
-    />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayEase - Discover Your Perfect Stay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'cursive': ['Caveat', 'cursive'],
+                        'serif': ['Crimson Text', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%) !important;
+            min-height: 100vh;
+            color: #f8f8f8 !important;
+            overflow-x: hidden;
+        }
+        
+        .cursive-font {
+            font-family: 'Caveat', cursive !important;
+        }
+        
+        .floating-header {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+            backdrop-filter: blur(20px) !important;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 2rem !important;
+            margin: 1rem !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .floating-header:hover {
+            background: rgba(0, 0, 0, 0.6) !important;
+            border-color: rgba(255, 255, 255, 0.25) !important;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+        }
+        
+        .header-content {
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            padding: 1rem 2rem !important;
+        }
+        
+        .logo-section {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.75rem !important;
+            flex: 1 !important;
+        }
+        
+        .logo-icon {
+            width: 2rem !important;
+            height: 2rem !important;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 0.875rem !important;
+            font-weight: bold !important;
+        }
+        
+        .logo-text {
+            font-family: 'Caveat', cursive !important;
+            font-size: 1.5rem !important;
+            font-weight: 600 !important;
+            color: white !important;
+        }
+        
+        .nav-links {
+            display: flex !important;
+            align-items: center !important;
+            gap: 1.5rem !important;
+            justify-content: center !important;
+            flex: 2 !important;
+        }
+        
+        .auth-buttons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+            flex: 1 !important;
+            justify-content: flex-end !important;
+        }
+        
+        .nav-link {
+            color: #d1d5db !important;
+            text-decoration: none !important;
+            transition: color 0.3s ease !important;
+            font-size: 1rem !important;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+        }
+        
+        .cta-nav-button {
+            background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+            color: white !important;
+            padding: 0.5rem 1.5rem !important;
+            border-radius: 2rem !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+            font-weight: 500 !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-nav-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3) !important;
+            background: linear-gradient(135deg, #7c3aed, #6366f1) !important;
+        }
 
-    <title>Stitch Design</title>
-    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+        /* Hero Section with Background Image */
+        .hero-container {
+            min-height: 100vh;
+            position: relative;
+            background-image: url('image.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div
-      class="relative flex size-full min-h-screen flex-col bg-[#181611] dark group/design-root overflow-x-hidden"
-      style='font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;'
-    >
-      <div class="layout-container flex h-full grow flex-col">
-        <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#393528] px-10 py-3">
-          <div class="flex items-center gap-8">
-            <div class="flex items-center gap-4 text-white">
-              <div class="size-4">
-                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 4H6V17.3333V30.6667H24V44H42V30.6667V17.3333H24V4Z" fill="currentColor"></path>
-                </svg>
-              </div>
-              <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">StayEase</h2>
+        /* Dark overlay for better text readability */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.4) 0%, 
+                rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+        
+        .hero-section {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 100vh !important;
+            padding: 0 1.5rem !important;
+            position: relative !important;
+        }
+        
+        .hero-glow {
+            position: relative !important;
+            max-width: 64rem !important;
+            margin: 0 auto !important;
+            text-align: center !important;
+            z-index: 2;
+        }
+        
+        .hero-glow::before {
+            content: '' !important;
+            position: absolute !important;
+            top: -30% !important;
+            left: -30% !important;
+            width: 160% !important;
+            height: 160% !important;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 60%) !important;
+            z-index: -1 !important;
+            animation: breathe 6s ease-in-out infinite !important;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+        }
+        
+        .hero-title {
+            font-family: 'Caveat', cursive !important;
+            font-size: clamp(3rem, 8vw, 5rem) !important;
+            font-weight: 700 !important;
+            color: white !important;
+            margin-bottom: 2rem !important;
+            line-height: 1.1 !important;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.875rem) !important;
+            color: #d1d5db !important;
+            margin-bottom: 3rem !important;
+            line-height: 1.6 !important;
+            font-style: italic !important;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+            border-radius: 2rem !important;
+            transition: all 0.4s ease !important;
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.2) !important;
+            color: white !important;
+            padding: 1.25rem 3rem !important;
+            font-size: 1.25rem !important;
+            font-weight: 600 !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+            border: none !important;
+            cursor: pointer !important;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.35) !important;
+            background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%) !important;
+        }
+
+        /* Features Section */
+        .features-section {
+            position: relative;
+            z-index: 2;
+            margin-top: 4rem;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            font-style: italic;
+            color: #9ca3af;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            position: relative;
+            z-index: 2;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-text {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .floating-header {
+                margin: 0.5rem;
+            }
+            
+            .header-content {
+                padding: 0.75rem 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .hero-section {
+                padding: 0 1rem;
+            }
+            
+            .stats-container {
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <nav class="floating-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">S</div>
+                <span class="logo-text">StayEase</span>
             </div>
-            <div class="flex items-center gap-9">
-              <a class="text-white text-sm font-medium leading-normal" href="#">Explore</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Wishlist</a>
-              <a class="text-white text-sm font-medium leading-normal" href="#">Trips</a>
+            
+            <div class="nav-links">
+                <a href="home.html" class="nav-link">Explore</a>
+                <a href="search.html" class="nav-link">Search</a>
+                <a href="history.html" class="nav-link">Trips</a>
+                <a href="contactus.html" class="nav-link">Contact</a>
             </div>
-          </div>
-          <div class="flex flex-1 justify-end gap-8">
-            <label class="flex flex-col min-w-40 !h-10 max-w-64">
-              <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                <div
-                  class="text-[#bab29c] flex border-none bg-[#393528] items-center justify-center pl-4 rounded-l-xl border-r-0"
-                  data-icon="MagnifyingGlass"
-                  data-size="24px"
-                  data-weight="regular"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                    <path
-                      d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                    ></path>
-                  </svg>
-                </div>
-                <input
-                  placeholder="Search"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-full placeholder:text-[#bab29c] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                  value=""
-                />
-              </div>
-            </label>
-            <button
-              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#393528] text-white gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
-            >
-              <div class="text-white" data-icon="Globe" data-size="20px" data-weight="regular">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
-                  <path
-                    d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM101.63,168h52.74C149,186.34,140,202.87,128,215.89,116,202.87,107,186.34,101.63,168ZM98,152a145.72,145.72,0,0,1,0-48h60a145.72,145.72,0,0,1,0,48ZM40,128a87.61,87.61,0,0,1,3.33-24H81.79a161.79,161.79,0,0,0,0,48H43.33A87.61,87.61,0,0,1,40,128ZM154.37,88H101.63C107,69.66,116,53.13,128,40.11,140,53.13,149,69.66,154.37,88Zm19.84,16h38.46a88.15,88.15,0,0,1,0,48H174.21a161.79,161.79,0,0,0,0-48Zm32.16-16H170.94a142.39,142.39,0,0,0-20.26-45A88.37,88.37,0,0,1,206.37,88ZM105.32,43A142.39,142.39,0,0,0,85.06,88H49.63A88.37,88.37,0,0,1,105.32,43ZM49.63,168H85.06a142.39,142.39,0,0,0,20.26,45A88.37,88.37,0,0,1,49.63,168Zm101.05,45a142.39,142.39,0,0,0,20.26-45h35.43A88.37,88.37,0,0,1,150.68,213Z"
-                  ></path>
-                </svg>
-              </div>
-            </button>
-            <div
-              class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
-              style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDigcozPMEacwPf0UQ-OVIL625njQstCG10DRbLEH_52P0-P1-ZNt_xiBkqKQDgHR9Qx0FahjRtQ9pzc5sMi-WWITMjT0jnRukQijdYHEFwIOa1C_lBa2vA_cBgflQMqsmEK6q0JBpZfaLwEc1Jizu9fyt5KtCsrlHuwqOctn4sTPhN9DssBL5fR9JIb1DttCDbDhEVxoTYCDKt4bTvN80KHhOo7f6QCtIww7dKhxdzfgciE4V0bBNyLzpRAkjlDhOiAbCzBZGGEbps");'
-            ></div>
-          </div>
-        </header>
-        <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div class="px-4 py-3">
-              <label class="flex flex-col min-w-40 h-12 w-full">
-                <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
-                  <div
-                    class="text-[#bab29c] flex border-none bg-[#393528] items-center justify-center pl-4 rounded-l-xl border-r-0"
-                    data-icon="MagnifyingGlass"
-                    data-size="24px"
-                    data-weight="regular"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                      <path
-                        d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <input
-                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-white focus:outline-0 focus:ring-0 border-none bg-[#393528] focus:border-none h-full placeholder:text-[#bab29c] px-4 rounded-r-none border-r-0 pr-2 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-                    value="Where to?"
-                  />
-                  <div class="flex items-center justify-center rounded-r-xl border-l-0 border-none bg-[#393528] pr-2 pr-4">
-                    <button
-                      class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full bg-transparent text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] h-auto min-w-0 px-0"
-                    >
-                      <div class="text-[#bab29c]" data-icon="XCircle" data-size="24px" data-weight="regular">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
-                          <path
-                            d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"
-                          ></path>
-                        </svg>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-              </label>
+            
+            <div class="auth-buttons">
+                <a href="#" class="nav-link mr-4">Sign In</a>
+                <a href="#" class="cta-nav-button">Register</a>
             </div>
-            <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured accommodations</h2>
-            <div class="flex overflow-y-auto [-ms-scrollbar-style:none] [scrollbar-width:none] [&amp;::-webkit-scrollbar]:hidden">
-              <div class="flex items-stretch p-4 gap-3">
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDheoEOdu38Re4PTszkT3D8hTcQjcW3twYs8vcW0WtfkZjF4iPC0RTACwJhGxATGVx07XMa7_YJhHbuFC8WfWxjE8o8g2qWNvq-GnQUUQh4HMUs0CClo0GPGGnhgqGeT88MRLbacSAMuqnScedDImZp5UqXWfdURHOdyYgEDMLNUKpjh7U5rZJXVfdIZWfPrRyikCnB9liEyPeOrua-QqU7tJZDh3H5pE-_4zk50PKxOyD7yCXbtfjBrzigYXcx-IEUKWBrBuJ0GNx6");'
-                  ></div>
-                  <div>
-                    <p class="text-white text-base font-medium leading-normal">Modern Apartment in the City Center</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">Experience city living at its finest with our stylish apartment.</p>
-                  </div>
-                </div>
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD5mDMalPG7rnabgGTxyDqcfBNaQHQVn4dTvaRobta3lA-qW2uUWIIkqnE0KwISeYUAsTje4bsxaObpsjAXAL0y_FniWA7rVHoQOuvP_xQyK8Py6SG5n_bH5j9gggTAlFcYNUmmBhMhqyVawoYC_tkOCynwrADtTg0FGuCwbYX8xYP8Af2yGbpokg-JbTCjefQcuLXiTNbBDW0zqDTAsmQlT49ZSmpmhQrMlSZksBc-9T5L-zeDFWxbFxo9pvKWy0OUIv7viSVoCviZ");'
-                  ></div>
-                  <div>
-                    <p class="text-white text-base font-medium leading-normal">Cozy Cabin Retreat in the Woods</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">Escape to nature in our charming cabin, perfect for a peaceful getaway.</p>
-                  </div>
-                </div>
-                <div class="flex h-full flex-1 flex-col gap-4 rounded-lg min-w-60">
-                  <div
-                    class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-xl flex flex-col"
-                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjZ2yOAYmtuplKEFYDzMwQqzld74R3p3WuJUcDU93lkWM44w-IPacW4vpds0yO8PRxaXP7mYigywZXuV2_TmgjTzKCE_qnkWs-4eJQ05x62B2-nsSbRGyLF73jgXA5K0AyYYup2IPzf6FnSLmZwJN5qJX99CwNk3msRgv64t2z3hOtGqqIypVk4SMeZwU0Ptlv7R37pMnKId3X8pENSsNoYGIV1H4VJnnAsEdLc9kei0En4iVJg0eNJZ42pG9tLSDcSs8Y_IMVYAbZ");'
-                  ></div>
-                  <div>
-                    <p class="text-white text-base font-medium leading-normal">Luxury Villa with Ocean View</p>
-                    <p class="text-[#bab29c] text-sm font-normal leading-normal">Indulge in luxury with breathtaking ocean views and top-notch amenities.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </body>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-container">
+        <div class="hero-overlay"></div>
+        <div class="hero-section">
+            <div class="hero-glow">
+                <h1 class="hero-title">
+                    Discover Your 
+                    <span class="gradient-text">Perfect Stay</span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    From cozy apartments to luxury villas - create unforgettable memories
+                </p>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <a href="home.html" class="cta-button">
+                        Start Exploring
+                    </a>
+                </div>
+                
+                <div style="color: #9ca3af; font-style: italic; font-size: 1rem;">
+                    Book with confidence
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title">Why Choose <span class="gradient-text">StayEase</span></h2>
+            <p class="section-subtitle">Discover what makes us the perfect choice for your next adventure</p>
+        </div>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    🏠
+                </div>
+                <h3 class="feature-title">Unique Properties</h3>
+                <p class="feature-description">Discover exceptional stays from modern apartments to historic castles, each with its own character and charm.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    ⭐
+                </div>
+                <h3 class="feature-title">Verified Quality</h3>
+                <p class="feature-description">All properties are carefully vetted and reviewed to ensure you have an amazing experience every time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    🌍
+                </div>
+                <h3 class="feature-title">Global Reach</h3>
+                <p class="feature-description">Find your perfect stay anywhere in the world with our extensive network of premium accommodations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="section-header">
+            <h2 class="section-title">Trusted by <span class="gradient-text">Millions</span></h2>
+            <p class="section-subtitle">Join our global community of satisfied travelers</p>
+        </div>
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">1M+</div>
+                <div class="stat-label">Happy Guests</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Properties</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">190+</div>
+                <div class="stat-label">Countries</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4.9⭐</div>
+                <div class="stat-label">Rating</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="cta-container">
+            <h2 class="cta-title">Ready to Find Your Next <span class="gradient-text">Adventure?</span></h2>
+            <p class="cta-text">Join millions of travelers who trust StayEase for their perfect accommodations</p>
+            <a href="home.html" class="cta-button">Book Your Stay Now</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.floating-header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.7)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.4)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+            }
+        });
+
+        // Add subtle parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-glow');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.2}px)`;
+            }
+        });
+
+        // Add intersection observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.feature-card, .cta-container').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
 </html>
