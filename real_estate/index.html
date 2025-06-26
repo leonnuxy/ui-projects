@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Estalb - Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .text-shadow {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .cta-bg {
+            background-image: url('https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=2574&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            /* This creates a cool parallax effect */
+        }
+
+        .glassmorphism-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-bg {
+            background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2574&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0; /* Start hidden */
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <header class="absolute top-0 left-0 right-0 z-10 py-6">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a class="text-3xl font-bold text-white" href="#">Estalb</a>
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a class="text-white hover:text-gray-200" href="#">Service</a>
+                <a class="text-white hover:text-gray-200" href="#">Agency</a>
+                <a class="text-white hover:text-gray-200" href="#">Case study</a>
+                <a class="text-white hover:text-gray-200" href="#">Resources</a>
+                <a class="text-white hover:text-gray-200" href="#">Contact</a>
+            </nav>
+            <div class="flex items-center">
+                <a class="relative px-8 py-2 rounded-full font-semibold text-white bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 shadow-lg hover:from-orange-500 hover:to-orange-700 transition duration-300 overflow-hidden"
+                    style="box-shadow: 0 4px 24px 0 rgba(255,140,0,0.25);" href="#">
+                    <span class="absolute inset-0 rounded-full bg-white opacity-20 blur-sm pointer-events-none"></span>
+                    <span class="relative z-10">Get Started</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="relative hero-bg min-h-screen flex flex-col justify-center items-center text-center text-white">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+
+            <div class="container mx-auto px-4 relative z-10">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
+                    Where Dreams Turn Into Addresses
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-12 max-w-3xl mx-auto">
+                    The key to your new home is just a search away. Find properties that match your lifestyle and
+                    budget.
+                </p>
+
+                <div class="glassmorphism-dark p-6 md:p-4 max-w-4xl mx-auto rounded-3xl shadow-2xl">
+                    <form class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="w-full md:w-2/5 relative">
+                            <span
+                                class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">location_on</span>
+                            <input
+                                class="w-full pl-12 pr-4 py-4 bg-white/10 text-white placeholder-gray-300 border border-transparent rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500"
+                                id="location" placeholder="Enter a city or address" type="text" />
+                        </div>
+
+                        <div class="w-full md:w-2/5 relative">
+                            <span
+                                class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">home</span>
+                            <select
+                                class="w-full appearance-none pl-12 pr-4 py-4 bg-white/10 text-white border border-transparent rounded-2xl focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                <option value="" disabled selected>Property Type</option>
+                                <option value="house">House</option>
+                                <option value="apartment">Apartment</option>
+                                <option value="villa">Villa</option>
+                                <option value="condo">Condo</option>
+                            </select>
+                            <span
+                                class="material-icons absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">expand_more</span>
+                        </div>
+
+                        <button
+                            class="w-full md:w-1/5 relative font-bold py-4 px-6 rounded-2xl flex items-center justify-center gap-2 transition duration-300 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 shadow-lg hover:from-orange-500 hover:to-orange-700 focus:outline-none overflow-hidden"
+                            style="box-shadow: 0 4px 24px 0 rgba(255,140,0,0.25);" type="submit">
+                            <span
+                                class="absolute inset-0 rounded-2xl bg-white opacity-10 blur-sm pointer-events-none"></span>
+                            <span class="relative z-10 flex items-center gap-2">
+                                <span class="material-icons text-2xl">search</span>
+                                <span>Search</span>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer">
+                <div class="text-center">
+                    <span class="material-icons text-orange-500 text-4xl animate-bounce">keyboard_arrow_down</span>
+                    <p class="text-xs text-gray-600 font-bold">EXPLORE</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-4xl font-semibold">Featured Listings</h2>
+                    <a class="bg-orange-500 text-white px-8 py-3 rounded-full hover:bg-orange-600 transition duration-300 flex items-center"
+                        href="#">
+                        View All <span class="material-icons ml-2">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Modern Skyscraper"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBls50nt3qpnZOuWLdunwJgpMG25tce3YAwN4Y9Nad4ISS80f_bMuPeQLeuCd3xnU_kZhB6cjQ4XfRYS_ERomfPLTTZrgESgMzB5DmHDDTlkJuDQ4DsxOhORTW_e-1xV_LeaYJrGcoTFdM-eVnFd2EHg__10b8U-V6kAZet8quvnM9HHq2ldkaBL5DKG6C5BWkNIrxjKpGyJe6fo5H7DykMDmj85odtotVz93Wcdx8yMCzPlxeMChNv3Xb-tF39L4o7wYxO0Q-9hv6G"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm">For
+                                Rent</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold mb-2 text-shadow">Arlban</h3>
+                            <p class="text-lg font-medium mb-4 text-shadow">$2,129 <span
+                                    class="font-normal text-gray-300">/month</span></p>
+                            <div class="flex items-center text-gray-200 space-x-5 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-2" title="3 Bedrooms">
+                                    <span class="material-icons text-xl text-shadow">bed</span>
+                                    <span class="text-sm text-shadow">3</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="2 Bathrooms">
+                                    <span class="material-icons text-xl text-shadow">bathtub</span>
+                                    <span class="text-sm text-shadow">2</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Modern Family House"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCthZ5LSE_zuJNNfRT-jnh3xZ1jKmw-gJgevX1c_MmjzlqNt3nPhEFtXB-SlEo1mxxXAAbt5MPp4Aa-jDTi7CbGK-iKKaMtxj7H1HlnmEbVS26jBc9ZdUFr4Jm0k73zd5ZYStZymzkFzOGmMOvCAQCOmHgWzQxZgvU0p8wAtboZFQF0zKSyM98-NmX5Yqq1tn21_pLl4ns7vaQepjuXRKDr8prjk97aWnrQzdxtZm6UVCnh4b6UWfCKsdljPpAzbACrhSqnB_-GvKrS"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm">For
+                                Sale</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold mb-2 text-shadow">Modern Family Home</h3>
+                            <p class="text-lg font-medium mb-4 text-shadow">$2,095 <span
+                                    class="font-normal text-gray-300">/month</span></p>
+                            <div class="flex items-center text-gray-200 space-x-5 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-2" title="4 Bedrooms">
+                                    <span class="material-icons text-xl text-shadow">bed</span>
+                                    <span class="text-sm text-shadow">4</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="3 Bathrooms">
+                                    <span class="material-icons text-xl text-shadow">bathtub</span>
+                                    <span class="text-sm text-shadow">3</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="210m² area">
+                                    <span class="material-icons text-xl text-shadow">square_foot</span>
+                                    <span class="text-sm text-shadow">210 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Luxury Penthouse"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYQ4PWlroPv9vzEtPIHW3V20_zHRqMoW_9VrL0EqTJHcEr700zBfNBfYISF9PBY6ncZRUiQT5beKe45fEV5_8W20ZF_YuM-X27amF9BlASuJHk0rCTjrULaonquxE92O5g-oxE-uu41WFvlR0Vjw8UkiAiNuQTCdNphHKfpgUR2An92z3dC0kaN2dgI-OUEiHBV8EGcaDKb5N9iFkugqrbGkEemi05XSFWN1UgQaqpfn4kewh64BO3aXq7hgkR8yNUVEvoKiQYgiea"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm">For
+                                Rent</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold mb-2 text-shadow">Luxury Penthouse</h3>
+                            <p class="text-lg font-medium mb-4 text-shadow">$5,035 <span
+                                    class="font-normal text-gray-300">/month</span></p>
+                            <div class="flex items-center text-gray-200 space-x-5 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-2" title="3 Bedrooms">
+                                    <span class="material-icons text-xl text-shadow">bed</span>
+                                    <span class="text-sm text-shadow">3</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="3 Bathrooms">
+                                    <span class="material-icons text-xl text-shadow">bathtub</span>
+                                    <span class="text-sm text-shadow">3</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="180m² area">
+                                    <span class="material-icons text-xl text-shadow">square_foot</span>
+                                    <span class="text-sm text-shadow">180 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Waterfront Villa"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi3ZjTtOY4KVyNTasdveWrQy8kUhCMBwHo-apy8RaOl5fFGernDxUmDRWQZxheCDlSy-QDSxnX94YrR3LQKym7VQO8_6nvxFoEh-ycSdhLkKw4_vVOUMOGvurmOmnVRiVuP73ZQ_SUmOTzxK1CH3-o-QSP1mxkkwNos_zryNT3fDnot0ONX9d0CNXRjdAeGPOm-mQ66wP1yz9JLhgksghdojWLcSo59j4oKh0HNG6Sw0YSxcXWZhwHvA8weXlYvGbD2Z59X5-FuVY2"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm">For
+                                Sale</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold mb-2 text-shadow">Waterfront Villa</h3>
+                            <p class="text-lg font-medium mb-4 text-shadow">$3,500,000</p>
+                            <div class="flex items-center text-gray-200 space-x-5 border-t border-white/20 pt-4">
+                                <div class="flex items-center gap-2" title="5 Bedrooms">
+                                    <span class="material-icons text-xl text-shadow">bed</span>
+                                    <span class="text-sm text-shadow">5</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="4 Bathrooms">
+                                    <span class="material-icons text-xl text-shadow">bathtub</span>
+                                    <span class="text-sm text-shadow">4</span>
+                                </div>
+                                <div class="flex items-center gap-2" title="350m² area">
+                                    <span class="material-icons text-xl text-shadow">square_foot</span>
+                                    <span class="text-sm text-shadow">350 m²</span>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="lg:w-1/2 mb-10 lg:mb-0">
+                        <h2 class="text-4xl font-semibold mb-6">Homebuying Made Simple & Reliable</h2>
+                        <p class="text-gray-600 mb-8 text-lg leading-relaxed">
+                            Browse thousands of listings across your city—from luxury
+                            apartments to family homes. Get expert advice and make your
+                            next move with confidence.
+                        </p>
+                        <a href="#"
+                            class="bg-orange-500 text-white px-8 py-4 rounded-full hover:bg-orange-600 transition duration-300 flex items-center w-fit">
+                            SEARCH PROPERTIES <span class="material-icons ml-2">east</span>
+                        </a>
+                    </div>
+
+                    <div class="lg:w-1/2 grid grid-cols-2 gap-6">
+                        <figure class="relative">
+                            <img alt="City Apartment Building" class="rounded-3xl shadow-lg w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXFgOU-zNERLJ3rIQ9UlwEzSbBX_vQAWYREOjY41h1itItbblYHDSQ9caj5kdV6ojCppa8W8r1TXNaLr1y7GCubtJqC4tbzx7dlQ05TPXSP7aYHN9WitMBP5Kjaz7gdeZXgA1Ht5Jk_wjbtwaD7Nyylf-cyfu6MkJ6usvGymeezvRoVjl_HBwgKoVBkDl3d3Fpu4CCfmbIsIOVVGliW3ZRGSOJyfTslS2R_r_3Mhfis7mRs7xwEGUNBy7DVL6gdGjeBceECVAWW-fU" />
+                            <figcaption
+                                class="absolute top-3 right-3 bg-white/20 backdrop-blur-md text-white w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">
+                                3+</figcaption>
+                        </figure>
+                        <figure class="relative">
+                            <img alt="Modern Office Complex" class="rounded-3xl shadow-lg w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwB0On58LvHsqkjkU0WLXDDkTCNcnGj1QNv7k2jADYogEoR2BJDkv5eI4u6G9OYS_CHs-FklHcr3WsjTaLD8r7354HgWqJLo1TWSMghKbYwFYHZBKMnsVFrdfwY1fyCOcw71NB2_UsIlO1vLX3HyhsLCd8hbWIfJIfAAZtCMdryrg8qR-ErKvNh-oSkIOfKHMqD-NqAlL1K0QQqmB3uIkP0rE5AP8Lqaqh6YtVjhpAuOQa1C-9G_7urUX81W1e7hQMzcUlwykuNIgc" />
+                            <figcaption
+                                class="absolute top-3 right-3 bg-white/20 backdrop-blur-md text-white w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">
+                                1+</figcaption>
+                        </figure>
+                        <div
+                            class="bg-orange-500 text-white rounded-3xl shadow-lg flex flex-col justify-center items-center p-6">
+                            <p class="text-5xl font-bold mb-2">+145</p>
+                            <p class="text-orange-100 font-medium">objects</p>
+                        </div>
+                        <figure class="relative">
+                            <img alt="Residential Tower at Sunset"
+                                class="rounded-3xl shadow-lg w-full h-full object-cover"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGORA2zkjWqhV6nhNSIx2q5tP0JSWnuTGhTGsmWz0w-o1AsHE6mORPD0oT1VCxmKz09M9JYmmE_oBUtA2dqsJrvVB8H6d8_ANRbESxBs5-1FVHru_iP1mrlUuBBrj-tYCYr0ru2uLubXZ7Qhbb3sKTku9e95eOMACufITBEwEXGpuys7gU8bD_zjq1j9KuwJjwyvVPDGodTjQhUDkApQpkqK9WHcIEjgM5qfv4yHHi1rwsC9RCVtdQsw-IqKBWEfy-0oZB3w6olTzJ" />
+                            <figcaption
+                                class="absolute top-3 right-3 bg-white/20 backdrop-blur-md text-white w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold">
+                                2+</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="mt-16 text-center">
+                    <a class="text-orange-500 font-semibold hover:underline" href="#">
+                        See All Properties <span class="material-icons align-middle text-xl">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="flex justify-between items-center mb-12">
+                    <h2 class="text-4xl font-semibold">Explore Our Properties</h2>
+                    <a class="text-orange-500 font-semibold hover:underline hidden md:flex items-center" href="#">
+                        View All <span class="material-icons ml-2">arrow_forward</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Futuristic Building Design"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqJLMqKZeui3N9CML5gVGXvGO9Ptghu4INCDT3L_Snq5eMrttTMFiRr66fflSve1p7JiLnaTqQagQ9O6fv7IxZX8-b7fCaZdPgJCt165nqUxRtYz7VH3WMIIAticn6GRtBM3O6yjrvWMrlyGiIVyWu_kDBsfKVnilaaWN6baTcBJk2oCHWDvOfmWYCuUbFPytPJ4zhFIAckg0vJ8txvTnEyJ_HPoanQ_rhhkdsHIdydglN2lQF1oCpAFT8pmWGl3POLMEjAZRD_9eb"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm">For
+                                Sale</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold text-shadow">Modern House</h3>
+                            <p class="text-sm text-gray-300 mb-4 text-shadow">New York, USA</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <p class="text-lg font-medium text-shadow">$1,200,000</p>
+                                <button class="text-white hover:text-orange-400 transition-colors"
+                                    title="Add to favorites">
+                                    <span class="material-icons">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="border-t border-white/20 pt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <p class="text-gray-300 text-shadow">Square Area: <span
+                                        class="font-medium text-white">1200 m²</span></p>
+                                <p class="text-gray-300 text-shadow">Garage: <span
+                                        class="font-medium text-white">Available</span></p>
+                                <p class="text-gray-300 text-shadow">Type: <span
+                                        class="font-medium text-white">Apartment</span></p>
+                                <p class="text-gray-300 text-shadow">Year Built: <span
+                                        class="font-medium text-white">2021</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Stylish Urban Apartment"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF5zWB_OhPLwiPLsj7GlUhoP6IFBNp6aB3FJ9LPUeuKN0IUXnBubPcYQLsTNWZ-3FQ-53LTkdENgl_wdjswnLg3YmTAexaBwwYO1s6a4qduXFK3fXOAg_YHmHUCvQJqWjcHGCC66dbj2zQk7B1Dt4TBYaAlLIYZ92eKRVE6TOd40KPGJhw3xibdENNK4aP2iR-sg3zG6P3FflYrQQZdm35SavKj-HchYmk24EO9PfNNIeAv5BBpeMeRkwGTSqqYKWFBARjS5sFgBeh"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span
+                                class="bg-green-500/30 backdrop-blur-md text-green-100 px-3 py-1 rounded-full text-sm">For
+                                Rent</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold text-shadow">Luxury Apartment</h3>
+                            <p class="text-sm text-gray-300 mb-4 text-shadow">Paris, France</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <p class="text-lg font-medium text-shadow">$3,500<span
+                                        class="font-normal text-gray-300">/month</span></p>
+                                <button class="text-orange-400" title="Added to favorites">
+                                    <span class="material-icons">favorite</span>
+                                </button>
+                            </div>
+                            <div class="border-t border-white/20 pt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <p class="text-gray-300 text-shadow">Square Area: <span
+                                        class="font-medium text-white">80 m²</span></p>
+                                <p class="text-gray-300 text-shadow">Bedrooms: <span
+                                        class="font-medium text-white">2</span></p>
+                                <p class="text-gray-300 text-shadow">Type: <span
+                                        class="font-medium text-white">Condo</span></p>
+                                <p class="text-gray-300 text-shadow">Views: <span
+                                        class="font-medium text-white">City</span></p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="relative rounded-3xl shadow-2xl overflow-hidden group h-[480px] flex flex-col justify-end text-white">
+                        <img alt="Suburban Family Home"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBx2xvCJH23_-dAbh4sgTOysdqwwRyjNwIXvc3mdspS58NY_xWFiSq_T5AU0HcDGYz6GtcZDli5JxL0ehUL7u-DQ0R-9RwWINasLaJtxHvGrugitwawJsNjBkNE2P63EtWXHtXgiZ2bTkMJYe3pnBfC6cQJHRO5jHyLVfvN4Waa0MRBm_JytyPJk5Nk-0NNGrr2am8PQxVYc0Oil00MueexMImAF9Qqn5VRlUpPj8yDih_2vTYUUcTlJ7feaaVKWjyvJ34xbflb7r8g"
+                            class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10">
+                        </div>
+                        <div class="absolute top-4 right-4 z-20">
+                            <span class="bg-white/20 backdrop-blur-md text-white px-3 py-1 rounded-full text-sm">For
+                                Sale</span>
+                        </div>
+                        <div class="relative z-20 p-6 w-full">
+                            <h3 class="text-2xl font-bold text-shadow">Cozy Family Home</h3>
+                            <p class="text-sm text-gray-300 mb-4 text-shadow">London, UK</p>
+                            <div class="flex justify-between items-center mb-4">
+                                <p class="text-lg font-medium text-shadow">$850,000</p>
+                                <button class="text-white hover:text-orange-400 transition-colors"
+                                    title="Add to favorites">
+                                    <span class="material-icons">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="border-t border-white/20 pt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                                <p class="text-gray-300 text-shadow">Square Area: <span
+                                        class="font-medium text-white">250 m²</span></p>
+                                <p class="text-gray-300 text-shadow">Garden: <span
+                                        class="font-medium text-white">Yes</span></p>
+                                <p class="text-gray-300 text-shadow">Type: <span
+                                        class="font-medium text-white">House</span></p>
+                                <p class="text-gray-300 text-shadow">Parking: <span class="font-medium text-white">2
+                                        spots</span></p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="mt-12 text-center">
+                    <a href="#"
+                        class="bg-orange-500 text-white px-8 py-4 rounded-full hover:bg-orange-600 transition duration-300 inline-block">
+                        View All Properties
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-gray-800 p-8 rounded-3xl text-center">
+                        <p class="text-5xl font-bold text-orange-400 mb-2">600K+</p>
+                        <p class="text-gray-400">Active Listings</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-3xl text-center">
+                        <p class="text-5xl font-bold text-orange-400 mb-2">2M+</p>
+                        <p class="text-gray-400">Satisfied Clients</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-3xl text-center">
+                        <p class="text-5xl font-bold text-orange-400 mb-2">870K+</p>
+                        <p class="text-gray-400">Successful Deals</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded-3xl text-center">
+                        <p class="text-5xl font-bold text-orange-400 mb-2">27M+</p>
+                        <p class="text-gray-400">Cities</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-semibold text-center mb-12">Loved by Businesses, Trusted<br />by Professionals
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <div class="bg-white p-8 rounded-3xl shadow-xl text-center">
+                        <img alt="Professional Woman"
+                            class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-orange-400"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPXSWVpZto--HplNV9QWFNCzIiGQ4BU__frtTGiutB4S-PY2DNWLLQuyMr9XPxs3ekrXPP-WRv53mV7RplfWexYodNXWKQm1X8K0H24BqOqdzeSRH4r7zrrP6dxRbx3RIlsOfvpbUZ5nj515T2Z1pbAGlMaOLH2vBcoCIsWuOHLBZhFX0rBzppoVEcHzhsmBWx1FmCQW-HJjDgq1vOXp0UPhPaHo9zdeN-dAZDlfyg2RAAALjkBIu6TZOhtyaSF5_it9PzgGWQx_cY" />
+                        <p class="text-lg text-gray-700 mb-6 italic">"An amazing service! They helped me find the
+                            perfect office
+                            space for my startup. Highly recommended."</p>
+                        <p class="text-xl font-semibold text-gray-900">Sarah L.</p>
+                        <p class="text-base text-gray-500">CEO, Tech Solutions</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl shadow-xl text-center">
+                        <img alt="Professional Man"
+                            class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-orange-400"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnBlsfE7JyK5pMkGptjYrmKRgFyhodYeI4HSd77B7kEJnToPwbm3E3lQq__hBGvJ11rcv3Tc0qOp5_qK4vCnn2dmbvJYJJBvLIrx6Ld5kdh4ch1HZPl4-UzZ7DlCx4OLO3y0CzXxUOGabPIMJOyZBVdJKdsP7alDMUqs7yBrQI8gSHZ7EJus943dNe5KFWUuoaqlYjU6170TDaG-k-bTvqbuDfF0UTG6EgWvJpvz4ane-IKucH1LquJc1Ca7JdykOWdpGxetYpfdgB" />
+                        <p class="text-lg text-gray-700 mb-6 italic">"The team was professional and efficient. They
+                            understood my
+                            needs and delivered beyond expectations."</p>
+                        <p class="text-xl font-semibold text-gray-900">John B.</p>
+                        <p class="text-base text-gray-500">Real Estate Investor</p>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl shadow-xl text-center">
+                        <img alt="Diverse Team"
+                            class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-orange-400 object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuACfr0W46mcbzjGLEQNuuz9Sei94f-y9skOEVVF50cjoG5tUzBGQrtSikRvc2IpXNS-RaQhYuaOrFe4J8fsKM-ov01D73GAGpVwsoZ-9avxBWVUoN5Xjq-0CGDE3ok3A883gxVPkZc8datOONdEj9istAA6mRK8dz356sPFkyyAAQ1tYN6MBH4teLqnOPFePu-_BPc8TeW1cKPeX5XNFiGc0FC11Ug3LbtW8gDBj5nGvmqho5zeWJ55PW7peKDcIqxWw0FdFARAydFG" />
+                        <p class="text-lg text-gray-700 mb-6 italic">"Finding a new home for our expanding business was
+                            seamless
+                            with Estalb. Great support and listings."</p>
+                        <p class="text-xl font-semibold text-gray-900">Maria K.</p>
+                        <p class="text-sm text-gray-500">Founder, Creative Studio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-16">
+                    <div class="lg:w-2/5">
+                        <h2 class="text-4xl font-semibold mb-6">FAQ</h2>
+                        <img alt="Real estate agent presenting a modern home to a client"
+                            class="rounded-3xl shadow-xl w-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlpWUTQRPv1S1GFOY6Y3ioXrYusxqPXyVEn_mSJhe8-sagyPzy0glxzqRdbM-C7_xg6tr77ZrEoOyNpFHY7TaoxgU7VqVOSg_dtJUAD8SPYQ7DjvI3HLz1E6sm0jXvMR5I9b6mGLepJxie6CzXhJn-oEQPG0JjGUBnkvmPBhdJtTsXBhltidODV5hCn1IrByt8fgKPSxOqJ2CRCZGQwOybtxk5SCjMty9KLEVW9IXtIvV-091XOZcvfBVZCrUpSALEDrI-Tmpr-cd3" />
+                    </div>
+                    <div class="lg:w-3/5">
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-3xl shadow-lg border border-transparent">
+                                <button
+                                    class="w-full flex justify-between items-center text-left text-lg font-medium text-gray-800 hover:text-orange-600 transition-colors">
+                                    <span>What documents do I need to rent a property?</span>
+                                    <span class="material-icons">add</span>
+                                </button>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-lg border border-transparent">
+                                <button
+                                    class="w-full flex justify-between items-center text-left text-lg font-medium text-gray-800 hover:text-orange-600 transition-colors">
+                                    <span>How long does the buying process typically take?</span>
+                                    <span class="material-icons">add</span>
+                                </button>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-xl border border-orange-400">
+                                <button
+                                    class="w-full flex justify-between items-center text-left text-lg font-medium text-orange-500">
+                                    <span>Can I negotiate the price of a property?</span>
+                                    <span class="material-icons">remove</span>
+                                </button>
+                                <div class="pt-4 mt-4 border-t text-gray-600">
+                                    Yes, in most cases, negotiation is possible. Your agent will guide you through this
+                                    process. Factors like market conditions, property condition, and seller motivation
+                                    can influence negotiation outcomes.
+                                </div>
+                            </div>
+                            <div class="bg-white p-6 rounded-3xl shadow-lg border border-transparent">
+                                <button
+                                    class="w-full flex justify-between items-center text-left text-lg font-medium text-gray-800 hover:text-orange-600 transition-colors">
+                                    <span>Are there any hidden fees when buying or selling?</span>
+                                    <span class="material-icons">add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative py-24 bg-gray-800 text-white cta-bg">
+            <div class="absolute inset-0 bg-black/60 z-0"></div>
+            <div class="container mx-auto px-4 text-center relative z-10">
+                <h2 class="text-5xl font-bold mb-4 text-shadow">LETS TALK</h2>
+                <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto text-shadow">Ready to find your dream property
+                    or sell your current one?
+                    <br />Contact us today!
+                </p>
+                <a class="bg-orange-500 text-white px-10 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition duration-300 inline-block"
+                    href="#">
+                    Get Started
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+   <footer class="bg-gray-900 text-gray-400 pt-24 pb-12 overflow-hidden">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            <div class="animate-fade-in-up" style="animation-delay: 0.1s;">
+                <h3 class="text-3xl font-bold text-white mb-4">Estalb</h3>
+                <p class="text-sm pr-4">Making real estate dreams a reality. Find your perfect place with us, where every address is a milestone.</p>
+            </div>
+
+            <div class="animate-fade-in-up" style="animation-delay: 0.2s;">
+                <h4 class="text-lg font-semibold uppercase tracking-wider text-white mb-6">Quick Links</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Buy</a></li>
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Sell</a></li>
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Rent</a></li>
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Agents</a></li>
+                </ul>
+            </div>
+
+            <div class="animate-fade-in-up" style="animation-delay: 0.3s;">
+                <h4 class="text-lg font-semibold uppercase tracking-wider text-white mb-6">Resources</h4>
+                <ul class="space-y-4 text-sm">
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Blog</a></li>
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Guides</a></li>
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">FAQ</a></li>
+                    <li><a class="hover:text-orange-400 transition-colors duration-300" href="#">Mortgage Calculator</a></li>
+                </ul>
+            </div>
+
+            <div class="animate-fade-in-up" style="animation-delay: 0.4s;">
+                <h4 class="text-lg font-semibold uppercase tracking-wider text-white mb-6">Contact Us</h4>
+                <ul class="space-y-4 text-sm mb-6">
+                    <li class="flex items-center gap-3"><span class="material-icons text-xl text-orange-400">email</span> info@estalb.com</li>
+                    <li class="flex items-center gap-3"><span class="material-icons text-xl text-orange-400">phone</span> (123) 456-7890</li>
+                    <li class="flex items-center gap-3"><span class="material-icons text-xl text-orange-400">location_on</span> 123 Main St, Calgary, AB</li>
+                </ul>
+                <div class="flex space-x-3">
+                    <a class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white hover:scale-110 transform transition-all duration-300" href="#" title="Facebook">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    </a>
+                    <a class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white hover:scale-110 transform transition-all duration-300" href="#" title="Twitter">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                    </a>
+                    <a class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:bg-orange-500 hover:text-white hover:scale-110 transform transition-all duration-300" href="#" title="Instagram">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm-2-8a2 2 0 104 0 2 2 0 00-4 0z"/><path d="M16.5 6.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 border-t border-gray-800 pt-8 text-center text-sm">
+            <p>© 2025 Estalb. All rights reserved. Designed with passion and purpose.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>

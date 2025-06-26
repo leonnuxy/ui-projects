@@ -3,9 +3,8 @@ const projects = [
     {
         id: 'restaurant_v2',
         title: 'Bistro Luxe - Premium Restaurant Experience',
-        description: 'A fully refactored, modular restaurant website with elegant golden accents, glassmorphic design, sophisticated typography, interactive features, and premium dining experience showcase.',
         image: './restaurant_v2/restaurant-v2-screenshot.png',
-        technologies: ['HTML5', 'CSS3', 'Vanilla JavaScript', 'Tailwind CSS', 'Glassmorphism', 'Modular Architecture'],
+        technologies: ['HTML5', 'CSS3', 'Vanilla JavaScript'],
         liveUrl: './restaurant_v2/index.html',
         githubUrl: '#',
         featured: true,
@@ -14,9 +13,8 @@ const projects = [
     {
         id: 'finance_app',
         title: 'Personal Finance Dashboard',
-        description: 'A comprehensive financial management application with expense tracking, budget planning, investment portfolio overview, and detailed analytics for personal finance management.',
         image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Chart.js', 'LocalStorage', 'Responsive Design'],
+        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Chart.js'],
         liveUrl: './finance_app/index.html',
         githubUrl: '#',
         featured: true,
@@ -25,9 +23,8 @@ const projects = [
     {
         id: 'rental_booking',
         title: 'Property Rental Platform',
-        description: 'A modern property rental booking system with search functionality, detailed listings, booking management, and user-friendly interface for both property owners and renters.',
         image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
-        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'Form Validation', 'Responsive Design'],
+        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
         liveUrl: './rental_booking/index.html',
         githubUrl: '#',
         featured: true,
@@ -36,7 +33,6 @@ const projects = [
     {
         id: 'restaurant',
         title: 'Big Fish & Open Range Restaurant (Original)',
-        description: 'The original version of the restaurant website featuring modular components, interactive elements, and beautiful typography.',
         image: './restaurant/restaurant-screenshot.png',
         technologies: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS'],
         liveUrl: './restaurant/index.html',
@@ -44,49 +40,68 @@ const projects = [
         featured: false,
         category: 'Restaurant & Hospitality'
     },
+    {
+        id: 'real_estate',
+        title: 'Real Estate Listing Platform',
+        image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        technologies: ['HTML5', 'CSS3', 'Typescript', 'API Integration',],
+        liveUrl: './real_estate/index.html',
+        githubUrl: '#',
+        featured: true,
+        category: 'Real Estate & Booking'
+    }
     // Add more projects here as you create them
 ];
 
 // Function to create project cards
+// Function to create project cards with the title moved to the bottom
 function createProjectCard(project) {
-    const techTags = project.technologies.map(tech => 
-        `<span class="glass-morphism px-3 py-1 rounded-full text-sm font-medium text-neon-green-400 border border-dark-green-500/30">${tech}</span>`
+    // Generate tech tags
+    const techTags = project.technologies.map(tag =>
+        `<span class="bg-white/10 text-gray-300 px-3 py-1 rounded-full text-xs font-medium">${tag}</span>`
     ).join('');
 
+    // Conditionally create the GitHub button
+    const githubButton = project.githubUrl && project.githubUrl !== '#' ? `
+        <a href="${project.githubUrl}" target="_blank" 
+           class="bg-white/10 px-6 py-3 rounded-xl font-semibold text-white hover:bg-white/20 transition-all duration-300 transform hover:scale-105 flex items-center justify-center" title="View on GitHub">
+            <i class="fab fa-github text-lg"></i>
+        </a>
+    ` : '';
+
+    // Main HTML structure for the card
+    // Note: The card-glow class is not in the provided code, but you can add it back if you wish.
     return `
-        <div class="glass-morphism rounded-3xl overflow-hidden card-hover-effect group min-h-[600px] flex flex-col">
-            <div class="relative h-48 overflow-hidden">
-                <img src="${project.image}" alt="${project.title}" 
-                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-dark-bg-primary/80 via-transparent to-transparent"></div>
-                <div class="absolute top-4 right-4">
-                    ${project.featured ? '<span class="glass-morphism-green text-white px-3 py-1 rounded-full text-sm font-semibold animate-pulse-green">Featured</span>' : ''}
-                </div>
+        <div class="relative rounded-3xl shadow-2xl overflow-hidden group h-[520px] flex flex-col justify-end text-white bg-gray-900">
+
+            <img src="${project.image}" alt="${project.title}"
+                 class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-500 group-hover:scale-110" />
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent z-10"></div>
+            
+            <div class="absolute top-4 right-4 z-20">
+                ${project.featured ? '<span class="bg-green-500/30 backdrop-blur-md text-green-100 px-3 py-1 rounded-full text-sm font-semibold">Featured</span>' : ''}
             </div>
-            <div class="p-6 flex flex-col flex-grow">
-                <div class="mb-3">
-                    <span class="text-sm text-dark-green-400 font-semibold uppercase tracking-wider">${project.category}</span>
-                </div>
-                <div class="h-16 mb-4 flex items-start">
-                    <h3 class="text-2xl font-bold text-white group-hover:text-neon-green-400 transition-colors duration-300 line-clamp-2">${project.title}</h3>
-                </div>
-                <div class="flex-grow mb-6 hidden sm:block">
-                    <p class="text-gray-300 leading-relaxed text-sm line-clamp-4">${project.description}</p>
-                </div>
+
+            <div class="relative z-20 p-6 w-full flex flex-col flex-grow">
                 
-                <div class="flex flex-wrap gap-2 mb-4 sm:mb-6 min-h-[60px] sm:min-h-[80px] content-start">
+                <p class="text-sm font-semibold uppercase tracking-wider text-green-400 mb-2 text-shadow">${project.category}</p>
+                
+                
+                <div class="mt-auto pt-6 border-t border-white/10">
+                <div class="flex flex-wrap gap-2 mb-6">
                     ${techTags}
                 </div>
-                
-                <div class="flex space-x-2 sm:space-x-3 mt-auto">
-                    <a href="${project.liveUrl}" target="_blank" 
-                       class="flex-1 bg-gradient-to-r from-dark-green-500 to-neon-green-400 text-white px-3 py-2 sm:px-6 sm:py-3 rounded-2xl sm:rounded-3xl font-medium sm:font-semibold text-center text-sm sm:text-base hover:shadow-lg hover:shadow-dark-green-500/25 transition-all duration-300 transform hover:scale-105">
-                        <i class="fas fa-external-link-alt mr-1 sm:mr-2 text-xs sm:text-sm"></i><span class="hidden xs:inline">Live </span>Demo
-                    </a>
-                    <a href="${project.githubUrl}" target="_blank" 
-                       class="glass-morphism px-3 py-2 sm:px-6 sm:py-3 border border-white/10 text-white rounded-2xl sm:rounded-3xl font-medium sm:font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
-                        <i class="fab fa-github text-xs sm:text-sm"></i>
-                    </a>
+                <h3 class="text-3xl font-bold mb-4 text-shadow line-clamp-3">${project.title}</h3>
+
+                    <div class="flex gap-3">
+                        <a href="${project.liveUrl}" target="_blank" 
+                           class="flex-1 bg-gradient-to-r from-green-500 to-green-400 text-white px-6 py-3 rounded-xl font-semibold text-center hover:shadow-lg hover:shadow-green-500/25 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                            <i class="fas fa-external-link-alt text-sm"></i>
+                            <span>Live Demo</span>
+                        </a>
+                        ${githubButton}
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +111,7 @@ function createProjectCard(project) {
 // Function to render projects
 function renderProjects() {
     const projectsGrid = document.getElementById('projects-grid');
-    
+
     if (projects.length === 0) {
         projectsGrid.innerHTML = `
             <div class="col-span-full text-center py-12">
@@ -123,7 +138,7 @@ function renderProjects() {
         `;
         return;
     }
-    
+
     projectsGrid.innerHTML = projects.map(createProjectCard).join('');
 }
 
@@ -135,10 +150,10 @@ async function discoverProjects() {
 }
 
 // Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     renderProjects();
     discoverProjects();
-    
+
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
