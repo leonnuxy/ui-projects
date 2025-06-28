@@ -49,6 +49,17 @@ const projects = [
         githubUrl: '#',
         featured: true,
         category: 'Real Estate & Booking'
+    },
+    // Reusable Components Demo
+    {
+        id: 'resusable_components',
+        title: 'Reusable UI Components Demo',
+        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
+        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Modular Components'],
+        liveUrl: './resusable_components/index.html',
+        githubUrl: '#',
+        featured: false,
+        category: 'UI Components'
     }
     // Add more projects here as you create them
 ];
