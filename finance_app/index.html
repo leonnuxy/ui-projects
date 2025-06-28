@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,807 +10,697 @@
         window.location.href = './landing.html';
     </script>
 </head>
+
 <body>
     <p>Redirecting to FlowFinance...</p>
 </body>
+
 </html>
-        
-        /* Sidebar Styles */
-        .sidebar {
-            width: 256px;
-            background-color: #1F2937;
-            transition: transform 0.3s ease;
-        }
-        
-        .main-content {
-            flex: 1;
-            background-color: #111827;
-        }
-        
-        /* Mobile Sidebar */
-        .mobile-sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 280px;
-            background-color: #1F2937;
-            z-index: 50;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-        }
-        
-        .mobile-sidebar.open {
-            transform: translateX(0);
-        }
-        
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        
-        .sidebar-overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Cards */
-        .card {
-            background-color: #1F2937;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            border: 1px solid #374151;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            border-color: #4B5563;
-        }
-        
-        /* Buttons */
-        .btn {
-            border-radius: 0.375rem;
-            padding: 0.5rem 1rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            touch-action: manipulation;
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn-primary {
-            background-color: #3B82F6;
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background-color: #2563EB;
-            transform: translateY(-1px);
-        }
-        
-        .btn-secondary {
-            background-color: #374151;
-            color: #F3F4F6;
-        }
-        
-        .btn-secondary:hover {
-            background-color: #4B5563;
-            transform: translateY(-1px);
-        }
-        
-        /* Touch Targets */
-        .icon-button {
-            color: #9CA3AF;
-            min-width: 44px;
-            min-height: 44px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            touch-action: manipulation;
-            transition: all 0.3s ease;
-        }
-        
-        .icon-button:hover {
-            color: #F3F4F6;
-            background-color: rgba(75, 85, 99, 0.3);
-            border-radius: 0.375rem;
-        }
-        
-        /* Tables - Mobile Responsive */
-        .table-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .table th, .table td {
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #374151;
-            white-space: nowrap;
-        }
-        
-        .table th {
-            text-align: left;
-            font-weight: 600;
-            color: #9CA3AF;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            position: sticky;
-            top: 0;
-            background-color: #1F2937;
-        }
-        
-        /* Mobile Table Adjustments */
-        @media (max-width: 768px) {
-            .table th, .table td {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.875rem;
-            }
-            
-            .table th {
-                font-size: 0.75rem;
-            }
-        }
-        
-        /* Pie Chart */
-        .pie-chart-container {
-            width: 150px;
-            height: 150px;
-            position: relative;
-        }
-        
-        @media (max-width: 640px) {
-            .pie-chart-container {
-                width: 120px;
-                height: 120px;
-            }
-        }
-        
-        .pie-chart {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-image: conic-gradient(
-                #3B82F6 0% 30%,
-                #10B981 30% 60%,
-                #F59E0B 60% 85%,
-                #EF4444 85% 100%
-            );
-        }
-        
-        /* Modal */
-        .modal-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 60;
-            padding: 1rem;
-        }
-        
-        .modal-content {
-            background-color: #1F2937;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            width: 100%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow-y: auto;
-            border: 1px solid #374151;
-        }
-        
-        /* Mobile Navigation */
-        .mobile-nav-button {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                display: none;
-            }
-            
-            .mobile-nav-button {
-                display: flex;
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .card {
-                padding: 1rem;
-            }
-            
-            .modal-content {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
-        }
-        
-        /* Touch Feedback */
-        .touch-feedback {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .touch-feedback::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .touch-feedback:active::before {
-            width: 200px;
-            height: 200px;
-        }
-        
-        /* Responsive Grid Adjustments */
-        @media (max-width: 640px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Pull to Refresh Indicator */
-        .pull-refresh-indicator {
-            position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #3B82F6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s ease;
-            color: white;
-        }
-        
-        .pull-refresh-indicator.visible {
-            opacity: 1;
-            top: 20px;
-        }
-        
-        .pull-refresh-indicator.loading {
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: translateX(-50%) rotate(0deg); }
-            to { transform: translateX(-50%) rotate(360deg); }
-        }
-    </style>
 </head>
+
 <body class="flex h-screen overflow-hidden">
-<!-- Mobile Sidebar Overlay -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-<!-- Mobile Sidebar -->
-<aside class="mobile-sidebar" id="mobileSidebar">
-<div class="flex flex-col h-full p-6 space-y-4">
-<div class="flex items-center justify-between mb-8">
-<div class="flex items-center space-x-2">
-<span class="material-icons text-3xl text-blue-500">account_balance_wallet</span>
-<h1 class="text-xl font-bold">FinanceApp</h1>
-</div>
-<button class="icon-button touch-feedback" id="closeMobileSidebar">
-<span class="material-icons">close</span>
-</button>
-</div>
-<nav class="flex-grow">
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link active-nav-link touch-feedback" data-page="dashboard" href="#dashboard">
-<span class="material-icons">dashboard</span>
-<span>Dashboard</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback" data-page="accounts" href="#accounts">
-<span class="material-icons">account_balance</span>
-<span>Accounts</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback" data-page="transactions" href="#transactions">
-<span class="material-icons">receipt_long</span>
-<span>Transactions</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback" data-page="budgets" href="#budgets">
-<span class="material-icons">pie_chart</span>
-<span>Budgets</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback" data-page="insights" href="#insights">
-<span class="material-icons">insights</span>
-<span>Insights</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors touch-feedback" href="#" id="openUploadModalMobile">
-<span class="material-icons">upload_file</span>
-<span>Upload</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback" data-page="settings" href="#settings">
-<span class="material-icons">settings</span>
-<span>Settings</span>
-</a>
-</nav>
-<div class="mt-auto">
-<p class="text-xs text-gray-500">© 2024 FinanceApp</p>
-</div>
-</div>
-</aside>
+    <!-- Mobile Sidebar -->
+    <aside class="mobile-sidebar" id="mobileSidebar">
+        <div class="flex flex-col h-full p-6 space-y-4">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center space-x-2">
+                    <span class="material-icons text-3xl text-blue-500">account_balance_wallet</span>
+                    <h1 class="text-xl font-bold">FinanceApp</h1>
+                </div>
+                <button class="icon-button touch-feedback" id="closeMobileSidebar">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <nav class="flex-grow">
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link active-nav-link touch-feedback"
+                    data-page="dashboard" href="#dashboard">
+                    <span class="material-icons">dashboard</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback"
+                    data-page="accounts" href="#accounts">
+                    <span class="material-icons">account_balance</span>
+                    <span>Accounts</span>
+                </a>
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback"
+                    data-page="transactions" href="#transactions">
+                    <span class="material-icons">receipt_long</span>
+                    <span>Transactions</span>
+                </a>
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback"
+                    data-page="budgets" href="#budgets">
+                    <span class="material-icons">pie_chart</span>
+                    <span>Budgets</span>
+                </a>
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback"
+                    data-page="insights" href="#insights">
+                    <span class="material-icons">insights</span>
+                    <span>Insights</span>
+                </a>
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors touch-feedback"
+                    href="#" id="openUploadModalMobile">
+                    <span class="material-icons">upload_file</span>
+                    <span>Upload</span>
+                </a>
+                <a class="flex items-center space-x-3 px-3 py-3 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link touch-feedback"
+                    data-page="settings" href="#settings">
+                    <span class="material-icons">settings</span>
+                    <span>Settings</span>
+                </a>
+            </nav>
+            <div class="mt-auto">
+                <p class="text-xs text-gray-500">© 2024 FinanceApp</p>
+            </div>
+        </div>
+    </aside>
 
-<!-- Desktop Sidebar -->
-<aside class="sidebar flex flex-col p-6 space-y-4">
-<div class="flex items-center space-x-2 mb-8">
-<span class="material-icons text-3xl text-blue-500">account_balance_wallet</span>
-<h1 class="text-xl font-bold">FinanceApp</h1>
-</div>
-<nav class="flex-grow">
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link active-nav-link" data-page="dashboard" href="#dashboard">
-<span class="material-icons">dashboard</span>
-<span>Dashboard</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link" data-page="accounts" href="#accounts">
-<span class="material-icons">account_balance</span>
-<span>Accounts</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link" data-page="transactions" href="#transactions">
-<span class="material-icons">receipt_long</span>
-<span>Transactions</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link" data-page="budgets" href="#budgets">
-<span class="material-icons">pie_chart</span>
-<span>Budgets</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link" data-page="insights" href="#insights">
-<span class="material-icons">insights</span>
-<span>Insights</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors" href="#" id="openUploadModal">
-<span class="material-icons">upload_file</span>
-<span>Upload</span>
-</a>
-<a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link" data-page="settings" href="#settings">
-<span class="material-icons">settings</span>
-<span>Settings</span>
-</a>
-</nav>
-<div class="mt-auto">
-<p class="text-xs text-gray-500">© 2024 FinanceApp</p>
-</div>
-</aside>
+    <!-- Desktop Sidebar -->
+    <aside class="sidebar flex flex-col p-6 space-y-4">
+        <div class="flex items-center space-x-2 mb-8">
+            <span class="material-icons text-3xl text-blue-500">account_balance_wallet</span>
+            <h1 class="text-xl font-bold">FinanceApp</h1>
+        </div>
+        <nav class="flex-grow">
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link active-nav-link"
+                data-page="dashboard" href="#dashboard">
+                <span class="material-icons">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link"
+                data-page="accounts" href="#accounts">
+                <span class="material-icons">account_balance</span>
+                <span>Accounts</span>
+            </a>
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link"
+                data-page="transactions" href="#transactions">
+                <span class="material-icons">receipt_long</span>
+                <span>Transactions</span>
+            </a>
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link"
+                data-page="budgets" href="#budgets">
+                <span class="material-icons">pie_chart</span>
+                <span>Budgets</span>
+            </a>
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link"
+                data-page="insights" href="#insights">
+                <span class="material-icons">insights</span>
+                <span>Insights</span>
+            </a>
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors"
+                href="#" id="openUploadModal">
+                <span class="material-icons">upload_file</span>
+                <span>Upload</span>
+            </a>
+            <a class="flex items-center space-x-3 px-3 py-2 rounded-md hover:bg-gray-700 text-gray-300 hover:text-white transition-colors nav-link"
+                data-page="settings" href="#settings">
+                <span class="material-icons">settings</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="mt-auto">
+            <p class="text-xs text-gray-500">© 2024 FinanceApp</p>
+        </div>
+    </aside>
 
-<div class="main-content flex flex-col">
-<!-- Pull to Refresh Indicator -->
-<div class="pull-refresh-indicator" id="pullRefreshIndicator">
-<span class="material-icons">refresh</span>
-</div>
+    <div class="main-content flex flex-col">
+        <!-- Pull to Refresh Indicator -->
+        <div class="pull-refresh-indicator" id="pullRefreshIndicator">
+            <span class="material-icons">refresh</span>
+        </div>
 
-<header class="bg-gray-800 p-4 flex justify-between items-center shadow-md relative">
-<div class="flex items-center">
-<!-- Mobile Hamburger Menu -->
-<button class="mobile-nav-button icon-button mr-3 touch-feedback" id="openMobileSidebar">
-<span class="material-icons">menu</span>
-</button>
+        <header class="bg-gray-800 p-4 flex justify-between items-center shadow-md relative">
+            <div class="flex items-center">
+                <!-- Mobile Hamburger Menu -->
+                <button class="mobile-nav-button icon-button mr-3 touch-feedback" id="openMobileSidebar">
+                    <span class="material-icons">menu</span>
+                </button>
 
-<div class="relative mr-4 hidden md:block">
-<span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
-<input class="bg-gray-700 text-gray-200 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search..." type="text"/>
-</div>
-</div>
-<div class="flex items-center space-x-4">
-<button class="icon-button relative touch-feedback">
-<span class="material-icons">notifications</span>
-<span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-gray-800"></span>
-</button>
-<div class="flex items-center space-x-2 cursor-pointer touch-feedback">
-<img alt="User avatar" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTvfh-CmrM9Ob2BHl6-JgzUQzgIHbaesvQ4fl6PenyPC7uzYZjacPd6hJT2b30OWm0xJ4QvYhZLpQW15jvi2Fccoy_pElPaB4gwgl0fNxNrF7adY32ZsNELHjlsI7BeI7hkh3uK1TyC9MCLJ-_5gNmL137vppljFroXov1ROgpuVkJiOxxi70VJAoMfuinJMFefDrFhn-xPJpMXkAK0UVUMnYjBx73VxLau0QU9eAULFJfqf7RnNxV-nvLY_SAtEBuUI8n1C0oS50n"/>
-<span class="text-sm font-medium text-gray-300 hidden sm:inline">John Doe</span>
-</div>
-</div>
-</header>
-<main class="flex-grow p-6 overflow-y-auto">
-<div class="page-content" id="dashboard-page">
-<h2 class="text-2xl font-semibold mb-6">Dashboard</h2>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-<div class="card lg:col-span-1">
-<h3 class="text-lg font-semibold mb-1">Net Worth</h3>
-<p class="text-3xl font-bold text-green-400">$45,600.75</p>
-<p class="text-sm text-gray-400 mb-4">+ $1,200.50 (2.7%) this month</p>
-<button class="btn btn-primary w-full" id="uploadStatementCTA">
-<span class="material-icons mr-2 align-middle text-base">upload_file</span>
+                <div class="relative mr-4 hidden md:block">
+                    <span
+                        class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
+                    <input
+                        class="bg-gray-700 text-gray-200 rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Search..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="icon-button relative touch-feedback">
+                    <span class="material-icons">notifications</span>
+                    <span
+                        class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-gray-800"></span>
+                </button>
+                <div class="flex items-center space-x-2 cursor-pointer touch-feedback">
+                    <img alt="User avatar" class="w-8 h-8 rounded-full"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTvfh-CmrM9Ob2BHl6-JgzUQzgIHbaesvQ4fl6PenyPC7uzYZjacPd6hJT2b30OWm0xJ4QvYhZLpQW15jvi2Fccoy_pElPaB4gwgl0fNxNrF7adY32ZsNELHjlsI7BeI7hkh3uK1TyC9MCLJ-_5gNmL137vppljFroXov1ROgpuVkJiOxxi70VJAoMfuinJMFefDrFhn-xPJpMXkAK0UVUMnYjBx73VxLau0QU9eAULFJfqf7RnNxV-nvLY_SAtEBuUI8n1C0oS50n" />
+                    <span class="text-sm font-medium text-gray-300 hidden sm:inline">John Doe</span>
+                </div>
+            </div>
+        </header>
+        <main class="flex-grow p-6 overflow-y-auto">
+            <div class="page-content" id="dashboard-page">
+                <h2 class="text-2xl font-semibold mb-6">Dashboard</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="card lg:col-span-1">
+                        <h3 class="text-lg font-semibold mb-1">Net Worth</h3>
+                        <p class="text-3xl font-bold text-green-400">$45,600.75</p>
+                        <p class="text-sm text-gray-400 mb-4">+ $1,200.50 (2.7%) this month</p>
+                        <button class="btn btn-primary w-full" id="uploadStatementCTA">
+                            <span class="material-icons mr-2 align-middle text-base">upload_file</span>
                             Upload New Statement
                         </button>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Checking Account</h3>
-<p class="text-2xl font-bold">$12,345.67</p>
-<p class="text-sm text-gray-400">Primary Account</p>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Savings Account</h3>
-<p class="text-2xl font-bold">$25,000.00</p>
-<p class="text-sm text-gray-400">Emergency Fund</p>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Investment Portfolio</h3>
-<p class="text-2xl font-bold">$8,255.08</p>
-<p class="text-sm text-gray-400">Growth Focused</p>
-</div>
-<div class="card lg:col-span-2">
-<div class="flex justify-between items-center mb-4">
-<h3 class="text-lg font-semibold">Recent Transactions</h3>
-<a class="text-sm text-blue-400 hover:underline nav-link" data-page="transactions" href="#transactions">View All</a>
-</div>
-<table class="w-full table">
-<thead>
-<tr>
-<th>Date</th>
-<th>Description</th>
-<th>Category</th>
-<th class="text-right">Amount</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>Oct 26, 2023</td><td>Grocery Store</td><td>Food</td><td class="text-right text-red-400">-$75.20</td></tr>
-<tr><td>Oct 25, 2023</td><td>Salary Deposit</td><td>Income</td><td class="text-right text-green-400">+$2,500.00</td></tr>
-<tr><td>Oct 24, 2023</td><td>Coffee Shop</td><td>Food</td><td class="text-right text-red-400">-$5.50</td></tr>
-<tr><td>Oct 23, 2023</td><td>Online Subscription</td><td>Bills</td><td class="text-right text-red-400">-$12.99</td></tr>
-<tr><td>Oct 22, 2023</td><td>Gas Station</td><td>Transport</td><td class="text-right text-red-400">-$45.00</td></tr>
-</tbody>
-</table>
-</div>
-<div class="card lg:col-span-1">
-<h3 class="text-lg font-semibold mb-4">Spending by Category</h3>
-<div class="flex items-center">
-<div class="pie-chart-container mr-6">
-<div class="pie-chart"></div>
-</div>
-<div class="space-y-2 text-sm">
-<div class="flex items-center"><span class="h-3 w-3 rounded-full bg-blue-500 mr-2"></span> Food &amp; Dining (30%)</div>
-<div class="flex items-center"><span class="h-3 w-3 rounded-full bg-green-500 mr-2"></span> Shopping (30%)</div>
-<div class="flex items-center"><span class="h-3 w-3 rounded-full bg-yellow-500 mr-2"></span> Transport (25%)</div>
-<div class="flex items-center"><span class="h-3 w-3 rounded-full bg-red-500 mr-2"></span> Bills (15%)</div>
-</div>
-</div>
-</div>
-<div class="card lg:col-span-1">
-<h3 class="text-lg font-semibold mb-2">Spending Trend</h3>
-<p class="text-sm text-gray-400 mb-2">You've spent 15% more this month compared to last.</p>
-<a class="text-sm text-blue-400 hover:underline nav-link" data-page="insights" href="#insights">View Details</a>
-</div>
-<div class="card lg:col-span-1">
-<h3 class="text-lg font-semibold mb-2">Upcoming Bills</h3>
-<p class="text-sm text-gray-400 mb-2">Rent ($1200) due in 5 days.</p>
-<a class="text-sm text-blue-400 hover:underline nav-link" data-page="budgets" href="#budgets">Manage Budgets</a>
-</div>
-<div class="card lg:col-span-1">
-<h3 class="text-lg font-semibold mb-2">Savings Goal</h3>
-<p class="text-sm text-gray-400 mb-2">You're 70% towards your new car fund!</p>
-<a class="text-sm text-blue-400 hover:underline nav-link" data-page="insights" href="#insights">Track Goals</a>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="accounts-page">
-<h2 class="text-2xl font-semibold mb-6">Accounts</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<div class="card">
-<div class="flex justify-between items-start mb-2">
-<div>
-<h3 class="text-xl font-semibold">Checking Account</h3>
-<p class="text-sm text-gray-400">**** **** **** 1234</p>
-</div>
-<span class="material-icons text-blue-400">credit_card</span>
-</div>
-<p class="text-3xl font-bold mb-4">$12,345.67</p>
-<div class="mb-4">
-<h4 class="text-sm font-medium text-gray-300 mb-1">Recent Activity:</h4>
-<ul class="text-xs text-gray-400 space-y-1">
-<li class="flex justify-between"><span>Grocery Store</span> <span class="text-red-400">-$75.20</span></li>
-<li class="flex justify-between"><span>Salary Deposit</span> <span class="text-green-400">+$2500.00</span></li>
-</ul>
-</div>
-<div class="flex space-x-2">
-<button class="btn btn-secondary text-xs flex-1"><span class="material-icons mr-1 text-sm">paid</span>Make Payment</button>
-<button class="btn btn-secondary text-xs flex-1"><span class="material-icons mr-1 text-sm">transfer_within_a_station</span>Transfer</button>
-</div>
-</div>
-<div class="card">
-<div class="flex justify-between items-start mb-2">
-<div>
-<h3 class="text-xl font-semibold">Savings Account</h3>
-<p class="text-sm text-gray-400">**** **** **** 5678</p>
-</div>
-<span class="material-icons text-green-400">savings</span>
-</div>
-<p class="text-3xl font-bold mb-4">$25,000.00</p>
-<div class="mb-4">
-<h4 class="text-sm font-medium text-gray-300 mb-1">Recent Activity:</h4>
-<ul class="text-xs text-gray-400 space-y-1">
-<li class="flex justify-between"><span>Interest Earned</span> <span class="text-green-400">+$20.50</span></li>
-<li class="flex justify-between"><span>Transfer from Checking</span> <span class="text-green-400">+$500.00</span></li>
-</ul>
-</div>
-<div class="flex space-x-2">
-<button class="btn btn-secondary text-xs flex-1"><span class="material-icons mr-1 text-sm">add_card</span>Add Funds</button>
-<button class="btn btn-secondary text-xs flex-1"><span class="material-icons mr-1 text-sm">info</span>Details</button>
-</div>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="transactions-page">
-<h2 class="text-2xl font-semibold mb-6">Transactions</h2>
-<div class="card mb-6">
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-1" for="dateRange">Date Range</label>
-<input class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" id="dateRange" type="date"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-1" for="transactionType">Type</label>
-<select class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" id="transactionType">
-<option>All</option>
-<option>Income</option>
-<option>Expense</option>
-</select>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-1" for="categoryFilter">Category</label>
-<select class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" id="categoryFilter">
-<option>All</option>
-<option>Food</option>
-<option>Transport</option>
-<option>Bills</option>
-<option>Income</option>
-</select>
-</div>
-<div class="self-end">
-<button class="btn btn-primary w-full"><span class="material-icons mr-1 text-sm">filter_list</span>Filter</button>
-</div>
-</div>
-</div>
-<div class="card">
-<div class="flex justify-between items-center mb-4">
-<h3 class="text-lg font-semibold">All Transactions</h3>
-<div>
-<button class="btn btn-secondary text-sm"><span class="material-icons mr-1 text-sm">delete_sweep</span>Bulk Delete</button>
-<button class="btn btn-secondary text-sm ml-2"><span class="material-icons mr-1 text-sm">download</span>Export</button>
-</div>
-</div>
-<table class="w-full table">
-<thead>
-<tr>
-<th><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></th>
-<th>Date</th>
-<th>Description</th>
-<th>Category</th>
-<th>Account</th>
-<th class="text-right">Amount</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 26, 2023</td><td>Grocery Store</td><td>Food</td><td>Checking</td><td class="text-right text-red-400">-$75.20</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 25, 2023</td><td>Salary Deposit</td><td>Income</td><td>Checking</td><td class="text-right text-green-400">+$2,500.00</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 24, 2023</td><td>Coffee Shop</td><td>Food</td><td>Checking</td><td class="text-right text-red-400">-$5.50</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 23, 2023</td><td>Online Subscription</td><td>Bills</td><td>Credit Card</td><td class="text-right text-red-400">-$12.99</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 22, 2023</td><td>Gas Station</td><td>Transport</td><td>Checking</td><td class="text-right text-red-400">-$45.00</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 21, 2023</td><td>Restaurant Dinner</td><td>Food</td><td>Credit Card</td><td class="text-right text-red-400">-$62.30</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-<tr><td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500" type="checkbox"/></td><td>Oct 20, 2023</td><td>Book Purchase</td><td>Shopping</td><td>Checking</td><td class="text-right text-red-400">-$19.99</td><td><button class="icon-button text-sm"><span class="material-icons">edit</span></button> <button class="icon-button text-sm"><span class="material-icons">delete</span></button></td></tr>
-</tbody>
-</table>
-<div class="mt-6 flex justify-between items-center text-sm text-gray-400">
-<span>Showing 1-7 of 50 transactions</span>
-<div class="flex space-x-1">
-<button class="px-3 py-1 rounded-md hover:bg-gray-600 disabled:opacity-50" disabled=""><span class="material-icons text-base align-middle">chevron_left</span> Prev</button>
-<button class="px-3 py-1 rounded-md bg-blue-500 text-white">1</button>
-<button class="px-3 py-1 rounded-md hover:bg-gray-600">2</button>
-<button class="px-3 py-1 rounded-md hover:bg-gray-600">3</button>
-<button class="px-3 py-1 rounded-md hover:bg-gray-600">Next <span class="material-icons text-base align-middle">chevron_right</span></button>
-</div>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="budgets-page">
-<h2 class="text-2xl font-semibold mb-6">Budgets</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="card">
-<div class="flex justify-between items-center mb-2">
-<h3 class="text-lg font-semibold">Food &amp; Dining</h3>
-<span class="text-sm text-gray-400">$350 / $500</span>
-</div>
-<div class="w-full bg-gray-600 rounded-full h-4 mb-1">
-<div class="bg-blue-500 h-4 rounded-full" style="width: 70%"></div>
-</div>
-<p class="text-xs text-gray-400 text-right">70% used</p>
-</div>
-<div class="card">
-<div class="flex justify-between items-center mb-2">
-<h3 class="text-lg font-semibold">Shopping</h3>
-<span class="text-sm text-gray-400">$120 / $200</span>
-</div>
-<div class="w-full bg-gray-600 rounded-full h-4 mb-1">
-<div class="bg-green-500 h-4 rounded-full" style="width: 60%"></div>
-</div>
-<p class="text-xs text-gray-400 text-right">60% used</p>
-</div>
-<div class="card">
-<div class="flex justify-between items-center mb-2">
-<h3 class="text-lg font-semibold">Transport</h3>
-<span class="text-sm text-gray-400">$90 / $150</span>
-</div>
-<div class="w-full bg-gray-600 rounded-full h-4 mb-1">
-<div class="bg-yellow-500 h-4 rounded-full" style="width: 60%"></div>
-</div>
-<p class="text-xs text-gray-400 text-right">60% used</p>
-</div>
-<div class="card">
-<div class="flex justify-between items-center mb-2">
-<h3 class="text-lg font-semibold">Bills &amp; Utilities</h3>
-<span class="text-sm text-red-400">$210 / $200 (Over Budget!)</span>
-</div>
-<div class="w-full bg-gray-600 rounded-full h-4 mb-1">
-<div class="bg-red-500 h-4 rounded-full" style="width: 100%"></div>
-</div>
-<p class="text-xs text-red-400 text-right">105% used</p>
-</div>
-</div>
-<div class="mt-6 text-right">
-<button class="btn btn-primary"><span class="material-icons mr-1 text-sm">add_circle_outline</span>Create New Budget</button>
-</div>
-</div>
-<div class="page-content hidden" id="insights-page">
-<h2 class="text-2xl font-semibold mb-6">Insights</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-<div class="card lg:col-span-2">
-<h3 class="text-lg font-semibold mb-4">Monthly Spending Breakdown</h3>
-<div class="h-64 bg-gray-700 rounded-md flex items-center justify-center">
-<span class="material-icons text-6xl text-gray-500">bar_chart</span>
-<p class="ml-4 text-gray-500">Detailed Spending Chart Area</p>
-</div>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Income vs Expense</h3>
-<p class="text-sm text-gray-400 mb-4">Last 6 Months</p>
-<div class="h-48 bg-gray-700 rounded-md flex items-center justify-center">
-<span class="material-icons text-5xl text-gray-500">show_chart</span>
-<p class="ml-4 text-gray-500">Income/Expense Trend</p>
-</div>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Top Spending Categories</h3>
-<ul class="space-y-2 text-sm mt-4">
-<li class="flex justify-between"><span>Food &amp; Dining:</span> <span>$560.70</span></li>
-<li class="flex justify-between"><span>Shopping:</span> <span>$320.00</span></li>
-<li class="flex justify-between"><span>Bills &amp; Utilities:</span> <span>$210.00</span></li>
-<li class="flex justify-between"><span>Transport:</span> <span>$150.50</span></li>
-</ul>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Savings Growth</h3>
-<p class="text-sm text-gray-400 mb-4">Your savings have grown by 15% this year.</p>
-<div class="h-32 bg-gray-700 rounded-md flex items-center justify-center">
-<span class="material-icons text-5xl text-green-400">trending_up</span>
-<p class="ml-4 text-gray-300">Good Job!</p>
-</div>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-2">Subscription Overview</h3>
-<p class="text-sm text-gray-400 mb-4">You have 5 active subscriptions totaling $87/month.</p>
-<button class="btn btn-secondary text-sm w-full">Manage Subscriptions</button>
-</div>
-</div>
-</div>
-<div class="page-content hidden" id="settings-page">
-<h2 class="text-2xl font-semibold mb-6">Settings</h2>
-<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-<div class="card">
-<h3 class="text-lg font-semibold mb-4">Profile Information</h3>
-<form class="space-y-4">
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-1" for="fullName">Full Name</label>
-<input class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" id="fullName" type="text" value="John Doe"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-1" for="email">Email Address</label>
-<input class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500" id="email" type="email" value="john.doe@example.com"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-gray-300 mb-1" for="avatarUpload">Profile Picture</label>
-<input class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600" id="avatarUpload" type="file"/>
-</div>
-<button class="btn btn-primary" type="submit">Save Changes</button>
-</form>
-</div>
-<div class="card">
-<h3 class="text-lg font-semibold mb-4">Linked Accounts</h3>
-<ul class="space-y-3">
-<li class="flex justify-between items-center p-3 bg-gray-700 rounded-md">
-<div>
-<p class="font-medium">Chase Bank - Checking</p>
-<p class="text-xs text-gray-400">**** 1234</p>
-</div>
-<button class="icon-button text-red-400 hover:text-red-300"><span class="material-icons">link_off</span></button>
-</li>
-<li class="flex justify-between items-center p-3 bg-gray-700 rounded-md">
-<div>
-<p class="font-medium">Bank of America - Savings</p>
-<p class="text-xs text-gray-400">**** 5678</p>
-</div>
-<button class="icon-button text-red-400 hover:text-red-300"><span class="material-icons">link_off</span></button>
-</li>
-</ul>
-<button class="btn btn-secondary mt-4 w-full"><span class="material-icons mr-1 text-sm">add_link</span>Link New Account</button>
-</div>
-<div class="card lg:col-span-2">
-<h3 class="text-lg font-semibold mb-4">Data Controls</h3>
-<div class="space-y-3">
-<button class="btn btn-secondary w-full sm:w-auto"><span class="material-icons mr-1 text-sm">download_for_offline</span>Export All Data</button>
-<button class="btn btn-secondary w-full sm:w-auto ml-0 sm:ml-2 mt-2 sm:mt-0"><span class="material-icons mr-1 text-sm">history</span>Clear Transaction History</button>
-<button class="btn bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto ml-0 sm:ml-2 mt-2 sm:mt-0"><span class="material-icons mr-1 text-sm">delete_forever</span>Delete Account</button>
-</div>
-<p class="text-xs text-gray-400 mt-4">Warning: Deleting your account is permanent and cannot be undone.</p>
-</div>
-</div>
-</div>
-</main>
-</div>
-<div class="modal-backdrop hidden" id="uploadModal">
-<div class="modal-content">
-<div class="flex justify-between items-center mb-6">
-<h3 class="text-xl font-semibold">Upload Statement</h3>
-<button class="icon-button" id="closeUploadModal"><span class="material-icons">close</span></button>
-</div>
-<div id="uploadStep1">
-<p class="text-gray-300 mb-4">Upload your bank or credit card statement (PDF, CSV, or OFX format).</p>
-<div class="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center mb-4">
-<span class="material-icons text-5xl text-gray-500 mb-2">cloud_upload</span>
-<p class="text-gray-400 mb-2">Drag &amp; drop your file here, or</p>
-<label class="btn btn-primary cursor-pointer" for="fileUpload">
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Checking Account</h3>
+                        <p class="text-2xl font-bold">$12,345.67</p>
+                        <p class="text-sm text-gray-400">Primary Account</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Savings Account</h3>
+                        <p class="text-2xl font-bold">$25,000.00</p>
+                        <p class="text-sm text-gray-400">Emergency Fund</p>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Investment Portfolio</h3>
+                        <p class="text-2xl font-bold">$8,255.08</p>
+                        <p class="text-sm text-gray-400">Growth Focused</p>
+                    </div>
+                    <div class="card lg:col-span-2">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold">Recent Transactions</h3>
+                            <a class="text-sm text-blue-400 hover:underline nav-link" data-page="transactions"
+                                href="#transactions">View All</a>
+                        </div>
+                        <table class="w-full table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th class="text-right">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Oct 26, 2023</td>
+                                    <td>Grocery Store</td>
+                                    <td>Food</td>
+                                    <td class="text-right text-red-400">-$75.20</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 25, 2023</td>
+                                    <td>Salary Deposit</td>
+                                    <td>Income</td>
+                                    <td class="text-right text-green-400">+$2,500.00</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 24, 2023</td>
+                                    <td>Coffee Shop</td>
+                                    <td>Food</td>
+                                    <td class="text-right text-red-400">-$5.50</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 23, 2023</td>
+                                    <td>Online Subscription</td>
+                                    <td>Bills</td>
+                                    <td class="text-right text-red-400">-$12.99</td>
+                                </tr>
+                                <tr>
+                                    <td>Oct 22, 2023</td>
+                                    <td>Gas Station</td>
+                                    <td>Transport</td>
+                                    <td class="text-right text-red-400">-$45.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card lg:col-span-1">
+                        <h3 class="text-lg font-semibold mb-4">Spending by Category</h3>
+                        <div class="flex items-center">
+                            <div class="pie-chart-container mr-6">
+                                <div class="pie-chart"></div>
+                            </div>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex items-center"><span
+                                        class="h-3 w-3 rounded-full bg-blue-500 mr-2"></span> Food &amp; Dining (30%)
+                                </div>
+                                <div class="flex items-center"><span
+                                        class="h-3 w-3 rounded-full bg-green-500 mr-2"></span> Shopping (30%)</div>
+                                <div class="flex items-center"><span
+                                        class="h-3 w-3 rounded-full bg-yellow-500 mr-2"></span> Transport (25%)</div>
+                                <div class="flex items-center"><span
+                                        class="h-3 w-3 rounded-full bg-red-500 mr-2"></span> Bills (15%)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card lg:col-span-1">
+                        <h3 class="text-lg font-semibold mb-2">Spending Trend</h3>
+                        <p class="text-sm text-gray-400 mb-2">You've spent 15% more this month compared to last.</p>
+                        <a class="text-sm text-blue-400 hover:underline nav-link" data-page="insights"
+                            href="#insights">View Details</a>
+                    </div>
+                    <div class="card lg:col-span-1">
+                        <h3 class="text-lg font-semibold mb-2">Upcoming Bills</h3>
+                        <p class="text-sm text-gray-400 mb-2">Rent ($1200) due in 5 days.</p>
+                        <a class="text-sm text-blue-400 hover:underline nav-link" data-page="budgets"
+                            href="#budgets">Manage Budgets</a>
+                    </div>
+                    <div class="card lg:col-span-1">
+                        <h3 class="text-lg font-semibold mb-2">Savings Goal</h3>
+                        <p class="text-sm text-gray-400 mb-2">You're 70% towards your new car fund!</p>
+                        <a class="text-sm text-blue-400 hover:underline nav-link" data-page="insights"
+                            href="#insights">Track Goals</a>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content hidden" id="accounts-page">
+                <h2 class="text-2xl font-semibold mb-6">Accounts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-semibold">Checking Account</h3>
+                                <p class="text-sm text-gray-400">**** **** **** 1234</p>
+                            </div>
+                            <span class="material-icons text-blue-400">credit_card</span>
+                        </div>
+                        <p class="text-3xl font-bold mb-4">$12,345.67</p>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-300 mb-1">Recent Activity:</h4>
+                            <ul class="text-xs text-gray-400 space-y-1">
+                                <li class="flex justify-between"><span>Grocery Store</span> <span
+                                        class="text-red-400">-$75.20</span></li>
+                                <li class="flex justify-between"><span>Salary Deposit</span> <span
+                                        class="text-green-400">+$2500.00</span></li>
+                            </ul>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="btn btn-secondary text-xs flex-1"><span
+                                    class="material-icons mr-1 text-sm">paid</span>Make Payment</button>
+                            <button class="btn btn-secondary text-xs flex-1"><span
+                                    class="material-icons mr-1 text-sm">transfer_within_a_station</span>Transfer</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h3 class="text-xl font-semibold">Savings Account</h3>
+                                <p class="text-sm text-gray-400">**** **** **** 5678</p>
+                            </div>
+                            <span class="material-icons text-green-400">savings</span>
+                        </div>
+                        <p class="text-3xl font-bold mb-4">$25,000.00</p>
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-300 mb-1">Recent Activity:</h4>
+                            <ul class="text-xs text-gray-400 space-y-1">
+                                <li class="flex justify-between"><span>Interest Earned</span> <span
+                                        class="text-green-400">+$20.50</span></li>
+                                <li class="flex justify-between"><span>Transfer from Checking</span> <span
+                                        class="text-green-400">+$500.00</span></li>
+                            </ul>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="btn btn-secondary text-xs flex-1"><span
+                                    class="material-icons mr-1 text-sm">add_card</span>Add Funds</button>
+                            <button class="btn btn-secondary text-xs flex-1"><span
+                                    class="material-icons mr-1 text-sm">info</span>Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content hidden" id="transactions-page">
+                <h2 class="text-2xl font-semibold mb-6">Transactions</h2>
+                <div class="card mb-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1" for="dateRange">Date
+                                Range</label>
+                            <input
+                                class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                id="dateRange" type="date" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1"
+                                for="transactionType">Type</label>
+                            <select
+                                class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                id="transactionType">
+                                <option>All</option>
+                                <option>Income</option>
+                                <option>Expense</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-300 mb-1"
+                                for="categoryFilter">Category</label>
+                            <select
+                                class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                id="categoryFilter">
+                                <option>All</option>
+                                <option>Food</option>
+                                <option>Transport</option>
+                                <option>Bills</option>
+                                <option>Income</option>
+                            </select>
+                        </div>
+                        <div class="self-end">
+                            <button class="btn btn-primary w-full"><span
+                                    class="material-icons mr-1 text-sm">filter_list</span>Filter</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">All Transactions</h3>
+                        <div>
+                            <button class="btn btn-secondary text-sm"><span
+                                    class="material-icons mr-1 text-sm">delete_sweep</span>Bulk Delete</button>
+                            <button class="btn btn-secondary text-sm ml-2"><span
+                                    class="material-icons mr-1 text-sm">download</span>Export</button>
+                        </div>
+                    </div>
+                    <table class="w-full table">
+                        <thead>
+                            <tr>
+                                <th><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Account</th>
+                                <th class="text-right">Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 26, 2023</td>
+                                <td>Grocery Store</td>
+                                <td>Food</td>
+                                <td>Checking</td>
+                                <td class="text-right text-red-400">-$75.20</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 25, 2023</td>
+                                <td>Salary Deposit</td>
+                                <td>Income</td>
+                                <td>Checking</td>
+                                <td class="text-right text-green-400">+$2,500.00</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 24, 2023</td>
+                                <td>Coffee Shop</td>
+                                <td>Food</td>
+                                <td>Checking</td>
+                                <td class="text-right text-red-400">-$5.50</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 23, 2023</td>
+                                <td>Online Subscription</td>
+                                <td>Bills</td>
+                                <td>Credit Card</td>
+                                <td class="text-right text-red-400">-$12.99</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 22, 2023</td>
+                                <td>Gas Station</td>
+                                <td>Transport</td>
+                                <td>Checking</td>
+                                <td class="text-right text-red-400">-$45.00</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 21, 2023</td>
+                                <td>Restaurant Dinner</td>
+                                <td>Food</td>
+                                <td>Credit Card</td>
+                                <td class="text-right text-red-400">-$62.30</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input class="bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+                                        type="checkbox" /></td>
+                                <td>Oct 20, 2023</td>
+                                <td>Book Purchase</td>
+                                <td>Shopping</td>
+                                <td>Checking</td>
+                                <td class="text-right text-red-400">-$19.99</td>
+                                <td><button class="icon-button text-sm"><span
+                                            class="material-icons">edit</span></button> <button
+                                        class="icon-button text-sm"><span class="material-icons">delete</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-6 flex justify-between items-center text-sm text-gray-400">
+                        <span>Showing 1-7 of 50 transactions</span>
+                        <div class="flex space-x-1">
+                            <button class="px-3 py-1 rounded-md hover:bg-gray-600 disabled:opacity-50" disabled=""><span
+                                    class="material-icons text-base align-middle">chevron_left</span> Prev</button>
+                            <button class="px-3 py-1 rounded-md bg-blue-500 text-white">1</button>
+                            <button class="px-3 py-1 rounded-md hover:bg-gray-600">2</button>
+                            <button class="px-3 py-1 rounded-md hover:bg-gray-600">3</button>
+                            <button class="px-3 py-1 rounded-md hover:bg-gray-600">Next <span
+                                    class="material-icons text-base align-middle">chevron_right</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content hidden" id="budgets-page">
+                <h2 class="text-2xl font-semibold mb-6">Budgets</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">Food &amp; Dining</h3>
+                            <span class="text-sm text-gray-400">$350 / $500</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-4 mb-1">
+                            <div class="bg-blue-500 h-4 rounded-full" style="width: 70%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 text-right">70% used</p>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">Shopping</h3>
+                            <span class="text-sm text-gray-400">$120 / $200</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-4 mb-1">
+                            <div class="bg-green-500 h-4 rounded-full" style="width: 60%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 text-right">60% used</p>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">Transport</h3>
+                            <span class="text-sm text-gray-400">$90 / $150</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-4 mb-1">
+                            <div class="bg-yellow-500 h-4 rounded-full" style="width: 60%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 text-right">60% used</p>
+                    </div>
+                    <div class="card">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-lg font-semibold">Bills &amp; Utilities</h3>
+                            <span class="text-sm text-red-400">$210 / $200 (Over Budget!)</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-4 mb-1">
+                            <div class="bg-red-500 h-4 rounded-full" style="width: 100%"></div>
+                        </div>
+                        <p class="text-xs text-red-400 text-right">105% used</p>
+                    </div>
+                </div>
+                <div class="mt-6 text-right">
+                    <button class="btn btn-primary"><span
+                            class="material-icons mr-1 text-sm">add_circle_outline</span>Create New Budget</button>
+                </div>
+            </div>
+            <div class="page-content hidden" id="insights-page">
+                <h2 class="text-2xl font-semibold mb-6">Insights</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="card lg:col-span-2">
+                        <h3 class="text-lg font-semibold mb-4">Monthly Spending Breakdown</h3>
+                        <div class="h-64 bg-gray-700 rounded-md flex items-center justify-center">
+                            <span class="material-icons text-6xl text-gray-500">bar_chart</span>
+                            <p class="ml-4 text-gray-500">Detailed Spending Chart Area</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Income vs Expense</h3>
+                        <p class="text-sm text-gray-400 mb-4">Last 6 Months</p>
+                        <div class="h-48 bg-gray-700 rounded-md flex items-center justify-center">
+                            <span class="material-icons text-5xl text-gray-500">show_chart</span>
+                            <p class="ml-4 text-gray-500">Income/Expense Trend</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Top Spending Categories</h3>
+                        <ul class="space-y-2 text-sm mt-4">
+                            <li class="flex justify-between"><span>Food &amp; Dining:</span> <span>$560.70</span></li>
+                            <li class="flex justify-between"><span>Shopping:</span> <span>$320.00</span></li>
+                            <li class="flex justify-between"><span>Bills &amp; Utilities:</span> <span>$210.00</span>
+                            </li>
+                            <li class="flex justify-between"><span>Transport:</span> <span>$150.50</span></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Savings Growth</h3>
+                        <p class="text-sm text-gray-400 mb-4">Your savings have grown by 15% this year.</p>
+                        <div class="h-32 bg-gray-700 rounded-md flex items-center justify-center">
+                            <span class="material-icons text-5xl text-green-400">trending_up</span>
+                            <p class="ml-4 text-gray-300">Good Job!</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-2">Subscription Overview</h3>
+                        <p class="text-sm text-gray-400 mb-4">You have 5 active subscriptions totaling $87/month.</p>
+                        <button class="btn btn-secondary text-sm w-full">Manage Subscriptions</button>
+                    </div>
+                </div>
+            </div>
+            <div class="page-content hidden" id="settings-page">
+                <h2 class="text-2xl font-semibold mb-6">Settings</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-4">Profile Information</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1" for="fullName">Full
+                                    Name</label>
+                                <input
+                                    class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    id="fullName" type="text" value="John Doe" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1" for="email">Email
+                                    Address</label>
+                                <input
+                                    class="w-full bg-gray-700 text-gray-200 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    id="email" type="email" value="john.doe@example.com" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1" for="avatarUpload">Profile
+                                    Picture</label>
+                                <input
+                                    class="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                                    id="avatarUpload" type="file" />
+                            </div>
+                            <button class="btn btn-primary" type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-lg font-semibold mb-4">Linked Accounts</h3>
+                        <ul class="space-y-3">
+                            <li class="flex justify-between items-center p-3 bg-gray-700 rounded-md">
+                                <div>
+                                    <p class="font-medium">Chase Bank - Checking</p>
+                                    <p class="text-xs text-gray-400">**** 1234</p>
+                                </div>
+                                <button class="icon-button text-red-400 hover:text-red-300"><span
+                                        class="material-icons">link_off</span></button>
+                            </li>
+                            <li class="flex justify-between items-center p-3 bg-gray-700 rounded-md">
+                                <div>
+                                    <p class="font-medium">Bank of America - Savings</p>
+                                    <p class="text-xs text-gray-400">**** 5678</p>
+                                </div>
+                                <button class="icon-button text-red-400 hover:text-red-300"><span
+                                        class="material-icons">link_off</span></button>
+                            </li>
+                        </ul>
+                        <button class="btn btn-secondary mt-4 w-full"><span
+                                class="material-icons mr-1 text-sm">add_link</span>Link New Account</button>
+                    </div>
+                    <div class="card lg:col-span-2">
+                        <h3 class="text-lg font-semibold mb-4">Data Controls</h3>
+                        <div class="space-y-3">
+                            <button class="btn btn-secondary w-full sm:w-auto"><span
+                                    class="material-icons mr-1 text-sm">download_for_offline</span>Export All
+                                Data</button>
+                            <button class="btn btn-secondary w-full sm:w-auto ml-0 sm:ml-2 mt-2 sm:mt-0"><span
+                                    class="material-icons mr-1 text-sm">history</span>Clear Transaction History</button>
+                            <button
+                                class="btn bg-red-600 hover:bg-red-700 text-white w-full sm:w-auto ml-0 sm:ml-2 mt-2 sm:mt-0"><span
+                                    class="material-icons mr-1 text-sm">delete_forever</span>Delete Account</button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4">Warning: Deleting your account is permanent and cannot be
+                            undone.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div class="modal-backdrop hidden" id="uploadModal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold">Upload Statement</h3>
+                <button class="icon-button" id="closeUploadModal"><span class="material-icons">close</span></button>
+            </div>
+            <div id="uploadStep1">
+                <p class="text-gray-300 mb-4">Upload your bank or credit card statement (PDF, CSV, or OFX format).</p>
+                <div class="border-2 border-dashed border-gray-600 rounded-lg p-8 text-center mb-4">
+                    <span class="material-icons text-5xl text-gray-500 mb-2">cloud_upload</span>
+                    <p class="text-gray-400 mb-2">Drag &amp; drop your file here, or</p>
+                    <label class="btn btn-primary cursor-pointer" for="fileUpload">
                         Browse Files
-                        <input class="hidden" id="fileUpload" type="file"/>
-</label>
-</div>
-<div class="flex justify-end">
-<button class="btn btn-primary" id="goToStep2">Next</button>
-</div>
-</div>
-<div class="hidden" id="uploadStep2">
-<p class="text-gray-300 mb-4">Review the detected transactions before importing.</p>
-<div class="bg-gray-700 p-4 rounded-md max-h-60 overflow-y-auto mb-4">
-<p class="text-sm text-gray-400">File: statement_oct_2023.csv</p>
-<p class="text-sm text-gray-400">Transactions Found: 42</p>
-<p class="text-sm text-gray-400 mt-2">Potential Duplicates: 3</p>
-</div>
-<div class="flex justify-between">
-<button class="btn btn-secondary" id="backToStep1">Back</button>
-<button class="btn btn-primary" id="confirmUpload">Confirm &amp; Import</button>
-</div>
-</div>
-</div>
-</div>
-<script>
+                        <input class="hidden" id="fileUpload" type="file" />
+                    </label>
+                </div>
+                <div class="flex justify-end">
+                    <button class="btn btn-primary" id="goToStep2">Next</button>
+                </div>
+            </div>
+            <div class="hidden" id="uploadStep2">
+                <p class="text-gray-300 mb-4">Review the detected transactions before importing.</p>
+                <div class="bg-gray-700 p-4 rounded-md max-h-60 overflow-y-auto mb-4">
+                    <p class="text-sm text-gray-400">File: statement_oct_2023.csv</p>
+                    <p class="text-sm text-gray-400">Transactions Found: 42</p>
+                    <p class="text-sm text-gray-400 mt-2">Potential Duplicates: 3</p>
+                </div>
+                <div class="flex justify-between">
+                    <button class="btn btn-secondary" id="backToStep1">Back</button>
+                    <button class="btn btn-primary" id="confirmUpload">Confirm &amp; Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
         // Mobile-first navigation and interaction handling
         const navLinks = document.querySelectorAll('.nav-link');
         const pages = document.querySelectorAll('.page-content');
@@ -854,7 +745,7 @@
                 }
             });
             window.location.hash = pageId;
-            
+
             // Close mobile sidebar when navigating
             closeMobileSidebar();
         }
@@ -925,7 +816,7 @@
 
         // Pull to refresh functionality
         const mainContent = document.querySelector('main');
-        
+
         if (mainContent) {
             mainContent.addEventListener('touchstart', (e) => {
                 if (mainContent.scrollTop === 0 && !isRefreshing) {
@@ -942,7 +833,7 @@
 
                 if (pullDistance > 0 && mainContent.scrollTop === 0) {
                     e.preventDefault();
-                    
+
                     if (pullDistance > 60) {
                         pullRefreshIndicator.classList.add('visible');
                     } else {
@@ -970,12 +861,12 @@
         function triggerRefresh() {
             isRefreshing = true;
             pullRefreshIndicator.classList.add('loading');
-            
+
             // Simulate refresh delay
             setTimeout(() => {
                 pullRefreshIndicator.classList.remove('visible', 'loading');
                 isRefreshing = false;
-                
+
                 // Add haptic feedback if available
                 if (navigator.vibrate) {
                     navigator.vibrate(50);
@@ -1087,11 +978,11 @@
             element.addEventListener('touchstart', () => {
                 element.style.transform = 'scale(0.98)';
             });
-            
+
             element.addEventListener('touchend', () => {
                 element.style.transform = '';
             });
-            
+
             element.addEventListener('touchcancel', () => {
                 element.style.transform = '';
             });
@@ -1103,7 +994,7 @@
                 const viewport = document.querySelector('meta[name="viewport"]');
                 viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
             });
-            
+
             element.addEventListener('blur', () => {
                 const viewport = document.querySelector('meta[name="viewport"]');
                 viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, user-scalable=no');
@@ -1122,4 +1013,6 @@
         console.log('FinanceApp mobile optimizations loaded successfully');
     </script>
 
-</body></html>
+</body>
+
+</html>

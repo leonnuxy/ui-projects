@@ -1,0 +1,92 @@
+<!-- Mobile Sidebar Overlay -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- Mobile Sidebar -->
+<aside class="mobile-sidebar" id="mobileSidebar">
+    <div class="flex flex-col h-full">
+        <div class="sidebar-brand p-6">
+            <div class="flex items-center space-x-3">
+                <div class="sidebar-brand-icon-wrapper">
+                    <span class="material-icons">trending_up</span>
+                </div>
+                <h1 class="sidebar-title text-white">FlowFinance</h1>
+            </div>
+            <button class="icon-button" id="closeMobileSidebar" aria-label="Close mobile sidebar">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <nav class="flex-grow p-6 pt-0 space-y-1">
+            <a class="nav-link active" data-page="dashboard" href="#dashboard">
+                <span class="material-icons">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" data-page="accounts" href="#accounts">
+                <span class="material-icons">account_balance</span>
+                <span>Accounts</span>
+            </a>
+            <a class="nav-link" data-page="transactions" href="#transactions">
+                <span class="material-icons">receipt_long</span>
+                <span>Transactions</span>
+            </a>
+            <a class="nav-link" data-page="budgets" href="#budgets">
+                <span class="material-icons">pie_chart</span>
+                <span>Budgets</span>
+            </a>
+            <a class="nav-link" data-page="insights" href="#insights">
+                <span class="material-icons">insights</span>
+                <span>Insights</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer p-6">
+            <p class="text-xs text-gray-500 text-center">© 2024 FlowFinance</p>
+        </div>
+    </div>
+</aside>
+
+<!-- Desktop Sidebar -->
+<aside class="sidebar" id="desktopSidebar">
+    <div class="flex flex-col h-full">
+        <div class="sidebar-brand p-6 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="sidebar-brand-icon-wrapper">
+                    <span class="material-icons">trending_up</span>
+                </div>
+                <h1 class="sidebar-title text-white">FlowFinance</h1>
+            </div>
+            <button class="sidebar-toggle icon-button" id="sidebarToggle" aria-label="Toggle sidebar">
+                <span class="material-icons">chevron_left</span>
+            </button>
+        </div>
+        <div class="sidebar-separator mx-6"></div>
+        <nav class="flex-grow p-6 pt-2 space-y-1">
+            <a class="nav-link active" data-page="dashboard" href="#dashboard">
+                <span class="material-icons">dashboard</span>
+                <span>Dashboard</span>
+                <div class="nav-link-tooltip">Dashboard</div>
+            </a>
+            <a class="nav-link" data-page="accounts" href="#accounts">
+                <span class="material-icons">account_balance</span>
+                <span>Accounts</span>
+                <div class="nav-link-tooltip">Accounts</div>
+            </a>
+            <a class="nav-link" data-page="transactions" href="#transactions">
+                <span class="material-icons">receipt_long</span>
+                <span>Transactions</span>
+                <div class="nav-link-tooltip">Transactions</div>
+            </a>
+            <a class="nav-link" data-page="budgets" href="#budgets">
+                <span class="material-icons">pie_chart</span>
+                <span>Budgets</span>
+                <div class="nav-link-tooltip">Budgets</div>
+            </a>
+            <a class="nav-link" data-page="insights" href="#insights">
+                <span class="material-icons">insights</span>
+                <span>Insights</span>
+                <div class="nav-link-tooltip">Insights</div>
+            </a>
+        </nav>
+        <div class="sidebar-footer p-6">
+            <p class="text-xs text-gray-500">© 2024 FlowFinance</p>
+        </div>
+    </div>
+</aside>

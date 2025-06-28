@@ -1,0 +1,59 @@
+<header class="header p-4 flex justify-between items-center shadow-lg">
+    <div class="flex items-center">
+        <button class="mobile-nav-button icon-button mr-3" id="openMobileSidebar">
+            <span class="material-icons">menu</span>
+        </button>
+
+        <div class="relative mr-4 hidden md:block">
+            <span
+                class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">search</span>
+            <input class="glass-input text-gray-200 py-2 pl-10 pr-4 w-64" placeholder="Search transactions..."
+                type="text" />
+        </div>
+    </div>
+    <div class="flex items-center space-x-4">
+        <button class="btn btn-primary hidden sm:flex" id="headerUploadBtn">
+            <span class="material-icons mr-2 text-base">upload_file</span>
+            Upload
+        </button>
+        <button class="icon-button sm:hidden" id="headerUploadBtnMobile" title="Upload">
+            <span class="material-icons">upload_file</span>
+        </button>
+
+        <button class="icon-button relative">
+            <span class="material-icons">notifications</span>
+            <span
+                class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-blue-500 ring-2 ring-slate-800"></span>
+        </button>
+
+        <div class="relative">
+            <div class="flex items-center space-x-3 cursor-pointer p-2 rounded-lg hover:bg-white/5 transition-colors"
+                id="profileDropdownToggle">
+                <img alt="User avatar" class="w-8 h-8 rounded-full border-2 border-blue-500/30"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTvfh-CmrM9Ob2BHl6-JgzUQzgIHbaesvQ4fl6PenyPC7uzYZjacPd6hJT2b30OWm0xJ4QvYhZLpQW15jvi2Fccoy_pElPaB4gwgl0fNxNrF7adY32ZsNELHjlsI7BeI7hkh3uK1TyC9MCLJ-_5gNmL137vppljFroXov1ROgpuVkJiOxxi70VJAoMfuinJMFefDrFhn-xPJpMXkAK0UVUMnYjBx73VxLau0QU9eAULFJfqf7RnNxV-nvLY_SAtEBuUI8n1C0oS50n" />
+                <span class="text-sm font-medium text-gray-300 hidden sm:inline">John Doe</span>
+                <span class="material-icons text-gray-400 text-sm">expand_more</span>
+            </div>
+            <div class="profile-dropdown absolute right-0 top-full mt-2 w-48 bg-slate-800/95 backdrop-filter backdrop-blur-lg rounded-lg border border-white/10 shadow-xl py-2 z-50 opacity-0 invisible transform translate-y-2 transition-all duration-200"
+                id="profileDropdown">
+                <a href="#"
+                    class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-white/5 transition-colors"
+                    data-page="settings">
+                    <span class="material-icons mr-3 text-base">settings</span>
+                    Settings
+                </a>
+                <div class="border-t border-white/10 my-1"></div>
+                <a href="#"
+                    class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-white/5 transition-colors">
+                    <span class="material-icons mr-3 text-base">person</span>
+                    Profile
+                </a>
+                <a href="#"
+                    class="flex items-center px-4 py-2 text-sm text-gray-300 hover:bg-white/5 transition-colors">
+                    <span class="material-icons mr-3 text-base">logout</span>
+                    Sign Out
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
