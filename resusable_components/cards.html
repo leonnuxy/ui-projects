@@ -1,0 +1,31 @@
+
+
+<!-- Modern Card rendered via JS with a stylish wrapper -->
+<section
+  style="
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+    padding: 2rem;
+  "
+>
+  <div id="card-root" style="max-width: 400px; width: 100%;"></div>
+</section>
+
+<script type="module">
+  import { createCard } from './cards.js';
+  const card = createCard({
+    title: 'Modern Card Title',
+    content: 'This is a simple, modern card component. You can use it for product previews, user profiles, or any content you like.',
+    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=facearea&w=400&h=225',
+    actions: [
+      {
+        label: 'Learn More',
+        onClick: () => alert('Learn more clicked!')
+      }
+    ]
+  });
+  document.getElementById('card-root').appendChild(card);
+</script>

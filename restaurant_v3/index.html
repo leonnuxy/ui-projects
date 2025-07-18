@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savory Bites | Modern Dining Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .iphone-mockup {
+            position: relative;
+            width: 300px;
+            height: 600px;
+            background: #111;
+            border-radius: 50px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            z-index: 10;
+        }
+        
+        .iphone-screen {
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .iphone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #111;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 2;
+        }
+        
+        .dish-card:hover .dish-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .dish-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .reservation-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.5);
+        }
+        
+        .menu-tab.active {
+            border-bottom: 3px solid #dc2626;
+            color: #dc2626;
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 3s infinite;
+        }
+        
+        @keyframes bounce-slow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <span class="title-font text-2xl font-bold text-red-600">Savory<span class="text-gray-800">Bites</span></span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-800 hover:text-red-600 transition">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-red-600 transition">About</a>
+                    <a href="#menu" class="text-gray-800 hover:text-red-600 transition">Menu</a>
+                    <a href="#gallery" class="text-gray-800 hover:text-red-600 transition">Gallery</a>
+                    <a href="#contact" class="text-gray-800 hover:text-red-600 transition">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button class="hidden md:block bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full transition">
+                        Reserve Table
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-800 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white px-6 py-4 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-gray-800 hover:text-red-600 transition">Home</a>
+                <a href="#about" class="text-gray-800 hover:text-red-600 transition">About</a>
+                <a href="#menu" class="text-gray-800 hover:text-red-600 transition">Menu</a>
+                <a href="#gallery" class="text-gray-800 hover:text-red-600 transition">Gallery</a>
+                <a href="#contact" class="text-gray-800 hover:text-red-600 transition">Contact</a>
+                <button class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full transition w-full">
+                    Reserve Table
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+        <div class="parallax-bg absolute inset-0 z-0" style="background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
+                    <h1 class="title-font text-4xl md:text-6xl font-bold text-white mb-6">
+                        Taste the <span class="text-red-400">Difference</span>
+                    </h1>
+                    <p class="text-gray-200 text-lg mb-8 max-w-lg">
+                        Experience culinary excellence with our handcrafted dishes made from locally-sourced ingredients. Our chefs create unforgettable flavors that will delight your senses.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+                        <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full transition transform hover:scale-105">
+                            Explore Menu
+                        </button>
+                        <button class="border-2 border-white hover:border-red-400 text-white hover:text-red-400 px-8 py-3 rounded-full transition transform hover:scale-105">
+                            Watch Video
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center relative">
+                    <div class="iphone-mockup animate-bounce-slow">
+                        <div class="iphone-notch"></div>
+                        <div class="iphone-screen flex items-center justify-center">
+                            <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                                <div class="text-center p-6">
+                                    <h3 class="text-white text-xl font-bold mb-2">SavoryBites App</h3>
+                                    <p class="text-gray-200 text-sm mb-4">Order directly from your phone</p>
+                                    <button class="bg-red-600 text-white px-4 py-2 rounded-full text-xs">Download Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-50 to-transparent z-20"></div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-red-600 font-semibold">WHY CHOOSE US</span>
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+                    An Experience Worth <span class="text-red-600">Remembering</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-utensils text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Premium Ingredients</h3>
+                    <p class="text-gray-600">
+                        We source only the freshest, highest quality ingredients from local farmers and trusted suppliers.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-award text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Award-Winning Chefs</h3>
+                    <p class="text-gray-600">
+                        Our culinary team brings decades of experience and multiple awards to your table.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-heart text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Passionate Service</h3>
+                    <p class="text-gray-600">
+                        We treat every guest like family, with attentive service that anticipates your needs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 pr-0 md:pr-12 relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Restaurant Interior" class="rounded-lg shadow-xl w-full">
+                        <div class="absolute -bottom-6 -right-6 bg-red-600 p-4 rounded-lg shadow-lg">
+                            <div class="text-white text-center">
+                                <span class="block text-3xl font-bold">15+</span>
+                                <span class="block text-sm">Years Experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <span class="text-red-600 font-semibold">OUR STORY</span>
+                    <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-6">
+                        Crafting Culinary <span class="text-red-600">Masterpieces</span>
+                    </h2>
+                    <p class="text-gray-600 mb-6">
+                        Founded in 2008, Savory Bites began as a small bistro with a big dream: to revolutionize the dining experience through innovative flavors and impeccable service.
+                    </p>
+                    <p class="text-gray-600 mb-8">
+                        Today, we're proud to be recognized as one of the city's premier dining destinations, with a menu that celebrates both tradition and innovation. Our commitment to sustainability and community sets us apart.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <button class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full transition flex items-center justify-center">
+                            <i class="fas fa-book-open mr-2"></i> Our Menu
+                        </button>
+                        <button class="border-2 border-gray-800 hover:border-red-600 text-gray-800 hover:text-red-600 px-8 py-3 rounded-full transition flex items-center justify-center">
+                            <i class="fas fa-play mr-2"></i> Our Story
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-red-600 font-semibold">DELICIOUS OFFERINGS</span>
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+                    Our <span class="text-red-600">Signature</span> Dishes
+                </h2>
+            </div>
+            
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex rounded-md shadow-sm">
+                    <button class="menu-tab active px-6 py-3 font-medium">Starters</button>
+                    <button class="menu-tab px-6 py-3 font-medium">Mains</button>
+                    <button class="menu-tab px-6 py-3 font-medium">Desserts</button>
+                    <button class="menu-tab px-6 py-3 font-medium">Drinks</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dish 1 -->
+                <div class="dish-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Truffle Arancini" class="w-full h-full object-cover">
+                        <div class="dish-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center flex-col p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Truffle Arancini</h3>
+                            <p class="text-gray-300 text-sm text-center mb-4">Crispy risotto balls infused with black truffle and mozzarella</p>
+                            <span class="text-red-400 font-bold">$14</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Truffle Arancini</h3>
+                        <p class="text-gray-600 text-sm">Served with truffle aioli</p>
+                    </div>
+                </div>
+                
+                <!-- Dish 2 -->
+                <div class="dish-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Beef Wellington" class="w-full h-full object-cover">
+                        <div class="dish-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center flex-col p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Beef Wellington</h3>
+                            <p class="text-gray-300 text-sm text-center mb-4">Prime beef tenderloin wrapped in puff pastry with mushroom duxelles</p>
+                            <span class="text-red-400 font-bold">$42</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Beef Wellington</h3>
+                        <p class="text-gray-600 text-sm">Served with red wine reduction</p>
+                    </div>
+                </div>
+                
+                <!-- Dish 3 -->
+                <div class="dish-card bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1489&q=80" alt="Chocolate Soufflé" class="w-full h-full object-cover">
+                        <div class="dish-overlay absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center flex-col p-6">
+                            <h3 class="text-white text-xl font-bold mb-2">Chocolate Soufflé</h3>
+                            <p class="text-gray-300 text-sm text-center mb-4">Warm chocolate soufflé with a molten center</p>
+                            <span class="text-red-400 font-bold">$12</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Chocolate Soufflé</h3>
+                        <p class="text-gray-600 text-sm">Served with vanilla bean ice cream</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white px-8 py-3 rounded-full transition">
+                    View Full Menu
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-red-600 font-semibold">FOOD GALLERY</span>
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+                    Visual <span class="text-red-600">Delights</span>
+                </h2>
+            </div>
+        </div>
+
+        <!-- Featured Dish Full-Width Section -->
+        <div class="relative w-full mb-16" style="height: 600px;">
+            <div class="absolute inset-0 bg-black opacity-40 z-0"></div>
+            <div class="parallax-bg absolute inset-0 z-0" style="background-image: url('steak-image.jpg'); background-position: center; background-size: cover;"></div>
+            <div class="relative z-10 flex flex-col items-center justify-center h-full container mx-auto px-6">
+                <div class="w-full text-white py-20 text-center">
+                    <h3 class="title-font text-4xl md:text-5xl font-bold mb-4">Prime Ribeye Steak</h3>
+                    <p class="text-lg md:text-xl mb-6 max-w-xl mx-auto">Savor our perfectly grilled prime ribeye steak, seasoned with a blend of fresh herbs and cracked pepper, finished with a touch of garlic butter. Served with roasted vegetables and creamy mashed potatoes.</p>
+                    <span class="bg-red-600 px-6 py-2 rounded-full font-bold text-lg">$46</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6">
+            <!-- Existing Food Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Food 1" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="Food 2" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Food 3" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1481&q=80" alt="Food 4" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80" alt="Food 5" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1510&q=80" alt="Food 6" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1484723091739-30a097e8f929?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1498&q=80" alt="Food 7" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-lg h-48">
+                    <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Food 8" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-red-600 font-semibold">HAPPY CUSTOMERS</span>
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+                    What People <span class="text-red-600">Say</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-bold text-gray-800">Sarah Johnson</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "The Beef Wellington was absolutely divine! Perfectly cooked and the flavors were incredible. Service was impeccable too. Will definitely be back!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-bold text-gray-800">Michael Chen</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "Celebrated our anniversary here and it was magical. The sommelier's wine pairing was spot on, and the chocolate soufflé was the perfect ending."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="w-12 h-12 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                        </div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-bold text-gray-800">Emily Rodriguez</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">
+                        "The tasting menu was an incredible journey of flavors. Each course was beautifully presented and more delicious than the last. Highly recommend!"
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Reservation Section -->
+    <section class="py-20 bg-red-600 text-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h2 class="title-font text-3xl md:text-4xl font-bold mb-6">
+                        Reserve Your <span class="text-gray-100">Table</span>
+                    </h2>
+                    <p class="text-red-100 mb-8 max-w-lg">
+                        Book your table in advance to ensure the perfect dining experience. Our team will contact you to confirm your reservation details.
+                    </p>
+                    <div class="flex items-center">
+                        <div class="mr-6">
+                            <i class="fas fa-phone-alt text-2xl mb-2"></i>
+                            <p class="text-sm">Call Us</p>
+                            <p class="font-bold">(555) 123-4567</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock text-2xl mb-2"></i>
+                            <p class="text-sm">Opening Hours</p>
+                            <p class="font-bold">Mon-Sun: 11AM - 11PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form class="bg-white rounded-lg shadow-xl p-8 text-gray-800">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Name</label>
+                                <input type="text" class="reservation-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" class="reservation-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Date</label>
+                                <input type="date" class="reservation-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2">Time</label>
+                                <input type="time" class="reservation-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Special Requests</label>
+                            <textarea class="reservation-input w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500 h-24"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg transition">
+                            Book Table
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-red-600 font-semibold">GET IN TOUCH</span>
+                <h2 class="title-font text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+                    Contact <span class="text-red-600">Us</span>
+                </h2>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg h-full">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Visit Us</h3>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-red-600 mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Address</h4>
+                                <p class="text-gray-600">123 Gourmet Avenue, Culinary District, Foodville 98765</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-red-600 mr-4 mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Phone</h4>
+                                <p class="text-gray-600">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="text-red-600 mr-4 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Email</h4>
+                                <p class="text-gray-600">reservations@savorybites.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="text-red-600 mr-4 mt-1">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800">Hours</h4>
+                                <p class="text-gray-600">Monday - Sunday: 11AM - 11PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-12">
+                    <form class="bg-gray-50 p-8 rounded-xl shadow-lg">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Subject</label>
+                            <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-gray-700 mb-2">Message</label>
+                            <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:border-red-500 focus:outline-none h-32"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg transition">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="title-font text-xl font-bold mb-4">SavoryBites</h3>
+                    <p class="text-gray-400 mb-4">
+                        A culinary destination offering an unforgettable dining experience with innovative flavors and impeccable service.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-white transition">Our Menu</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition">Gallery</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Opening Hours</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex justify-between">
+                            <span>Monday - Friday</span>
+                            <span>11AM - 11PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Saturday</span>
+                            <span>10AM - 12AM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Sunday</span>
+                            <span>10AM - 11PM</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">
+                        Subscribe to our newsletter for exclusive offers and updates.
+                    </p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800">
+                        <button class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-r-lg">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-800 text-center text-gray-400">
+                <p>&copy; 2023 SavoryBites. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Menu tab switching
+        const tabs = document.querySelectorAll('.menu-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // Scroll reveal animation
+        window.addEventListener('scroll', revealOnScroll);
+        
+        function revealOnScroll() {
+            const elements = document.querySelectorAll('.dish-card, .iphone-mockup');
+            const windowHeight = window.innerHeight;
+            const revealPoint = 150;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        // Initialize scroll reveal
+        revealOnScroll();
+    </script>
+</body>
+</html>

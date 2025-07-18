@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Salon Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="booking-container">
+        <div class="booking-header">
+            <h1 class="booking-title">Book Your Hair Appointment</h1>
+            <p class="booking-subtitle">Schedule your perfect hair experience with our talented stylists. Choose from our range of services and available time slots.</p>
+        </div>
+
+        <div class="booking-card">
+            <!-- Progress Steps -->
+            <div class="progress-container">
+                <div class="step" data-step="1">
+                    <div class="step-circle active">
+                        <span>1</span>
+                    </div>
+                    <p class="step-label">Select Service</p>
+                    <div class="step-progress" style="width: 0%"></div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-circle">
+                        <span>2</span>
+                    </div>
+                    <p class="step-label">Choose Stylist</p>
+                    <div class="step-progress" style="width: 0%"></div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-circle">
+                        <span>3</span>
+                    </div>
+                    <p class="step-label">Pick Date & Time</p>
+                    <div class="step-progress" style="width: 0%"></div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-circle">
+                        <span>4</span>
+                    </div>
+                    <p class="step-label">Confirmation</p>
+                    <div class="step-progress" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Step Content -->
+            <div class="step-content-container">
+                <!-- Step 1: Services -->
+                <div class="step-content active" data-step="1">
+                    <h2 class="step-title">Select Your Service</h2>
+                    <div class="services-grid">
+                        <div class="service-card" data-service="haircut" data-duration="30" data-price="45">
+                            <div class="service-icon" style="background-color: #e0e7ff; color: #4f46e5;">
+                                <i class="fas fa-cut"></i>
+                            </div>
+                            <h3 class="service-title">Haircut</h3>
+                            <p class="service-description">Professional haircut with styling to suit your face shape, color, style and lifestyle.</p>
+                            <div class="service-details">
+                                <span class="service-price">$45</span>
+                                <span class="service-duration">30 min</span>
+                            </div>
+                        </div>
+                        <div class="service-card" data-service="coloring" data-duration="90" data-price="120">
+                            <div class="service-icon" style="background-color: #fce7f3; color: #ec4899;">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <h3 class="service-title">Coloring</h3>
+                            <p class="service-description">Full color service with premium products for vibrant, long-lasting results.</p>
+                            <div class="service-details">
+                                <span class="service-price">$120</span>
+                                <span class="service-duration">90 min</span>
+                            </div>
+                        </div>
+                        <div class="service-card" data-service="balayage" data-duration="120" data-price="180">
+                            <div class="service-icon" style="background-color: #f3e8ff; color: #a855f7;">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <h3 class="service-title">Balayage</h3>
+                            <p class="service-description">Hand-painted highlights for a natural, sun-kissed look with low maintenance.</p>
+                            <div class="service-details">
+                                <span class="service-price">$180</span>
+                                <span class="service-duration">2 hours</span>
+                            </div>
+                        </div>
+                        <div class="service-card" data-service="treatment" data-duration="45" data-price="65">
+                            <div class="service-icon" style="background-color: #dcfce7; color: #22c55e;">
+                                <i class="fas fa-spa"></i>
+                            </div>
+                            <h3 class="service-title">Hair Treatment</h3>
+                            <p class="service-description">Deep conditioning treatment to repair damage and restore moisture balance.</p>
+                            <div class="service-details">
+                                <span class="service-price">$65</span>
+                                <span class="service-duration">45 min</span>
+                            </div>
+                        </div>
+                        <div class="service-card" data-service="styling" data-duration="60" data-price="85">
+                            <div class="service-icon" style="background-color: #fef3c7; color: #f59e0b;">
+                                <i class="fas fa-wind"></i>
+                            </div>
+                            <h3 class="service-title">Special Styling</h3>
+                            <p class="service-description">Professional styling for special occasions with long-lasting hold and vibrant finish.</p>
+                            <div class="service-details">
+                                <span class="service-price">$85</span>
+                                <span class="service-duration">1 hour</span>
+                            </div>
+                        </div>
+                        <div class="service-card" data-service="extension" data-duration="150" data-price="250">
+                            <div class="service-icon" style="background-color: #fee2e2; color: #ef4444;">
+                                <i class="fas fa-long-arrow-alt-up"></i>
+                            </div>
+                            <h3 class="service-title">Extensions</h3>
+                            <p class="service-description">Professional hair extension application for instant length and volume.</p>
+                            <div class="service-details">
+                                <span class="service-price">$250</span>
+                                <span class="service-duration">2.5 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-navigation">
+                        <button class="btn btn-primary next-step">
+                            Next: Choose Stylist <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Stylists -->
+                <div class="step-content" data-step="2">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2 class="step-title">Select Your Stylist</h2>
+                        <div class="service-info-badge">
+                            <span id="selected-service">Haircut</span> • <span id="selected-duration">30 min</span> • $<span id="selected-price">45</span>
+                        </div>
+                    </div>
+                    <div class="stylists-grid">
+                        <div class="stylist-card" data-stylist="sarah">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=500&q=80" alt="Sarah Johnson" class="stylist-image">
+                            <div class="stylist-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <div class="stylist-info">
+                                <h3 class="stylist-name">Sarah Johnson</h3>
+                                <p class="stylist-role">Master Colorist • 8 years experience</p>
+                            </div>
+                        </div>
+                        <div class="stylist-card" data-stylist="michael">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Michael Chen" class="stylist-image">
+                            <div class="stylist-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="stylist-info">
+                                <h3 class="stylist-name">Michael Chen</h3>
+                                <p class="stylist-role">Cutting Specialist • 6 years experience</p>
+                            </div>
+                        </div>
+                        <div class="stylist-card" data-stylist="emma">
+                            <img src="./image5.jpg" alt="Emma Rodriguez" class="stylist-image">
+                            <div class="stylist-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="stylist-info">
+                                <h3 class="stylist-name">Emma Rodriguez</h3>
+                                <p class="stylist-role">Texture Specialist • 5 years experience</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-navigation">
+                        <button class="btn btn-secondary prev-step">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button class="btn btn-primary next-step">
+                            Next: Pick Date & Time <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Date & Time -->
+                <div class="step-content" data-step="3">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <h2 class="step-title">Select Date & Time</h2>
+                        <div class="service-info-badge">
+                            <span id="selected-stylist">Sarah Johnson</span> • <span id="service-info">Haircut (30 min)</span>
+                        </div>
+                    </div>
+                    
+                    <div class="calendar-container">
+                        <div class="calendar-section">
+                            <div class="calendar-header">
+                                <h3 class="calendar-title">Available Dates</h3>
+                                <div class="calendar-nav">
+                                    <button id="prev-month" class="calendar-nav-btn">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </button>
+                                    <button id="next-month" class="calendar-nav-btn">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="calendar-month" id="current-month">July 2025</div>
+                            <div class="calendar-grid">
+                                <div class="calendar-day-header">Sun</div>
+                                <div class="calendar-day-header">Mon</div>
+                                <div class="calendar-day-header">Tue</div>
+                                <div class="calendar-day-header">Wed</div>
+                                <div class="calendar-day-header">Thu</div>
+                                <div class="calendar-day-header">Fri</div>
+                                <div class="calendar-day-header">Sat</div>
+                                <!-- Calendar days will be inserted here by JavaScript -->
+                            </div>
+                            
+                            <div class="time-slots-container">
+                                <h3 class="calendar-title">Available Time Slots</h3>
+                                <div class="time-slots-grid">
+                                    <!-- Time slots will be inserted here by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-panel">
+                            <h3 class="summary-title">Appointment Summary</h3>
+                            <div class="summary-item">
+                                <span class="summary-label">Service:</span>
+                                <span class="summary-value" id="summary-service">Haircut</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Stylist:</span>
+                                <span class="summary-value" id="summary-stylist">Sarah Johnson</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Duration:</span>
+                                <span class="summary-value" id="summary-duration">30 minutes</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Date:</span>
+                                <span class="summary-value" id="summary-date">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Time:</span>
+                                <span class="summary-value" id="summary-time">Not selected</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Price:</span>
+                                <span class="summary-value summary-total" id="summary-price">$45</span>
+                            </div>
+                            <button class="btn btn-primary next-step" style="width: 100%; margin-top: 1rem;">
+                                Confirm Booking <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-navigation">
+                        <button class="btn btn-secondary prev-step">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirmation -->
+                <div class="step-content" data-step="4">
+                    <div class="confirmation-container">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2 class="confirmation-title">Appointment Confirmed!</h2>
+                        <p class="confirmation-subtitle">Your booking has been successfully scheduled. We've sent the details to your email.</p>
+                        
+                        <div class="confirmation-details">
+                            <h3 class="summary-title">Booking Details</h3>
+                            <div class="summary-item">
+                                <span class="summary-label">Service:</span>
+                                <span class="summary-value" id="confirmation-service">Haircut</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Stylist:</span>
+                                <span class="summary-value" id="confirmation-stylist">Sarah Johnson</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Date & Time:</span>
+                                <span class="summary-value" id="confirmation-datetime">July 20, 2025 at 2:00 PM</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Duration:</span>
+                                <span class="summary-value" id="confirmation-duration">30 minutes</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Total:</span>
+                                <span class="summary-value summary-total" id="confirmation-price">$45</span>
+                            </div>
+                        </div>
+                        
+                        <div class="confirmation-actions">
+                            <button class="btn btn-outline">
+                                <i class="fas fa-calendar-alt"></i> Add to Calendar
+                            </button>
+                            <button class="btn btn-primary">
+                                <i class="fas fa-home"></i> Back to Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Notification system
+            function showNotification(message, type = 'error') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Show notification
+                setTimeout(() => {
+                    notification.classList.add('show');
+                }, 100);
+                
+                // Hide notification after 3 seconds
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
+            
+            // Booking data
+            const bookingData = {
+                service: null,
+                duration: null,
+                price: null,
+                stylist: null,
+                date: null,
+                time: null
+            };
+
+            // Step navigation
+            const steps = document.querySelectorAll('.step');
+            const stepContents = document.querySelectorAll('.step-content');
+            const nextButtons = document.querySelectorAll('.next-step');
+            const prevButtons = document.querySelectorAll('.prev-step');
+            
+            // Service selection
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            // Stylist selection
+            const stylistCards = document.querySelectorAll('.stylist-card');
+            
+            // Calendar elements
+            const prevMonthBtn = document.getElementById('prev-month');
+            const nextMonthBtn = document.getElementById('next-month');
+            const currentMonthEl = document.getElementById('current-month');
+            const calendarGrid = document.querySelector('.calendar-grid');
+            
+            // Time slots
+            const timeSlotsContainer = document.querySelector('.time-slots-container');
+            
+            // Summary elements
+            const summaryService = document.getElementById('summary-service');
+            const summaryStylist = document.getElementById('summary-stylist');
+            const summaryDuration = document.getElementById('summary-duration');
+            const summaryDate = document.getElementById('summary-date');
+            const summaryTime = document.getElementById('summary-time');
+            const summaryPrice = document.getElementById('summary-price');
+            
+            // Confirmation elements
+            const confirmationService = document.getElementById('confirmation-service');
+            const confirmationStylist = document.getElementById('confirmation-stylist');
+            const confirmationDatetime = document.getElementById('confirmation-datetime');
+            const confirmationDuration = document.getElementById('confirmation-duration');
+            const confirmationPrice = document.getElementById('confirmation-price');
+            
+            // Current date for calendar
+            let currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);
+            
+            // Initialize
+            updateCalendar();
+            updateProgress(1);
+            
+            // Hide all steps except first one
+            stepContents.forEach((step, index) => {
+                if (index === 0) {
+                    step.classList.add('active');
+                    step.style.display = 'block';
+                } else {
+                    step.classList.remove('active');
+                    step.style.display = 'none';
+                }
+            });
+            
+            // Service selection
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove active class from all cards
+                    serviceCards.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add active class to selected card
+                    this.classList.add('selected');
+                    
+                    // Update booking data
+                    bookingData.service = this.dataset.service;
+                    bookingData.duration = parseInt(this.dataset.duration);
+                    bookingData.price = parseInt(this.dataset.price);
+                    
+                    // Update selected service display
+                    document.getElementById('selected-service').textContent = this.querySelector('.service-title').textContent;
+                    document.getElementById('selected-duration').textContent = this.dataset.duration + ' min';
+                    document.getElementById('selected-price').textContent = this.dataset.price;
+                    
+                    // Update service info display
+                    document.getElementById('service-info').textContent = this.querySelector('.service-title').textContent + ' (' + this.dataset.duration + ' min)';
+                    
+                    // Update summary
+                    summaryService.textContent = this.querySelector('.service-title').textContent;
+                    summaryDuration.textContent = this.dataset.duration + ' minutes';
+                    summaryPrice.textContent = '$' + this.dataset.price;
+                    
+                    // Update confirmation
+                    confirmationService.textContent = this.querySelector('.service-title').textContent;
+                    confirmationDuration.textContent = this.dataset.duration + ' minutes';
+                    confirmationPrice.textContent = '$' + this.dataset.price;
+                });
+            });
+            
+            // Stylist selection
+            stylistCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Remove active class from all cards
+                    stylistCards.forEach(c => c.classList.remove('selected'));
+                    
+                    // Add active class to selected card
+                    this.classList.add('selected');
+                    
+                    // Update booking data
+                    bookingData.stylist = this.dataset.stylist;
+                    
+                    // Update selected stylist display
+                    document.getElementById('selected-stylist').textContent = this.querySelector('.stylist-name').textContent;
+                    
+                    // Update summary
+                    summaryStylist.textContent = this.querySelector('.stylist-name').textContent;
+                    
+                    // Update confirmation
+                    confirmationStylist.textContent = this.querySelector('.stylist-name').textContent;
+                });
+            });
+            
+            // Next step button
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentStepEl = document.querySelector('.step-content.active');
+                    const currentStep = currentStepEl.dataset.step;
+                    const nextStep = parseInt(currentStep) + 1;
+                    
+                    // Validate before proceeding
+                    if (currentStep === '1' && !bookingData.service) {
+                        showNotification('Please select a service to continue', 'warning');
+                        return;
+                    }
+                    
+                    if (currentStep === '2' && !bookingData.stylist) {
+                        showNotification('Please select a stylist to continue', 'warning');
+                        return;
+                    }
+                    
+                    if (currentStep === '3' && (!bookingData.date || !bookingData.time)) {
+                        showNotification('Please select a date and time to continue', 'warning');
+                        return;
+                    }
+                    
+                    // If confirming booking, update confirmation details
+                    if (currentStep === '3') {
+                        const formattedDate = new Date(bookingData.date).toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                        });
+                        
+                        confirmationDatetime.textContent = `${formattedDate} at ${bookingData.time}`;
+                    }
+                    
+                    // Add slide-out animation to current step
+                    currentStepEl.classList.add('slide-out-left');
+                    
+                    // Wait for animation to complete, then switch steps
+                    setTimeout(() => {
+                        currentStepEl.classList.remove('active', 'slide-out-left');
+                        currentStepEl.style.display = 'none';
+                        
+                        const nextStepEl = document.querySelector(`.step-content[data-step="${nextStep}"]`);
+                        nextStepEl.style.display = 'block';
+                        nextStepEl.classList.add('active');
+                        
+                        // Update progress
+                        updateProgress(nextStep);
+                    }, 250);
+                });
+            });
+            
+            // Previous step button
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentStepEl = document.querySelector('.step-content.active');
+                    const currentStep = currentStepEl.dataset.step;
+                    const prevStep = parseInt(currentStep) - 1;
+                    
+                    // Add slide-out animation to current step
+                    currentStepEl.classList.add('slide-out-right');
+                    
+                    // Wait for animation to complete, then switch steps
+                    setTimeout(() => {
+                        currentStepEl.classList.remove('active', 'slide-out-right');
+                        currentStepEl.style.display = 'none';
+                        
+                        const prevStepEl = document.querySelector(`.step-content[data-step="${prevStep}"]`);
+                        prevStepEl.style.display = 'block';
+                        prevStepEl.classList.add('active');
+                        
+                        // Update progress
+                        updateProgress(prevStep);
+                    }, 250);
+                });
+            });
+            
+            // Calendar navigation
+            prevMonthBtn.addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                updateCalendar();
+            });
+            
+            nextMonthBtn.addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                updateCalendar();
+            });
+            
+            // Update calendar display
+            function updateCalendar() {
+                // Set month/year display
+                currentMonthEl.textContent = currentDate.toLocaleDateString('en-US', {
+                    month: 'long',
+                    year: 'numeric'
+                });
+                
+                // Clear existing calendar days (keep headers)
+                const dayElements = calendarGrid.querySelectorAll('.calendar-day');
+                dayElements.forEach(day => day.remove());
+                
+                // Get first day of month and total days in month
+                const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+                const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+                
+                // Get days from previous month
+                const prevMonthDays = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
+                
+                // Add days from previous month
+                for (let i = 0; i < firstDay; i++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day disabled';
+                    dayEl.textContent = prevMonthDays - firstDay + i + 1;
+                    calendarGrid.appendChild(dayEl);
+                }
+                
+                // Add days for current month
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day';
+                    dayEl.textContent = i;
+                    
+                    const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), i);
+                    
+                    // Disable past dates
+                    if (dayDate < today) {
+                        dayEl.classList.add('disabled');
+                    } else {
+                        dayEl.addEventListener('click', function() {
+                            // Remove selected class from all days
+                            document.querySelectorAll('.calendar-day').forEach(day => {
+                                day.classList.remove('selected');
+                            });
+                            
+                            // Add selected class to clicked day
+                            this.classList.add('selected');
+                            
+                            // Update booking data
+                            bookingData.date = dayDate;
+                            
+                            // Update summary
+                            summaryDate.textContent = dayDate.toLocaleDateString('en-US', {
+                                weekday: 'long',
+                                month: 'long',
+                                day: 'numeric',
+                                year: 'numeric'
+                            });
+                            
+                            // Generate time slots for selected date
+                            generateTimeSlots();
+                        });
+                    }
+                    
+                    calendarGrid.appendChild(dayEl);
+                }
+                
+                // Fill remaining days from next month
+                const totalCells = 42;
+                const usedCells = firstDay + daysInMonth;
+                for (let i = 1; i <= totalCells - usedCells; i++) {
+                    const dayEl = document.createElement('div');
+                    dayEl.className = 'calendar-day disabled';
+                    dayEl.textContent = i;
+                    calendarGrid.appendChild(dayEl);
+                }
+            }
+            
+            // Generate time slots for selected date
+            function generateTimeSlots() {
+                if (!bookingData.date) return;
+                
+                // Show loading state
+                const timeSlotsGrid = timeSlotsContainer.querySelector('.time-slots-grid');
+                timeSlotsGrid.innerHTML = '<div class="loading-spinner" style="grid-column: 1 / -1; justify-self: center; margin: 2rem 0;"></div>';
+                
+                // Simulate loading delay for better UX
+                setTimeout(() => {
+                    timeSlotsGrid.innerHTML = '';
+                    
+                    // Generate available time slots (mock data)
+                    const availableSlots = [];
+                    const startHour = 9; // Salon opens at 9am
+                    const endHour = 17; // Salon closes at 5pm
+                    const slotDuration = bookingData.duration;
+                    
+                    // Generate slots every 30 minutes within working hours
+                    for (let hour = startHour; hour < endHour; hour++) {
+                        for (let minute = 0; minute < 60; minute += 30) {
+                            // Skip if the slot doesn't fit before closing time
+                            if (hour === endHour - 1 && minute + slotDuration > 60) {
+                                continue;
+                            }
+                            
+                            // Format time
+                            const period = hour >= 12 ? 'PM' : 'AM';
+                            const displayHour = hour > 12 ? hour - 12 : hour;
+                            const displayMinute = minute === 0 ? '00' : minute;
+                            
+                            const timeString = `${displayHour}:${displayMinute} ${period}`;
+                            
+                            // Randomly make some slots unavailable (for demo purposes)
+                            const isAvailable = Math.random() > 0.3;
+                            
+                            if (isAvailable) {
+                                availableSlots.push({
+                                    hour,
+                                    minute,
+                                    display: timeString
+                                });
+                            }
+                        }
+                    }
+                    
+                    // Display available slots with staggered animation
+                    availableSlots.forEach((slot, index) => {
+                        const slotEl = document.createElement('div');
+                        slotEl.className = 'time-slot';
+                        slotEl.textContent = slot.display;
+                        slotEl.style.animationDelay = `${index * 0.05}s`;
+                        
+                        slotEl.addEventListener('click', function() {
+                            // Remove selected class from all slots
+                            document.querySelectorAll('.time-slot').forEach(s => {
+                                s.classList.remove('selected');
+                            });
+                            
+                            // Add selected class to clicked slot
+                            this.classList.add('selected');
+                            
+                            // Update booking data
+                            bookingData.time = this.textContent;
+                            
+                            // Update summary
+                            summaryTime.textContent = this.textContent;
+                        });
+                        
+                        timeSlotsGrid.appendChild(slotEl);
+                    });
+                    
+                    // Show time slots container
+                    timeSlotsContainer.style.display = 'block';
+                }, 800);
+            }
+            
+            // Update progress indicator
+            function updateProgress(currentStep) {
+                // Update step indicators
+                steps.forEach(step => {
+                    const stepNumber = parseInt(step.dataset.step);
+                    const stepCircle = step.querySelector('.step-circle');
+                    const stepLabel = step.querySelector('.step-label');
+                    
+                    if (stepNumber < currentStep) {
+                        // Completed steps
+                        stepCircle.classList.add('completed');
+                        stepCircle.classList.remove('active');
+                        step.classList.add('completed');
+                        step.classList.remove('active');
+                    } else if (stepNumber === currentStep) {
+                        // Current step
+                        stepCircle.classList.add('active');
+                        stepCircle.classList.remove('completed');
+                        step.classList.add('active');
+                        step.classList.remove('completed');
+                    } else {
+                        // Future steps
+                        stepCircle.classList.remove('active', 'completed');
+                        step.classList.remove('active', 'completed');
+                    }
+                    
+                    // Update progress bars
+                    const progressBar = step.querySelector('.step-progress');
+                    if (stepNumber < currentStep) {
+                        progressBar.style.width = '100%';
+                    } else if (stepNumber === currentStep) {
+                        progressBar.style.width = '50%';
+                    } else {
+                        progressBar.style.width = '0%';
+                    }
+                });
+            }
+            
+            // Auto-select first service for demo purposes
+            if (serviceCards.length > 0) {
+                serviceCards[0].click();
+            }
+            
+            // Auto-select first stylist for demo purposes
+            if (stylistCards.length > 0) {
+                stylistCards[0].click();
+            }
+
+            // Back to Home button in confirmation step
+            const backToHomeBtn = document.querySelector('.confirmation-actions .btn-primary');
+            if (backToHomeBtn) {
+                backToHomeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Hide all step contents
+                    stepContents.forEach((step, index) => {
+                        step.classList.remove('active');
+                        step.style.display = 'none';
+                    });
+                    // Show first step
+                    stepContents[0].classList.add('active');
+                    stepContents[0].style.display = 'block';
+                    // Update progress indicator
+                    updateProgress(1);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

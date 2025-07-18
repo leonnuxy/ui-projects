@@ -1,6 +1,16 @@
 // Project configuration and dynamic loading
 const projects = [
     {
+        id: 'restaurant_v3',
+        title: 'Savory Bites - Modern Dining Experience',
+        image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Tailwind CSS'],
+        liveUrl: './restaurant_v3/index.html',
+        githubUrl: '#',
+        featured: true,
+        category: 'Restaurant & Hospitality'
+    },
+    {
         id: 'restaurant_v2',
         title: 'Bistro Luxe - Premium Restaurant Experience',
         image: './restaurant_v2/restaurant-v2-screenshot.png',
@@ -50,16 +60,25 @@ const projects = [
         featured: true,
         category: 'Real Estate & Booking'
     },
-    // Reusable Components Demo
     {
-        id: 'resusable_components',
-        title: 'Reusable UI Components Demo',
-        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
-        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Modular Components'],
-        liveUrl: './resusable_components/index.html',
+        id: 'booking',
+        title: 'Spa & Wellness Booking Platform',
+        image: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
+        liveUrl: './booking/index.html',
         githubUrl: '#',
         featured: false,
-        category: 'UI Components'
+        category: 'Booking & Wellness'
+    },
+    {
+        id: 'salon',
+        title: 'Beauty Salon & Spa Services',
+        image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',
+        technologies: ['HTML5', 'CSS3', 'JavaScript'],
+        liveUrl: './salon/index.html',
+        githubUrl: '#',
+        featured: false,
+        category: 'Beauty & Wellness'
     }
     // Add more projects here as you create them
 ];
