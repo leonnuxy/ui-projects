@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="gallery.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <main class="max-w-6xl mx-auto py-16 px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-extrabold text-gray-100 mb-4 tracking-tight drop-shadow-lg">Dark Gallery Collection</h1>
+            <p class="text-lg text-gray-300 max-w-2xl mx-auto">Immerse yourself in a curated collection of stunning nature and travel photography. Click any image to view it in full size and discover breathtaking details.</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <button class="filter-btn px-6 py-2 rounded-full bg-green-100 text-green-700 font-semibold shadow hover:bg-green-200 transition active" data-filter="all">All</button>
+            <button class="filter-btn px-6 py-2 rounded-full bg-blue-100 text-blue-700 font-semibold shadow hover:bg-blue-200 transition" data-filter="nature">Nature</button>
+            <button class="filter-btn px-6 py-2 rounded-full bg-yellow-100 text-yellow-700 font-semibold shadow hover:bg-yellow-200 transition" data-filter="travel">Travel</button>
+            <button class="filter-btn px-6 py-2 rounded-full bg-purple-100 text-purple-700 font-semibold shadow hover:bg-purple-200 transition" data-filter="urban">Urban</button>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Nature Images -->
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Nature 1" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Mountain Lake</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80" alt="Nature 2" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Forest Path</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Nature 3" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Desert Dunes</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80" alt="Nature 4" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">River Valley</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80" alt="Nature 5" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Sunset Beach</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=80" alt="Nature 6" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Misty Woods</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80" alt="Nature 7" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Rocky Coast</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="nature">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" alt="Nature 8" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Mountain Range</div>
+            </div>
+            
+            <!-- Travel Images -->
+            <div class="gallery-item group relative fade-in" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?auto=format&fit=crop&w=800&q=80" alt="Travel 1" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">City Skyline</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80" alt="Travel 2" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Urban Bridge</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=800&q=80" alt="Travel 3" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Ancient Temple</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80" alt="Travel 4" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Historic Architecture</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Travel 5" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Tropical Paradise</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=800&q=80" alt="Travel 6" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">European Street</div>
+            </div>
+            
+            <!-- Urban Images -->
+            <div class="gallery-item group relative fade-in" data-category="urban">
+                <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=800&q=80" alt="Urban 1" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Metropolitan</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="urban">
+                <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=800&q=80" alt="Urban 2" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Night Lights</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="urban">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Urban 3" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">Glass Towers</div>
+            </div>
+            <div class="gallery-item group relative fade-in" data-category="urban">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" alt="Urban 4" class="shadow-xl cursor-pointer">
+                <div class="absolute bottom-4 left-4 right-4 bg-white/80 rounded-lg px-4 py-2 text-gray-800 text-sm font-semibold opacity-0 group-hover:opacity-100 transition">City Streets</div>
+            </div>
+        </div>
+
+        <!-- Modal for lightbox -->
+        <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 items-center justify-center z-50 hidden">
+            <div class="modal-image-container">
+                <img id="modalImage" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" alt="Full size image">
+                <button class="fullscreen-modal" title="Fullscreen">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3H5a2 2 0 00-2 2v3m0 8v3a2 2 0 002 2h3m8-16h3a2 2 0 012 2v3m0 8v3a2 2 0 01-2 2h-3"/></svg>
+                </button>
+                <button class="close-modal">&times;</button>
+                <p id="caption" class="text-white text-center mt-4 text-lg font-semibold"></p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

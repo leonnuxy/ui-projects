@@ -1,6 +1,16 @@
 // Project configuration and dynamic loading
 const projects = [
     {
+        id: 'gallery',
+        title: 'Gallery Website',
+        image: './gallery/styles.css', // Replace with a screenshot or representative image if available
+        technologies: ['HTML5', 'CSS3', 'JavaScript'],
+        liveUrl: './gallery/index.html',
+        githubUrl: '#',
+        featured: true,
+        category: 'Portfolio & Photography'
+    },
+    {
         id: 'restaurant_v3',
         title: 'Savory Bites - Modern Dining Experience',
         image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80',

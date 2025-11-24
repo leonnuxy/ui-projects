@@ -1,0 +1,464 @@
+/* Modal styles */
+.person-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.35);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.person-modal {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 40px rgba(34,197,94,0.15);
+  padding: 40px 32px 32px 32px;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.person-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.person-modal-close:hover {
+  color: #e11d48;
+}
+.person-modal-name {
+  font-size: 1.25em;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.5em;
+}
+.person-modal-dob {
+  font-size: 1.05em;
+  color: #6b7280;
+  margin-bottom: 1.5em;
+}
+.person-modal-profile-btn {
+  background: linear-gradient(90deg, #22c55e, #00ff88);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 32px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.person-modal-profile-btn:hover {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  box-shadow: 0 4px 16px rgba(34,197,94,0.18);
+}
+/* Family tree reference layout styles */
+.family-tree-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  position: relative;
+}
+.spouses-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  position: relative;
+  margin-bottom: 32px;
+  min-height: 120px;
+  padding-bottom: 32px;
+}
+
+.spouse-card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.marriage-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% - 12px); /* place just below the cards */
+  height: 6px;
+  background: #e11d48;
+  border-radius: 3px;
+  z-index: 1;
+  margin: 0;
+  width: auto;
+}
+.vertical-line-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  margin: 8px 0;
+}
+
+.vertical-line {
+  width: 4px;
+  height: 48px;
+  background: #228b22;
+  margin: 0 auto;
+  position: relative;
+}
+
+.toggle-button {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 3px solid #228b22;
+  background: #fff;
+  color: #228b22;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 100;
+  line-height: 1;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.toggle-button:hover {
+  background: #228b22;
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(34, 139, 34, 0.4);
+}
+
+.toggle-button.collapsed {
+  border-color: #6b7280;
+  color: #6b7280;
+}
+
+.toggle-button.collapsed:hover {
+  background: #6b7280;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(107, 114, 128, 0.4);
+}
+
+.children-section {
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.children-row {
+  display: flex;
+  gap: 48px;
+  margin-top: 16px;
+  position: relative;
+}
+.children-connector {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  width: 180px;
+  height: 4px;
+  background: #228b22;
+  transform: translateX(-50%);
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.person-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+  padding: 32px 40px 24px 40px;
+  min-width: 180px;
+  min-height: 160px;
+  text-align: center;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  color: #222;
+  font-weight: 500;
+  position: relative;
+  border: 3.5px solid #eee;
+  margin: 0 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.border-purple { border-color: #7c3aed !important; }
+.border-red { border-color: #e11d48 !important; }
+.border-pink { border-color: #f472b6 !important; }
+.initials-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #f3e8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0 auto 18px auto;
+  color: #7c3aed;
+  box-shadow: 0 2px 8px rgba(124,58,237,0.08);
+}
+.initials-red { background: #fee2e2; color: #e11d48; }
+.initials-pink { background: #fdf2f8; color: #f472b6; }
+.person-name {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.2em;
+}
+.person-dob {
+  font-size: 0.95em;
+  color: #6b7280;
+  font-weight: 400;
+  margin-bottom: 0.1em;
+}
+/* Family tree specific styles */
+.marriage-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+.spouses {
+  display: flex;
+  gap: 16px;
+  background: rgba(34,197,94,0.10);
+  border-radius: 16px;
+  padding: 16px 32px;
+  box-shadow: 0 2px 12px rgba(34,197,94,0.08);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+.person-card {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(34,197,94,0.18);
+  border-radius: 12px;
+  padding: 12px 20px;
+  min-width: 90px;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.07);
+  margin: 0 2px;
+  position: relative;
+}
+.children {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+  position: relative;
+  z-index: 1;
+}
+.children:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  width: 2px;
+  height: 18px;
+  background: #22c55e;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+.marriage-card:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 54px;
+  left: 50%;
+  width: 60px;
+  height: 2px;
+  background: #22c55e;
+  transform: translateX(-50%);
+  z-index: 0;
+}
+/* D3.js Family Tree Styles */
+.org-tree-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #181f1b;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(34,197,94,0.08);
+  padding: 32px 24px;
+  color: #fff;
+  font-family: 'Poppins', 'Inter', sans-serif;
+  min-height: 600px;
+}
+
+.org-tree-container h2 {
+  text-align: center;
+  color: #22c55e;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+#org-tree-root {
+  width: 100%;
+  height: 600px;
+  min-height: 600px;
+}
+
+/* Node Card Styles */
+.node-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid #e5e7eb;
+  min-width: 120px;
+  min-height: 140px;
+}
+
+.node-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.node-card.current-user {
+  border-color: #7c3aed;
+}
+
+.node-card.partner {
+  border-color: #dc2626;
+}
+
+.node-card.blue {
+  border-color: #3b82f6;
+}
+
+.node-card.pink {
+  border-color: #ec4899;
+}
+
+.avatar-circle {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.avatar-circle.blue {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.avatar-circle.pink {
+  background: #fce7f3;
+  color: #be185d;
+}
+
+.initials {
+  font-weight: 600;
+}
+
+.node-info {
+  text-align: center;
+  color: #374151;
+}
+
+.name {
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.birth-year {
+  font-size: 0.9em;
+  color: #6b7280;
+}
+
+.death-year {
+  font-size: 0.8em;
+  color: #9ca3af;
+}
+
+/* Tooltip Styles */
+.tooltip-content {
+  background: white !important;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  font-size: 12px !important;
+  line-height: 1.4;
+  color: #374151;
+  white-space: pre-line !important;
+}
+
+/* Connection Lines */
+.link {
+  stroke: #94a3b8;
+  stroke-width: 2;
+  fill: none;
+}
+
+.partnership {
+  fill: none;
+}
+
+.marriage-current {
+  stroke: #dc2626;
+  stroke-width: 3;
+}
+
+.marriage-divorced {
+  stroke: #6b7280;
+  stroke-width: 2;
+  stroke-dasharray: 5,5;
+}
+
+.shared-children {
+  stroke: #059669;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .org-tree-container {
+    margin: 20px auto;
+    padding: 16px;
+  }
+  
+  #org-tree-root {
+    height: 500px;
+    min-height: 500px;
+  }
+  
+  .node-card {
+    padding: 8px;
+    min-width: 100px;
+    min-height: 120px;
+  }
+}
