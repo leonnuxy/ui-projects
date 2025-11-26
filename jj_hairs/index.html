@@ -680,6 +680,7 @@
             }
 
             .booking-header {
+                position: relative;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -703,6 +704,9 @@
                 display: inline-flex;
                 align-items: center;
                 gap: 0.4rem;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
             }
 
             .booking-progress .dot {
@@ -902,7 +906,8 @@
                     overflow-y: auto;
                     -webkit-overflow-scrolling: touch;
                 }
-                .booking-header { padding: 1rem 1rem 0.5rem; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+                .booking-header { padding: 1rem 1rem 0.5rem; flex-direction: column; align-items: flex-start; gap: 0.35rem; position: static; }
+                .booking-progress { position: static; transform: none; margin-top: 0.35rem; }
                 .booking-body { padding: 0 1rem 1rem; gap: 0.75rem; }
                 .calendar-grid { gap: 0.25rem; }
                 .calendar-day { min-height: 52px; padding: 0.7rem 0.35rem; }
@@ -938,49 +943,51 @@
         
         /* --- 6. Testimonials Section --- */
         .testimonial {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
         }
-        
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+
         .testimonial blockquote {
-            font-size: 1.3rem;
+            font-size: 1.05rem;
             font-style: italic;
             font-weight: 300;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-            border-left: 5px solid var(--color-accent);
-            padding-left: 1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+            border-left: none;
+            padding-left: 0;
+            color: rgba(0,0,0,0.82);
         }
 
         /* Modern testimonial card */
         .testimonial-card {
             background: #fff;
             color: var(--color-primary-dark);
-            border-radius: 12px;
-            padding: 1.5rem 1.75rem;
-            box-shadow: 0 14px 34px rgba(7,11,14,0.12);
-            display: inline-block;
-            text-align: left;
-            max-width: 820px;
+            border-radius: 14px;
+            padding: 1.5rem 1.5rem;
+            box-shadow: 0 14px 34px rgba(7,11,14,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform .28s ease, box-shadow .28s ease;
+            border-top: 3px solid var(--color-accent);
         }
 
-        .testimonial-meta {
-            display:flex; align-items:center; gap:.75rem; margin-top:.75rem;
-        }
+        .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(7,11,14,0.12); }
 
-        .avatar {
-            width:48px; height:48px; border-radius:50%; overflow:hidden; flex:0 0 48px;
-            background: linear-gradient(90deg,#f3e9e6,#fffaf8);
-            display:inline-block; border:1px solid rgba(0,0,0,0.06);
-        }
+        .testimonial-meta { display:flex; align-items:center; gap:.75rem; margin-top: .85rem; }
+
+        .avatar { width:56px; height:56px; border-radius:50%; overflow:hidden; flex:0 0 56px; background: linear-gradient(90deg,#f3e9e6,#fffaf8); display:inline-block; border:1px solid rgba(0,0,0,0.06); }
 
         .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
-        
-        .testimonial cite {
-            font-weight: 600;
-            color: var(--color-secondary);
-        }
+
+        .testimonial cite { font-weight: 600; color: var(--color-secondary); }
         
         /* --- 7. Footer --- */
         .footer {
@@ -1209,6 +1216,32 @@
             .bubble { width: 180px !important; height: 180px !important; border-width: 3px !important; }
         }
 
+        /* Policies cards: uniform fixed size and responsive fallback */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .policy-card {
+            background:#fff;
+            border-radius:12px;
+            padding:1.5rem;
+            box-shadow:0 10px 24px rgba(0,0,0,0.06);
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            height: 360px; /* fixed uniform height */
+            overflow: auto;
+        }
+
+        .policy-card h3 { font-size:1.4rem; margin-bottom:0.75rem; color:var(--color-secondary); }
+
+        @media (max-width: 820px) {
+            .policy-card { height: auto; }
+        }
+
     </style>
 </head>
 <body>
@@ -1318,20 +1351,32 @@
 
         <!-- Testimonials Section -->
         <section id="testimonials" style="background-color: var(--color-primary-light); color: var(--color-primary-dark);">
-            <div class="container">
-                <h2>What Our Clients Say</h2>
-                <div class="testimonial">
-                    <div class="testimonial-card">
-                        <blockquote>"Absolutely in love with my hair! The entire experience was so professional and relaxing. They took great care to make sure my braids were perfect and not too tight. I've received so many compliments!"</blockquote>
-                        <div class="testimonial-meta">
-                            <div class="avatar"><img src="./assets/images/reviewer-jessica.svg" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop'" alt="Jessica"></div>
-                            <div>
-                                <strong>Jessica L.</strong>
-                                <div style="font-size:.85rem;color:rgba(0,0,0,0.56);">Happy client • Knotless braids</div>
+                    <h2>What Our Clients Say</h2>
+                    <div class="testimonial">
+                        <div class="testimonial-grid">
+                            <div class="testimonial-card">
+                                <blockquote>"Absolutely in love with my hair! The entire experience was so professional and relaxing. They took great care to make sure my braids were perfect and not too tight. I've received so many compliments!"</blockquote>
+                                <div class="testimonial-meta">
+                                    <div class="avatar"><img src="./assets/images/reviewer-jessica.svg" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop'" alt="Jessica"></div>
+                                    <div>
+                                        <strong>Jessica L.</strong>
+                                        <div style="font-size:.85rem;color:rgba(0,0,0,0.56);">Happy client • Knotless braids</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="testimonial-card">
+                                <blockquote>"The stylists listened to exactly what I wanted and made recommendations that elevated the look. My appointment was timely and the finish lasted for weeks — best salon experience I've had."</blockquote>
+                                <div class="testimonial-meta">
+                                    <div class="avatar"><img src="./assets/images/reviewer-monique.svg" onerror="this.src='https://images.unsplash.com/photo-1545996124-1f9a5d3889b1?q=80&w=400&auto=format&fit=crop'" alt="Monique"></div>
+                                    <div>
+                                        <strong>Monique R.</strong>
+                                        <div style="font-size:.85rem;color:rgba(0,0,0,0.56);">Repeat client • Protective styles</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </section>
 
@@ -1340,21 +1385,28 @@
             <div class="container">
                 <h2>Policies</h2>
 
-                <div class="service-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; align-items: start;">
-                    <div style="background:#fff;border-radius:12px;padding:1.5rem;box-shadow:0 10px 24px rgba(0,0,0,0.06);">
-                        <h3 style="font-size:1.4rem;margin-bottom:0.75rem;color:var(--color-secondary);">Appointment Policy</h3>
-                        <p style="margin-bottom:0.5rem;">A $20 deposit is required and non-refundable if an appointment is cancelled. Please cancel at least 24 hours prior to your appointment whenever possible.</p>
-                        <p style="margin-bottom:0.5rem;">There is a 20 minute grace period for lateness — if you arrive later than this we may need to reschedule or shorten the service depending on availability.</p>
-                        <p style="margin-bottom:0.5rem;">Payment accepted: Cash, Cash App and PayPal.</p>
-                        <a href="#book" class="btn" data-booking-trigger data-style="Appointment" style="display:inline-block;margin-top:1rem;">Book / Manage Appointment</a>
+                <div class="policy-grid">
+                    <div class="policy-card">
+                        <h3>Appointment Policy</h3>
+                        <div>
+                            <p style="margin-bottom:0.5rem;">A $20 deposit is required and non-refundable if an appointment is cancelled. Please cancel at least 24 hours prior to your appointment whenever possible.</p>
+                            <p style="margin-bottom:0.5rem;">There is a 20 minute grace period for lateness — if you arrive later than this we may need to reschedule or shorten the service depending on availability.</p>
+                            <p style="margin-bottom:0.5rem;">Please arrive with clean, detangled hair. If your hair requires excessive washing or detangling, additional fees may apply.</p>
+                            <p style="margin-bottom:0.5rem;">Payment accepted: Cash, Cash App and PayPal.</p>
+                        </div>
                     </div>
 
-                    <div style="background:#fff;border-radius:12px;padding:1.5rem;box-shadow:0 10px 24px rgba(0,0,0,0.06);">
-                        <h3 style="font-size:1.4rem;margin-bottom:0.75rem;color:var(--color-secondary);">Photo Policy & Service Notes</h3>
-                        <p style="margin-bottom:0.5rem;">By booking an appointment you agree to be photographed for marketing and portfolio purposes. If you do not want to be photographed, please let us know prior to your appointment.</p>
-                        <p style="margin-bottom:0.5rem;">All hair textures are welcome. For best results, avoid applying excess oils, heavy creams, or grease to your hair right before your appointment.</p>
-                        <p style="margin-bottom:0.5rem;">If you want a service that isn't listed, reach out via your preferred contact method (socials or booking comments) and we'll help you plan it.</p>
+                    <div class="policy-card">
+                        <h3>Photo Policy & Service Notes</h3>
+                        <div>
+                            <p style="margin-bottom:0.5rem;">By booking an appointment you agree to be photographed for marketing and portfolio purposes. If you do not want to be photographed, please let us know prior to your appointment.</p>
+                            <p style="margin-bottom:0.5rem;">All hair textures are welcome. For best results, avoid applying excess oils, heavy creams, or grease to your hair right before your appointment.</p>
+                            <p style="margin-bottom:0.5rem;">If you want a service that isn't listed, reach out via your preferred contact method (socials or booking comments) and we'll help you plan it.</p>
+                        </div>
                     </div>
+                </div>
+                <div style="text-align:center;margin-top:1.5rem;">
+                    <a href="#book" class="btn" data-booking-trigger data-style="Appointment">Book / Manage Appointment</a>
                 </div>
             </div>
         </section>
@@ -1362,7 +1414,7 @@
         <!-- Booking Modal -->
         <div class="booking-overlay" id="bookingOverlay" aria-hidden="true">
             <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
-                <button class="booking-close" aria-label="Close booking">&times;</button>
+                <button class="booking-close" aria-label="Close booking" onclick="closeBooking()">&times;</button>
                 <div class="booking-header">
                     <div>
                         <div class="booking-eyebrow">Book Appointment</div>
@@ -1433,6 +1485,15 @@
     </footer>
     
     <script>
+        // Small global helper to ensure booking modal can be closed from the button
+        window.closeBooking = function() {
+            const ov = document.getElementById('bookingOverlay');
+            if (!ov) return;
+            ov.classList.remove('is-visible');
+            ov.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('booking-open');
+        };
+
         // Theme manager: change accent + heading colors globally with one call
         (function () {
             const root = document.documentElement;
