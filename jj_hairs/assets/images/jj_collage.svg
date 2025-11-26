@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="100%" height="100%" fill="#fbeeea" />
+  <g font-family="Playfair Display, serif" fill="#2c2c2c">
+    <text x="50%" y="12%" text-anchor="middle" font-size="36" font-weight="700">J&J Hairss — Featured Work</text>
+  </g>
+  <g transform="translate(60,80)">
+    <rect x="0" y="0" width="460" height="350" rx="10" fill="#fff" opacity="0.85"/>
+    <rect x="490" y="0" width="460" height="350" rx="10" fill="#fff" opacity="0.85"/>
+    <rect x="980" y="0" width="460" height="350" rx="10" fill="#fff" opacity="0.85"/>
+    <rect x="0" y="380" width="460" height="420" rx="10" fill="#fff" opacity="0.85"/>
+    <rect x="490" y="380" width="950" height="420" rx="10" fill="#fff" opacity="0.85"/>
+    <text x="240" y="45" text-anchor="middle" font-size="18" fill="#2c2c2c">Sample collage placeholder — replace with actual collage image</text>
+  </g>
+</svg>

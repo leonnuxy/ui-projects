@@ -90,6 +90,17 @@ const projects = [
         featured: false,
         category: 'Beauty & Wellness'
     }
+    ,
+    {
+        id: 'jj_hairs',
+        title: "J&J Hairss - Artistry in Every Braid",
+        image: 'https://images.unsplash.com/photo-1622021133319-a9a8f4c28f3a?q=80&w=2070&auto=format&fit=crop',
+        technologies: ['HTML5', 'CSS3', 'JavaScript'],
+        liveUrl: './jj_hairs/index.html',
+        githubUrl: '#',
+        featured: true,
+        category: 'Hair & Beauty'
+    }
     // Add more projects here as you create them
 ];
 

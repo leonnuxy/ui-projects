@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J&J Hairss - Artistry in Every Braid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. General Styling & Variables --- */
+        :root {
+            --color-primary-dark: #2c2c2c; /* Deep Charcoal */
+            --color-primary-light: #fdfaf7; /* Soft Off-White */
+            --color-secondary: #d1b3c4;   /* Dusty Rose */
+            --color-accent: #c9a97e;      /* Soft Gold */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-primary-dark);
+            color: var(--color-primary-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--color-secondary);
+            text-shadow: 1px 1px 3px rgba(201, 169, 126, 0.3);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* --- 2. Header & Navigation --- */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(44, 44, 44, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 1rem 0;
+            transition: background 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(201, 169, 126, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-primary-light);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--color-primary-light);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary-dark);
+            background: var(--color-accent);
+            border-color: var(--color-accent);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 2px;
+            background-color: var(--color-primary-light);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+
+        /* --- 3. Hero Section --- */
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1622021133319-a9a8f4c28f3a?q=80&w=2070&auto=format&fit=crop'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary-light);
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            text-shadow: 0 0 20px rgba(201, 169, 126, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero-content .btn {
+            animation: fadeInUp 1s ease-out 1s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2.5rem;
+            background-color: var(--color-accent);
+            color: var(--color-primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--color-accent);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--color-accent);
+        }
+
+        /* --- 4. Services Section --- */
+        #services {
+            background-color: var(--color-primary-light);
+            color: var(--color-primary-dark);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Modern card styles */
+        .service-card {
+            background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+            border-radius: 14px;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform .28s ease, box-shadow .28s ease;
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .service-card .thumb {
+            height: 220px;
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .service-card h3 { font-size: 1.25rem; }
+
+        .service-card .meta { display:flex; align-items:center; justify-content:space-between; gap:.5rem; }
+
+        .price-pill {
+            background: linear-gradient(90deg, rgba(201,169,126,0.18), rgba(201,169,126,0.06));
+            color: var(--color-accent);
+            font-weight:700;
+            padding: .4rem .7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(201,169,126,0.18);
+            font-size: .95rem;
+        }
+
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(7,11,14,0.18); }
+
+        .service-card {
+            background: #fff;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            border-top: 3px solid var(--color-accent);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card .price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Services slider (card stack) */
+        .services-slider { display:flex; align-items:center; justify-content:center; gap:12px; position:relative; max-width:1200px; margin:0 auto; }
+        .service-nav { background: rgba(0,0,0,0.06); color:var(--color-primary-dark); border-radius:999px; border: 1px solid rgba(0,0,0,0.07); width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+        .service-stack { position:relative; width:100%; max-width:980px; height:420px; display:block; overflow:visible; }
+        .service-stack__card { 
+            position:absolute; 
+            left:50%; 
+            top:50%; 
+            transform: translate(-50%,-50%) scale(.88); 
+            width:80%; 
+            max-width:760px; 
+            height:86%; 
+            border-radius:28px; 
+            overflow:hidden; 
+            background:#1a1a1a; 
+            box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); 
+            transition:transform .5s cubic-bezier(.2,.9,.2,1), opacity .3s ease, z-index .1s; 
+            display:flex; 
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-stack__card img.thumb { 
+            position:absolute; 
+            inset:0; 
+            width:100%; 
+            height:100%; 
+            object-fit:cover; 
+            z-index:1; 
+            transition: transform 0.7s ease;
+        }
+        .service-stack__card:hover img.thumb {
+            transform: scale(1.05);
+        }
+        
+        /* Glass Header */
+        .service-card__header {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .service-card__header h3 {
+            margin: 0;
+            font-size: 1.4rem;
+            color: var(--color-primary-dark);
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Dark Glass Footer */
+        .service-card__footer {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+            padding: 5rem 1.5rem 1.5rem;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+        .service-card__footer .desc {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .service-card__footer .meta-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .pill {
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            display: inline-flex;
+            align-items: center;
+        }
+        .pill.price {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
+        }
+        .pill.duration {
+            background: rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+        }
+        .service-card__footer .btn {
+            width: fit-content;
+            align-self: flex-start;
+            background: var(--color-accent);
+            color: var(--color-primary-dark);
+            border: none;
+            padding: 0.6rem 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .service-card__footer .btn:hover {
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .service-stack__card[data-pos="center"] { transform: translate(-50%,-50%) scale(1); z-index:60; opacity:1; }
+        .service-stack__card[data-pos="left"] { transform: translate(-86%,-50%) scale(.86) rotateY(8deg); z-index:40; opacity:.95; }
+        .service-stack__card[data-pos="right"] { transform: translate( -14%,-50%) scale(.86) rotateY(-8deg); z-index:40; opacity:.95; }
+        .service-stack__card[data-pos="behind-left"] { transform: translate(-160%,-50%) scale(.7); z-index:20; opacity:.6; }
+        .service-stack__card[data-pos="behind-right"] { transform: translate(70%,-50%) scale(.7); z-index:20; opacity:.6; }
+
+        @media (max-width: 820px) {
+            .service-stack { height:520px; }
+            .service-stack__card { width:92%; height:72%; }
+        }
+
+        /* Mobile-specific bindings to prevent horizontal overflow and keep layouts contained */
+        @media (max-width: 768px) {
+            html, body { overflow-x: hidden; }
+
+            /* Services: switch to a horizontal scroll-friendly carousel */
+            .services-slider { gap: 8px; padding: 0 8px; }
+            .service-nav { display: none; }
+            .service-stack { height: auto; display:flex; gap:14px; align-items:center; padding: 1rem 6px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+            .service-stack__card { position:relative; transform:none !important; left:auto; top:auto; width:min(86%,480px); height:420px; flex:0 0 auto; scroll-snap-align:center; margin:0 auto; }
+
+            /* Bubbles: responsive grid behaviour on smaller viewports */
+            .bubble-cluster { padding: 0.75rem 0; grid-auto-flow: dense; }
+
+            /* keep bubbles sized by --bubble-size and ensure subtle shadow/border adjustments */
+            .bubble { position: relative !important; border-width: 4px !important; box-shadow: 0 8px 20px rgba(7,11,14,0.12) !important; animation-duration: 5.2s; }
+
+            /* images already fill the circle via .bubble img rules above */
+
+            /* overlay slightly below top in small screens when expanded */
+            .bubble--expanded { 
+                position: fixed !important; 
+                left: 50% !important; 
+                top: 50% !important; 
+                transform: translate(-50%, -50%) !important; 
+                width: min(88vw, 560px) !important; 
+                height: min(88vw, 560px) !important;
+                z-index: 150;
+            }
+        }
+
+        /* --- 5. Gallery Section --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            align-items: start;
+        }
+        
+            /* --- 5. Gallery Section (stacked scroll) --- */
+            .gallery-stack {
+                display: block;
+                height: min(78vh, 920px);
+                max-width: 1200px;
+                margin: 0 auto;
+                overflow-y: auto;
+                scroll-snap-type: y mandatory;
+                -webkit-overflow-scrolling: touch;
+                padding: 1rem 0;
+            }
+
+            .stack-item {
+                scroll-snap-align: center;
+                display: block;
+                width: 100%;
+                height: clamp(340px, 64vh, 760px);
+                border-radius: 16px;
+                overflow: hidden;
+                margin: 1.25rem 0;
+                position: relative;
+                background: linear-gradient(180deg, #fff 0%, #faf7f5 100%);
+                box-shadow: 0 18px 40px rgba(7,11,14,0.12), inset 0 -8px 40px rgba(201,169,126,0.03);
+                transition: transform 0.28s ease, box-shadow 0.28s ease;
+            }
+
+            .stack-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display:block;
+                transform-origin: center center;
+                transition: transform 0.6s ease, filter 0.5s ease;
+            }
+
+            .stack-item .caption {
+                position: absolute; left: 20px; bottom: 20px; padding: .6rem .9rem; background: rgba(0,0,0,0.5); color: #fff; border-radius: 10px; font-weight:600; backdrop-filter: blur(3px);
+            }
+
+            .stack-item:focus-within, .stack-item:hover { transform: translateY(-6px); box-shadow: 0 28px 64px rgba(7,11,14,0.2); }
+
+            /* optional subtle zoom on active visible item - improves perceived depth */
+            .stack-item.is-active img { transform: scale(1.03); filter: saturate(1.05) contrast(1.02); }
+
+            /* --- Horizontal Deck layout --- */
+            .gallery-deck { display:flex; align-items:center; justify-content:center; gap: 12px; max-width: 1200px; margin: 0 auto; padding: 0 1rem; position: relative; }
+
+            .deck-inner { width: 100%; height: min(78vh, 920px); position: relative; overflow: hidden; display:block; }
+
+            .deck-inner .stack-item { position: absolute; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); width: min(980px, 90%); height: 70%; transition: transform .5s cubic-bezier(.2,.9,.2,1), opacity .4s ease, z-index .1s; }
+
+            .deck-item-left, .deck-item-right { opacity: 0.9; }
+
+            .stack-item[data-pos="center"] { transform: translateX(-50%) translateY(-50%) scale(1); z-index: 50; opacity: 1; }
+            .stack-item[data-pos="left"] { transform: translateX(-180%) translateY(-50%) scale(.82) rotateY(8deg); z-index: 30; opacity: .95; }
+            .stack-item[data-pos="right"] { transform: translateX(80%) translateY(-50%) scale(.82) rotateY(-8deg); z-index: 30; opacity: .95; }
+            .stack-item[data-pos="behind-left"] { transform: translateX(-320%) translateY(-50%) scale(.7); z-index: 20; opacity:.6; }
+            .stack-item[data-pos="behind-right"] { transform: translateX(220%) translateY(-50%) scale(.7); z-index: 20; opacity:.6; }
+
+            .deck-nav { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); width:48px; height:48px; border-radius:999px; display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--color-primary-light); transition: transform .18s ease, background .12s ease; }
+            .deck-nav:hover { transform: scale(1.06); background: rgba(255,255,255,0.12); }
+            .deck-nav svg { color: var(--color-primary-light); transform: translateY(0); }
+
+            .deck-nav--prev { position: absolute; left: -8px; top: 50%; transform: translateY(-50%); z-index:60; }
+            .deck-nav--next { position: absolute; right: -8px; top: 50%; transform: translateY(-50%); z-index:60; }
+
+            @media (max-width: 768px) {
+                .deck-inner .stack-item { width: 92%; height: 56vh; }
+                .deck-nav { width:42px;height:42px; }
+            }
+
+            /* --- Bubble cluster styles (grid / watch-app inspired) --- */
+            :root { --bubble-size: 180px; }
+
+            .bubble-cluster {
+                position: relative;
+                width: 100%;
+                max-width: 1100px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(var(--bubble-size), 1fr));
+                gap: 1rem 1.25rem;
+                justify-content: center;
+                align-items: center;
+                padding: 1.25rem 0;
+            }
+
+            .bubble {
+                --float-delay: 0s;
+                position: relative;
+                width: var(--bubble-size);
+                height: var(--bubble-size);
+                border-radius: 50%;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: transform .34s cubic-bezier(.2,.9,.2,1), box-shadow .28s ease, opacity .25s ease;
+                box-shadow: 0 10px 34px rgba(7,11,14,0.12);
+                border: 5px solid rgba(255,255,255,0.8);
+                background: linear-gradient(180deg,#fff,#fff6f4);
+                animation: floaty 6s ease-in-out infinite;
+                animation-delay: var(--float-delay);
+            }
+
+            .bubble img { width:100%; height:100%; object-fit:cover; display:block; border-radius: 50%; }
+
+            /* subtle floating motion */
+            @keyframes floaty { 0% { transform: translateY(-6px); } 50% { transform: translateY(6px); } 100% { transform: translateY(-6px); } }
+
+            /* pause motion on focus/hover to allow clear tap target */
+            .bubble:focus, .bubble:hover { animation-play-state: paused; transform: translateY(0) scale(1.03); z-index: 40; }
+
+            /* expanded state (full circular view) */
+            .bubble--expanded {
+                position: fixed !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%,-50%) !important;
+                width: min(84vmin, 760px) !important;
+                height: min(84vmin,760px) !important;
+                border-radius: 50%;
+                z-index: 150;
+                box-shadow: 0 48px 110px rgba(10,15,20,0.45);
+                transition: transform .36s cubic-bezier(.2,.9,.2,1), width .36s, height .36s, box-shadow .36s;
+            }
+
+            .bubble--expanded img { object-fit: cover; filter: saturate(1.03); }
+
+            /* overlay for when bubble is expanded */
+            .bubble-overlay { position: fixed; inset: 0; background: rgba(8,10,12,0); pointer-events: none; transition: background .26s ease; z-index: 140; }
+            .bubble-overlay.visible { background: rgba(8,10,12,0.48); pointer-events: auto; }
+
+            /* dim other bubbles when one is expanded */
+            .bubble-cluster .bubble:not(.bubble--expanded) { transition: opacity .28s ease, transform .28s ease; }
+            .bubble--expanded ~ .bubble, .bubble:not(.bubble--expanded) { opacity: 0.18; }
+
+            @media (max-width: 1024px) {
+                :root { --bubble-size: 160px; }
+            }
+
+            @media (max-width: 768px) {
+                :root { --bubble-size: 140px; }
+            }
+
+            @media (max-width: 480px) {
+                :root { --bubble-size: 120px; }
+            }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            box-shadow: 0 0 10px rgba(201, 169, 126, 0.2);
+        }
+        
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        /* Promo card for a larger featured image */
+        .gallery-item--featured {
+            grid-column: span 2;
+            grid-row: span 2;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(7,11,14,0.14);
+        }
+
+        .gallery-item--featured img { height: 100%; }
+        
+        /* --- 6. Testimonials Section --- */
+        .testimonial {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .testimonial blockquote {
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            border-left: 5px solid var(--color-accent);
+            padding-left: 1rem;
+        }
+
+        /* Modern testimonial card */
+        .testimonial-card {
+            background: #fff;
+            color: var(--color-primary-dark);
+            border-radius: 12px;
+            padding: 1.5rem 1.75rem;
+            box-shadow: 0 14px 34px rgba(7,11,14,0.12);
+            display: inline-block;
+            text-align: left;
+            max-width: 820px;
+        }
+
+        .testimonial-meta {
+            display:flex; align-items:center; gap:.75rem; margin-top:.75rem;
+        }
+
+        .avatar {
+            width:48px; height:48px; border-radius:50%; overflow:hidden; flex:0 0 48px;
+            background: linear-gradient(90deg,#f3e9e6,#fffaf8);
+            display:inline-block; border:1px solid rgba(0,0,0,0.06);
+        }
+
+        .avatar img { width:100%; height:100%; object-fit:cover; display:block; }
+        
+        .testimonial cite {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+        
+        /* --- 7. Footer --- */
+        .footer {
+            background: linear-gradient(135deg, #1e1e1e 0%, rgba(201, 169, 126, 0.1) 100%);
+            color: var(--color-primary-light);
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .social-links a {
+            color: var(--color-primary-light);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--color-accent);
+        }
+        
+        .footer p {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* --- 8. Responsive Design --- */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            section {
+                padding: 4rem 0;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+                margin-bottom: 2.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                margin-bottom: 2.5rem;
+            }
+            
+            .btn {
+                padding: 1rem 3rem;
+                font-size: 1.1rem;
+            }
+            
+            .main-header {
+                padding: 1.5rem 0;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            }
+            
+            .nav-links {
+                /* full-screen overlay container to avoid awkward transparent stripe */
+                position: fixed !important;
+                inset: 0; /* top:0; right:0; bottom:0; left:0 */
+                left: 0;
+                top: 0;
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                transform: translateX(100%); /* slide in from right */
+                transition: transform 0.45s cubic-bezier(.2,.9,.2,1), opacity 0.25s ease;
+                opacity: 0;
+                /* uniform translucent overlay to avoid visible striping */
+                background: rgba(20,18,16,0.86);
+                backdrop-filter: blur(10px) saturate(120%);
+                gap: 2.5rem;
+                padding: 2rem;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+                z-index: 99999; /* ensure overlay sits above header and all page content */
+                pointer-events: none;
+            }
+
+            /* warm golden vignette for subtle luxury without striping */
+            .nav-links::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                background: radial-gradient(circle at 10% 50%, rgba(201,169,126,0.06), transparent 20%), radial-gradient(circle at 90% 50%, rgba(201,169,126,0.03), transparent 30%);
+            }
+
+            .nav-links.nav-active {
+                transform: translateX(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            /* prevent content behind from moving when menu is open */
+            body.nav-open {
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            /* make pills centered and constrained width inside overlay */
+            .nav-links li {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                font-size: 1.3rem;
+                padding: 1.2rem 2.5rem;
+                background: rgba(255, 255, 255, 0.12);
+                border-radius: 50px;
+                border: 1px solid rgba(201, 169, 126, 0.25);
+                width: min(360px, 86%);
+                text-align: center;
+                transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+                -webkit-backdrop-filter: blur(4px);
+                backdrop-filter: blur(4px);
+            }
+            
+            .nav-links a:hover {
+                background: var(--color-accent);
+                color: var(--color-primary-dark);
+                transform: scale(1.05);
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1001;
+                padding: 0.5rem;
+            }
+
+            .hamburger .line {
+                width: 28px;
+                height: 3px;
+                background-color: var(--color-primary-light);
+                margin: 6px 0;
+                transition: all 0.4s ease;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.9rem 2.5rem;
+                font-size: 1rem;
+            }
+
+            .service-card {
+                margin: 0;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .testimonial blockquote {
+                font-size: 1.1rem;
+            }
+
+            .social-links a {
+                font-size: 1.8rem;
+                margin: 0 1rem;
+            }
+
+            .nav-links {
+                padding: 1.5rem;
+                gap: 2rem;
+            }
+
+            .nav-links a {
+                width: min(340px, 92%);
+            }
+
+            .bubble-cluster { height: 220px; }
+            .bubble { width: 180px !important; height: 180px !important; border-width: 3px !important; }
+            .bubble--expanded { width: min(86vw, 480px) !important; height: min(86vw, 480px) !important; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="main-header">
+        <div class="container navbar">
+            <a href="#" class="nav-logo">J&J Hairss</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#policies">Policies</a></li>
+            </ul>
+            <div class="hamburger">
+                <div class="line line1"></div>
+                <div class="line line2"></div>
+                <div class="line line3"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Artistry in Every Braid</h1>
+                <p>Elegant styles, expertly crafted. Discover your new look with us.</p>
+                <a href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank" class="btn">Book An Appointment</a>
+            </div>
+        </section>
+
+        <!-- Featured Services Section -->
+        <section id="services">
+            <div class="container">
+                <h2>Our Popular Services</h2>
+                        <!-- Swipable stacked card slider for services -->
+                        <div class="services-slider" aria-label="Popular services carousel">
+                            <button class="service-nav service-nav--prev" aria-label="Previous service">◀</button>
+                            <div class="service-stack" tabindex="0">
+                    <!-- Service Card 1 -->
+                        <div class="service-stack__card" data-index="0" role="group" aria-label="Smedium Knotless Braids">
+                            <img src="./assets/images/service-smedium.svg" alt="Smedium Knotless Braids" class="thumb"/>
+                            <div class="service-card__header">
+                                <h3>Smedium Knotless Braids</h3>
+                            </div>
+                            <div class="service-card__footer">
+                                <div class="meta-row">
+                                    <span class="pill price">$190</span>
+                                    <span class="pill duration">3–5 hrs</span>
+                                </div>
+                                <p class="desc">Tension-free knotless braids for a sleek, natural look and long-lasting wear.</p>
+                                <a class="btn" href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank">Book This Look</a>
+                            </div>
+                        </div>
+                    <!-- Service Card 2 -->
+                        <div class="service-stack__card" data-index="1" role="group" aria-label="Boho Add-On">
+                            <img src="./assets/images/service-boho.svg" alt="Boho Add-On" class="thumb"/>
+                            <div class="service-card__header">
+                                <h3>Boho Add-On</h3>
+                            </div>
+                            <div class="service-card__footer">
+                                <div class="meta-row">
+                                    <span class="pill price">+ $40</span>
+                                    <span class="pill duration">Add-on</span>
+                                </div>
+                                <p class="desc">Add flowing curly strands and decorative accents for a free-spirited finish.</p>
+                                <a class="btn" href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank">Add to Booking</a>
+                            </div>
+                        </div>
+                    <!-- Service Card 3 -->
+                        <div class="service-stack__card" data-index="2" role="group" aria-label="Small Knotless Braids/Twist">
+                            <img src="./assets/images/service-small.svg" alt="Small Knotless Braids/Twist" class="thumb"/>
+                            <div class="service-card__header">
+                                <h3>Small Knotless Braids / Twist</h3>
+                            </div>
+                            <div class="service-card__footer">
+                                <div class="meta-row">
+                                    <span class="pill price">$180</span>
+                                    <span class="pill duration">3–6 hrs</span>
+                                </div>
+                                <p class="desc">Intricate small braids & twists for a defined look and longevity.</p>
+                                <a class="btn" href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank">Book This Look</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="service-nav service-nav--next" aria-label="Next service">▶</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <div class="container">
+                <h2>Our Work</h2>
+                <div class="bubble-cluster" aria-label="Our Work — tap a bubble to expand">
+                            <div class="bubble" data-id="1" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage"/></div>
+                            <div class="bubble" data-id="2" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 2"/></div>
+                            <div class="bubble" data-id="3" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 3"/></div>
+                            <div class="bubble" data-id="4" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 4"/></div>
+                            <div class="bubble" data-id="5" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 5"/></div>
+                            <div class="bubble" data-id="6" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 6"/></div>
+                            <div class="bubble" data-id="7" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 7"/></div>
+                            <div class="bubble" data-id="8" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 8"/></div>
+                            <div class="bubble" data-id="9" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 9"/></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" style="background-color: var(--color-primary-light); color: var(--color-primary-dark);">
+            <div class="container">
+                <h2>What Our Clients Say</h2>
+                <div class="testimonial">
+                    <div class="testimonial-card">
+                        <blockquote>"Absolutely in love with my hair! The entire experience was so professional and relaxing. They took great care to make sure my braids were perfect and not too tight. I've received so many compliments!"</blockquote>
+                        <div class="testimonial-meta">
+                            <div class="avatar"><img src="./assets/images/reviewer-jessica.svg" onerror="this.src='https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop'" alt="Jessica"></div>
+                            <div>
+                                <strong>Jessica L.</strong>
+                                <div style="font-size:.85rem;color:rgba(0,0,0,0.56);">Happy client • Knotless braids</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policies Section (Appointment + Photo Policy) -->
+        <section id="policies" style="background-color: var(--color-primary-light); color: var(--color-primary-dark);">
+            <div class="container">
+                <h2>Policies</h2>
+
+                <div class="service-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; align-items: start;">
+                    <div style="background:#fff;border-radius:12px;padding:1.5rem;box-shadow:0 10px 24px rgba(0,0,0,0.06);">
+                        <h3 style="font-size:1.4rem;margin-bottom:0.75rem;color:var(--color-secondary);">Appointment Policy</h3>
+                        <p style="margin-bottom:0.5rem;">A $20 deposit is required and non-refundable if an appointment is cancelled. Please cancel at least 24 hours prior to your appointment whenever possible.</p>
+                        <p style="margin-bottom:0.5rem;">There is a 20 minute grace period for lateness — if you arrive later than this we may need to reschedule or shorten the service depending on availability.</p>
+                        <p style="margin-bottom:0.5rem;">Payment accepted: Cash, Cash App and PayPal.</p>
+                        <a href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank" class="btn" style="display:inline-block;margin-top:1rem;">Book / Manage Appointment</a>
+                    </div>
+
+                    <div style="background:#fff;border-radius:12px;padding:1.5rem;box-shadow:0 10px 24px rgba(0,0,0,0.06);">
+                        <h3 style="font-size:1.4rem;margin-bottom:0.75rem;color:var(--color-secondary);">Photo Policy & Service Notes</h3>
+                        <p style="margin-bottom:0.5rem;">By booking an appointment you agree to be photographed for marketing and portfolio purposes. If you do not want to be photographed, please let us know prior to your appointment.</p>
+                        <p style="margin-bottom:0.5rem;">All hair textures are welcome. For best results, avoid applying excess oils, heavy creams, or grease to your hair right before your appointment.</p>
+                        <p style="margin-bottom:0.5rem;">If you want a service that isn't listed, reach out via your preferred contact method (socials or booking comments) and we'll help you plan it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="#" class="nav-logo">J&J Hairss</a>
+             <div class="social-links" style="margin-top: 1.5rem;">
+                <!-- Replace # with your social media links -->
+                <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+            </div>
+            <p>&copy; 2025 J&J Hairss. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            // Toggle Nav overlay
+            const isOpen = navLinks.classList.toggle('nav-active');
+
+            // lock page scroll while open
+            document.body.classList.toggle('nav-open', isOpen);
+
+            // Burger Animation
+            hamburger.classList.toggle('toggle', isOpen);
+        });
+        
+        // Close nav when a link is clicked
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+                document.body.classList.remove('nav-open');
+            });
+        });
+
+        // Also close the overlay when tapping outside the pills
+        navLinks.addEventListener('click', (e) => {
+            if (e.target === navLinks) {
+                navLinks.classList.remove('nav-active');
+                hamburger.classList.remove('toggle');
+                document.body.classList.remove('nav-open');
+            }
+        });
+
+        // Services slider: stacked card UI with swipe and keyboard controls
+        (function () {
+            const root = document.querySelector('.services-slider');
+            if (!root) return;
+
+            const inner = root.querySelector('.service-stack');
+            const prevBtn = root.querySelector('.service-nav--prev');
+            const nextBtn = root.querySelector('.service-nav--next');
+            const items = Array.from(inner.querySelectorAll('.service-stack__card'));
+            let idx = 0;
+            const last = items.length - 1;
+
+            const clamp = (n) => Math.max(0, Math.min(n, last));
+
+            function applyLayout() {
+                items.forEach((el, i) => {
+                    const diff = i - idx;
+                    el.dataset.pos = 'off';
+                    el.style.pointerEvents = 'auto';
+                    if (diff === 0) el.dataset.pos = 'center';
+                    else if (diff === -1) el.dataset.pos = 'left';
+                    else if (diff === 1) el.dataset.pos = 'right';
+                    else if (diff <= -2) el.dataset.pos = 'behind-left';
+                    else if (diff >= 2) el.dataset.pos = 'behind-right';
+                    if (Math.abs(diff) > 2) el.style.pointerEvents = 'none';
+                });
+            }
+
+            function go(n) { idx = clamp(n); applyLayout(); }
+            function next() { go(idx + 1); }
+            function prev() { go(idx - 1); }
+
+            prevBtn && prevBtn.addEventListener('click', prev);
+            nextBtn && nextBtn.addEventListener('click', next);
+
+            // clicking centers a card
+            items.forEach((el, i) => el.addEventListener('click', () => { if (i !== idx) go(i); }));
+
+            // keyboard & pointer
+            inner.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') prev(); if (e.key === 'ArrowRight') next(); });
+
+            // pointer swipe
+            let startX = 0, dx = 0, down = false;
+            inner.addEventListener('pointerdown', (e) => { down = true; startX = e.clientX; inner.setPointerCapture && inner.setPointerCapture(e.pointerId); });
+            inner.addEventListener('pointermove', (e) => { if (!down) return; dx = e.clientX - startX; });
+            inner.addEventListener('pointerup', (e) => { down = false; if (Math.abs(dx) > 70) { if (dx < 0) next(); else prev(); } dx = 0; });
+            inner.addEventListener('pointercancel', () => { down = false; dx = 0; });
+
+            go(0);
+        })();
+
+        // Bubble cluster interaction: layout, floating animation, expand/collapse behavior
+        (function () {
+            const cluster = document.querySelector('.bubble-cluster');
+            if (!cluster) return;
+
+            let bubbles = Array.from(cluster.querySelectorAll('.bubble'));
+
+            // create overlay for expanded view
+            const overlay = document.createElement('div');
+            overlay.className = 'bubble-overlay';
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(overlay);
+
+            let open = null;
+
+            function openBubble(el) {
+                if (open) closeBubble(open);
+                open = el;
+                el.classList.add('bubble--expanded');
+                overlay.classList.add('visible');
+                overlay.setAttribute('aria-hidden', 'false');
+                setTimeout(() => el.classList.add('animate-in'), 20);
+            }
+
+            function closeBubble(el) {
+                if (!el) return;
+                el.classList.remove('animate-in');
+                setTimeout(() => {
+                    el.classList.remove('bubble--expanded');
+                    overlay.classList.remove('visible');
+                    overlay.setAttribute('aria-hidden', 'true');
+                }, 260);
+                open = null;
+            }
+
+            // layout algorithm: compute optimal columns and bubble size so items don't overlap
+            function layoutBubbles() {
+                bubbles = Array.from(cluster.querySelectorAll('.bubble'));
+                const count = bubbles.length || 1;
+                const containerW = Math.max(0, cluster.clientWidth);
+                const gap = 12;
+                const desired = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--bubble-size')) || 180;
+                const minSize = 80;
+
+                // Force a 3-column layout (3x3 when 9 items present)
+                let cols = 3;
+                if (count < 3) cols = count;
+
+                let bubbleSize = Math.floor((containerW - gap * (cols - 1)) / cols);
+                if (bubbleSize > desired) bubbleSize = desired;
+                if (bubbleSize < minSize) {
+                    bubbleSize = minSize;
+                    cols = Math.max(1, Math.floor((containerW + gap) / (bubbleSize + gap)));
+                }
+
+                // Use fixed columns so tiles line up as a 3xN grid
+                cluster.style.removeProperty('height');
+                cluster.style.display = 'grid';
+                cluster.style.gridTemplateColumns = `repeat(${cols}, ${bubbleSize}px)`;
+                cluster.style.gap = gap + 'px';
+                cluster.style.position = 'relative';
+
+                // ensure each bubble is a perfect circle and sized consistently
+                bubbles.forEach((b, i) => {
+                    b.style.boxSizing = 'border-box';
+                    b.style.position = 'relative';
+                    b.style.removeProperty('left');
+                    b.style.removeProperty('top');
+                    b.style.removeProperty('z-index');
+                    b.style.setProperty('width', bubbleSize + 'px', 'important');
+                    b.style.setProperty('height', bubbleSize + 'px', 'important');
+                    b.style.setProperty('min-width', bubbleSize + 'px', 'important');
+                    b.style.setProperty('min-height', bubbleSize + 'px', 'important');
+                    b.style.setProperty('aspect-ratio', '1 / 1', 'important');
+                    b.style.setProperty('--float-delay', `${(i % 7) * 0.12}s`);
+                    b.style.margin = '0';
+                });
+            }
+
+            // debounce helper
+            function debounce(fn, wait) {
+                let t;
+                return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+            }
+
+            // wire bubble interactions (rebind safely)
+            function bindBubbles() {
+                bubbles.forEach(b => {
+                    b.tabIndex = 0;
+                    // remove old handlers by cloning node to avoid duplicate listeners
+                    const clone = b.cloneNode(true);
+                    b.parentNode.replaceChild(clone, b);
+                });
+                bubbles = Array.from(cluster.querySelectorAll('.bubble'));
+                bubbles.forEach(b => {
+                    b.addEventListener('click', (e) => { e.stopPropagation(); if (b.classList.contains('bubble--expanded')) { closeBubble(b); } else { openBubble(b); } });
+                    b.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } });
+                });
+            }
+
+            // initial layout + bindings
+            layoutBubbles();
+            bindBubbles();
+
+            // respond to resize
+            const onResize = debounce(() => { layoutBubbles(); }, 120);
+            window.addEventListener('resize', onResize);
+
+            // close when clicking overlay or pressing Escape
+            overlay.addEventListener('click', () => { if (open) closeBubble(open); });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) closeBubble(open); });
+            // clicking outside any bubble collapses
+            document.addEventListener('click', (e) => { if (open && !e.target.closest('.bubble')) closeBubble(open); });
+
+            // watch for DOM changes (bubbles added/removed) and relayout
+            const mo = new MutationObserver(debounce(() => { layoutBubbles(); bindBubbles(); }, 80));
+            mo.observe(cluster, { childList: true, subtree: false });
+        })();
+
+        // Keep gallery section vertical height in sync with previous section (#services)
+        (function syncGalleryHeight() {
+            const services = document.getElementById('services');
+            const gallery = document.getElementById('gallery');
+            if (!services || !gallery) return;
+
+            function applyHeight() {
+                const rect = services.getBoundingClientRect();
+                // include computed top/bottom padding of section
+                const style = getComputedStyle(services);
+                const paddingTop = parseFloat(style.paddingTop) || 0;
+                const paddingBottom = parseFloat(style.paddingBottom) || 0;
+                const total = Math.round(rect.height + paddingTop + paddingBottom);
+                gallery.style.minHeight = total + 'px';
+            }
+
+            const debouncedApply = (function () { let t; return () => { clearTimeout(t); t = setTimeout(applyHeight, 120); }; })();
+
+            // initial
+            applyHeight();
+
+            // update on window resize
+            window.addEventListener('resize', debouncedApply);
+
+            // if ResizeObserver available, observe services for content changes
+            if (window.ResizeObserver) {
+                const ro = new ResizeObserver(debouncedApply);
+                ro.observe(services);
+            }
+        })();
+
+    </script>
+</body>
+</html>
