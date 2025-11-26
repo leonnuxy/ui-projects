@@ -14,6 +14,12 @@
             --color-primary-light: #fdfaf7; /* Soft Off-White */
             --color-secondary: #d1b3c4;   /* Dusty Rose */
             --color-accent: #c9a97e;      /* Soft Gold */
+            --theme-accent: var(--color-accent);
+            --theme-heading: var(--color-secondary);
+            --theme-surface: var(--color-primary-light);
+            --theme-surface-dark: #121212;
+            --theme-text-on-dark: var(--color-primary-light);
+            --theme-text-on-light: var(--color-primary-dark);
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Montserrat', sans-serif;
         }
@@ -35,6 +41,8 @@
             line-height: 1.6;
         }
 
+        body.booking-open { overflow: hidden; }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -44,7 +52,7 @@
         h1, h2, h3 {
             font-family: var(--font-heading);
             font-weight: 700;
-            color: var(--color-secondary);
+            color: var(--theme-heading);
             text-shadow: 1px 1px 3px rgba(201, 169, 126, 0.3);
         }
         
@@ -279,26 +287,54 @@
             margin-bottom: 1rem;
         }
 
-        /* Services slider (card stack) */
-        .services-slider { display:flex; align-items:center; justify-content:center; gap:12px; position:relative; max-width:1200px; margin:0 auto; }
-        .service-nav { background: rgba(0,0,0,0.06); color:var(--color-primary-dark); border-radius:999px; border: 1px solid rgba(0,0,0,0.07); width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
-        .service-stack { position:relative; width:100%; max-width:980px; height:420px; display:block; overflow:visible; }
+        /* Services slider (horizontal snap) */
+        .services-slider { display:flex; align-items:center; justify-content:center; gap:12px; position:relative; max-width:1200px; margin:0 auto; padding: 0 18px; overflow:hidden; }
+        .service-nav { 
+            background: linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+            color: var(--color-primary-dark); 
+            border-radius: 16px; 
+            border: 1px solid rgba(201,169,126,0.25); 
+            width: 48px; 
+            height: 48px; 
+            display:flex; 
+            align-items:center; 
+            justify-content:center; 
+            cursor:pointer; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.35);
+            transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+        }
+        .service-nav:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(0,0,0,0.18); border-color: rgba(201,169,126,0.45); }
+        .service-nav:active { transform: translateY(0); box-shadow: 0 8px 22px rgba(0,0,0,0.18); }
+        .service-stack { 
+            position:relative; 
+            width:100%; 
+            max-width:1100px; 
+            height:560px; 
+            display:flex; 
+            align-items:flex-start;
+            gap: 18px; 
+            overflow-x:auto; 
+            scroll-snap-type: x mandatory; 
+            -webkit-overflow-scrolling: touch;
+            padding: 12px 6px 18px;
+        }
         .service-stack__card { 
-            position:absolute; 
-            left:50%; 
-            top:50%; 
-            transform: translate(-50%,-50%) scale(.88); 
-            width:80%; 
-            max-width:760px; 
-            height:86%; 
-            border-radius:28px; 
+            position:relative; 
+            transform: none; 
+            flex: 0 0 auto;
+            width: min(420px, 84vw); 
+            max-width: 440px; 
+            height: 520px; 
+            border-radius:32px; 
             overflow:hidden; 
             background:#1a1a1a; 
-            box-shadow:0 25px 50px -12px rgba(0,0,0,0.5); 
-            transition:transform .5s cubic-bezier(.2,.9,.2,1), opacity .3s ease, z-index .1s; 
+            box-shadow:0 28px 70px -18px rgba(0,0,0,0.55); 
+            transition:transform .35s ease, opacity .28s ease, box-shadow .3s ease; 
             display:flex; 
             flex-direction: column;
             justify-content: space-between;
+            scroll-snap-align: center;
+            margin: 0 auto;
         }
         .service-stack__card img.thumb { 
             position:absolute; 
@@ -313,29 +349,6 @@
             transform: scale(1.05);
         }
         
-        /* Glass Header */
-        .service-card__header {
-            position: relative;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 1rem 1.5rem;
-            margin: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .service-card__header h3 {
-            margin: 0;
-            font-size: 1.4rem;
-            color: var(--color-primary-dark);
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
         /* Dark Glass Footer */
         .service-card__footer {
             position: relative;
@@ -402,15 +415,14 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
 
-        .service-stack__card[data-pos="center"] { transform: translate(-50%,-50%) scale(1); z-index:60; opacity:1; }
-        .service-stack__card[data-pos="left"] { transform: translate(-86%,-50%) scale(.86) rotateY(8deg); z-index:40; opacity:.95; }
-        .service-stack__card[data-pos="right"] { transform: translate( -14%,-50%) scale(.86) rotateY(-8deg); z-index:40; opacity:.95; }
-        .service-stack__card[data-pos="behind-left"] { transform: translate(-160%,-50%) scale(.7); z-index:20; opacity:.6; }
-        .service-stack__card[data-pos="behind-right"] { transform: translate(70%,-50%) scale(.7); z-index:20; opacity:.6; }
+        @media (max-width: 1024px) {
+            .service-stack { height:520px; }
+            .service-stack__card { width:70%; max-width:520px; border-radius:30px; }
+        }
 
         @media (max-width: 820px) {
             .service-stack { height:520px; }
-            .service-stack__card { width:92%; height:72%; }
+            .service-stack__card { width:86%; height:480px; border-radius:28px; }
         }
 
         /* Mobile-specific bindings to prevent horizontal overflow and keep layouts contained */
@@ -423,6 +435,11 @@
             .service-stack { height: auto; display:flex; gap:14px; align-items:center; padding: 1rem 6px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
             .service-stack__card { position:relative; transform:none !important; left:auto; top:auto; width:min(86%,480px); height:420px; flex:0 0 auto; scroll-snap-align:center; margin:0 auto; }
 
+            /* Booking modal layout on tablets/phones */
+            .booking-body { grid-template-columns: 1fr; }
+            .booking-aside { order: -1; margin-bottom: 0.75rem; }
+            .booking-modal { max-height: 94vh; }
+
             /* Bubbles: responsive grid behaviour on smaller viewports */
             .bubble-cluster { padding: 0.75rem 0; grid-auto-flow: dense; }
 
@@ -430,17 +447,6 @@
             .bubble { position: relative !important; border-width: 4px !important; box-shadow: 0 8px 20px rgba(7,11,14,0.12) !important; animation-duration: 5.2s; }
 
             /* images already fill the circle via .bubble img rules above */
-
-            /* overlay slightly below top in small screens when expanded */
-            .bubble--expanded { 
-                position: fixed !important; 
-                left: 50% !important; 
-                top: 50% !important; 
-                transform: translate(-50%, -50%) !important; 
-                width: min(88vw, 560px) !important; 
-                height: min(88vw, 560px) !important;
-                z-index: 150;
-            }
         }
 
         /* --- 5. Gallery Section --- */
@@ -565,29 +571,59 @@
             /* pause motion on focus/hover to allow clear tap target */
             .bubble:focus, .bubble:hover { animation-play-state: paused; transform: translateY(0) scale(1.03); z-index: 40; }
 
-            /* expanded state (full circular view) */
-            .bubble--expanded {
-                position: fixed !important;
-                left: 50% !important;
-                top: 50% !important;
-                transform: translate(-50%,-50%) !important;
-                width: min(84vmin, 760px) !important;
-                height: min(84vmin,760px) !important;
-                border-radius: 50%;
-                z-index: 150;
-                box-shadow: 0 48px 110px rgba(10,15,20,0.45);
-                transition: transform .36s cubic-bezier(.2,.9,.2,1), width .36s, height .36s, box-shadow .36s;
+            /* overlay + popup viewer for enlarged bubbles */
+            .bubble-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(8,10,12,0);
+                pointer-events: none;
+                transition: background .28s ease, opacity .28s ease;
+                z-index: 140;
+                opacity: 0;
             }
 
-            .bubble--expanded img { object-fit: cover; filter: saturate(1.03); }
+            .bubble-overlay.visible {
+                background: rgba(8,10,12,0.48);
+                pointer-events: auto;
+                opacity: 1;
+            }
 
-            /* overlay for when bubble is expanded */
-            .bubble-overlay { position: fixed; inset: 0; background: rgba(8,10,12,0); pointer-events: none; transition: background .26s ease; z-index: 140; }
-            .bubble-overlay.visible { background: rgba(8,10,12,0.48); pointer-events: auto; }
+            .bubble-viewer {
+                position: fixed;
+                z-index: 160;
+                border-radius: 22px;
+                overflow: hidden;
+                background: #050505;
+                box-shadow: 0 40px 120px rgba(10,15,20,0.55);
+                opacity: 0;
+                transform: translate3d(0,0,0) scale(.94);
+                transition: width .42s cubic-bezier(.2,.9,.2,1), height .42s cubic-bezier(.2,.9,.2,1), left .42s cubic-bezier(.2,.9,.2,1), top .42s cubic-bezier(.2,.9,.2,1), opacity .28s ease, transform .42s cubic-bezier(.2,.9,.2,1), border-radius .32s ease;
+                pointer-events: none;
+            }
 
-            /* dim other bubbles when one is expanded */
-            .bubble-cluster .bubble:not(.bubble--expanded) { transition: opacity .28s ease, transform .28s ease; }
-            .bubble--expanded ~ .bubble, .bubble:not(.bubble--expanded) { opacity: 0.18; }
+            .bubble-viewer.is-visible { opacity: 1; pointer-events: auto; }
+            .bubble-viewer.is-open { transform: translate3d(0,0,0) scale(1); }
+
+            .bubble-viewer__img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            body.bubble-lightbox-open { overflow: hidden; }
+
+            body.bubble-lightbox-open .bubble {
+                opacity: 0.25;
+                filter: saturate(0.9);
+            }
+
+            body.bubble-lightbox-open .bubble.is-active {
+                opacity: 1;
+                transform: translateY(0) scale(1.06);
+                box-shadow: 0 14px 34px rgba(7,11,14,0.24);
+                animation-play-state: paused;
+            }
 
             @media (max-width: 1024px) {
                 :root { --bubble-size: 160px; }
@@ -601,6 +637,279 @@
                 :root { --bubble-size: 120px; }
             }
 
+            /* --- 5a. Booking modal --- */
+            .booking-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(6,8,10,0.6);
+                backdrop-filter: blur(10px);
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity .24s ease;
+                z-index: 2000;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.5rem;
+            }
+
+            .booking-overlay.is-visible {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .booking-modal {
+                width: min(960px, 94vw);
+                max-height: 90vh;
+                overflow: hidden;
+                background: linear-gradient(135deg, rgba(20,18,16,0.96), rgba(14,14,14,0.92));
+                border: 1px solid rgba(201,169,126,0.2);
+                border-radius: 22px;
+                box-shadow: 0 30px 120px rgba(0,0,0,0.48), 0 0 0 1px rgba(255,255,255,0.04);
+                color: var(--theme-text-on-dark);
+                transform: translateY(18px);
+                opacity: 0;
+                transition: transform .28s ease, opacity .28s ease;
+                position: relative;
+                z-index: 2010;
+            }
+
+            .booking-overlay.is-visible .booking-modal {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .booking-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.25rem 1.5rem 0.75rem;
+                gap: 1rem;
+            }
+
+            .booking-header h3 {
+                margin: 0;
+                color: var(--theme-heading);
+            }
+
+            .booking-eyebrow {
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                font-size: 0.75rem;
+                color: rgba(255,255,255,0.7);
+            }
+
+            .booking-progress {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            .booking-progress .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: rgba(255,255,255,0.2);
+                transition: background .22s ease, transform .22s ease;
+            }
+
+            .booking-progress .dot.is-active {
+                background: var(--theme-accent);
+                transform: scale(1.12);
+            }
+
+            .booking-body {
+                padding: 0 1.5rem 1.5rem;
+                display: grid;
+                grid-template-columns: 1.2fr 0.8fr;
+                gap: 1rem;
+            }
+
+            .booking-steps {
+                background: rgba(255,255,255,0.02);
+                border-radius: 16px;
+                border: 1px solid rgba(255,255,255,0.06);
+                padding: 1rem;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+            }
+
+            .booking-step { display: none; }
+            .booking-step.is-active { display: block; animation: fadeUp .2s ease; }
+
+            @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+            .calendar-top {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.75rem;
+                gap: 0.5rem;
+            }
+
+            .calendar-top h4 {
+                margin: 0;
+                color: var(--theme-text-on-dark);
+            }
+
+            .calendar-controls {
+                display: inline-flex;
+                gap: 0.4rem;
+            }
+
+            .ghost-btn {
+                background: rgba(255,255,255,0.06);
+                color: var(--theme-text-on-dark);
+                border: 1px solid rgba(255,255,255,0.12);
+                border-radius: 12px;
+                padding: 0.35rem 0.6rem;
+                cursor: pointer;
+                transition: background .2s ease, color .2s ease, border .2s ease;
+            }
+
+            .ghost-btn:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.18); }
+
+            .calendar-grid {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 0.35rem;
+            }
+
+            .calendar-day {
+                background: rgba(255,255,255,0.04);
+                border-radius: 14px;
+                padding: 0.8rem 0.4rem;
+                text-align: center;
+                border: 1px solid transparent;
+                color: rgba(255,255,255,0.86);
+                cursor: pointer;
+                transition: all .2s ease;
+                min-height: 64px;
+                appearance: none;
+            }
+
+            .calendar-day.muted { color: rgba(255,255,255,0.35); cursor: not-allowed; }
+
+            .calendar-day:hover:not(.muted) { border-color: rgba(201,169,126,0.35); transform: translateY(-2px); }
+
+            .calendar-day.is-selected {
+                background: linear-gradient(135deg, var(--theme-accent), rgba(201,169,126,0.85));
+                color: #111;
+                border-color: transparent;
+                box-shadow: 0 12px 32px rgba(201,169,126,0.35);
+            }
+
+            .time-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 0.65rem;
+                margin-top: 0.75rem;
+            }
+
+            .time-chip {
+                border-radius: 14px;
+                padding: 0.75rem 0.8rem;
+                border: 1px solid rgba(255,255,255,0.12);
+                background: rgba(255,255,255,0.03);
+                color: rgba(255,255,255,0.86);
+                cursor: pointer;
+                transition: all .2s ease;
+                appearance: none;
+            }
+
+            .time-chip:hover { border-color: rgba(201,169,126,0.32); transform: translateY(-1px); }
+            .time-chip.is-selected {
+                background: var(--theme-accent);
+                color: #111;
+                box-shadow: 0 10px 28px rgba(201,169,126,0.25);
+            }
+
+            .booking-summary {
+                background: rgba(255,255,255,0.03);
+                border: 1px solid rgba(255,255,255,0.06);
+                border-radius: 14px;
+                padding: 1rem;
+                min-height: 140px;
+            }
+
+            .booking-summary h4 { margin: 0 0 .35rem; color: var(--theme-heading); }
+            .booking-summary .line { margin: 0.35rem 0; color: rgba(255,255,255,0.82); }
+
+            .booking-aside {
+                background: linear-gradient(160deg, rgba(201,169,126,0.16), rgba(201,169,126,0.05));
+                border: 1px solid rgba(201,169,126,0.22);
+                border-radius: 16px;
+                padding: 1rem;
+                box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
+            }
+
+            .booking-aside h4 { margin-top: 0; color: var(--theme-heading); }
+            .booking-aside p { color: rgba(255,255,255,0.82); margin-bottom: 0.35rem; }
+
+            .booking-actions {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.6rem;
+                margin-top: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .booking-close {
+                position: absolute;
+                top: 14px;
+                right: 14px;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                border: 1px solid rgba(255,255,255,0.15);
+                background: rgba(255,255,255,0.06);
+                color: var(--theme-text-on-dark);
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1rem;
+                transition: background .2s ease, transform .2s ease;
+            }
+
+            .booking-close:hover { background: rgba(255,255,255,0.12); transform: scale(1.04); }
+
+            .btn.primary {
+                background: var(--theme-accent);
+                color: #111;
+                border-color: var(--theme-accent);
+            }
+
+            .btn.primary[disabled] {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+
+            /* Booking responsiveness */
+            @media (max-width: 1024px) {
+                .booking-body { grid-template-columns: 1fr; }
+                .booking-aside { order: -1; margin-bottom: 0.75rem; }
+            }
+
+            @media (max-width: 640px) {
+                .booking-overlay { align-items: center; justify-content: center; padding: 1rem; }
+                .booking-modal {
+                    width: 100vw;
+                    max-width: 540px;
+                    height: auto;
+                    max-height: 92vh;
+                    border-radius: 18px;
+                    overflow-y: auto;
+                    -webkit-overflow-scrolling: touch;
+                }
+                .booking-header { padding: 1rem 1rem 0.5rem; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+                .booking-body { padding: 0 1rem 1rem; gap: 0.75rem; }
+                .calendar-grid { gap: 0.25rem; }
+                .calendar-day { min-height: 52px; padding: 0.7rem 0.35rem; }
+                .time-grid { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+                .booking-aside { padding: 0.85rem; }
+                .booking-close { top: 10px; right: 10px; }
+            }
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -699,6 +1008,25 @@
         }
         
         /* --- 8. Responsive Design --- */
+        @media (max-width: 1100px) {
+            h2 { font-size: 2.3rem; }
+            .container { padding: 0 1.5rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .service-card img { height: 260px; }
+            .stack-item { height: clamp(300px, 58vh, 640px); }
+        }
+
+        @media (max-width: 920px) {
+            .hero { min-height: 80vh; }
+            .hero-content h1 { font-size: 3.2rem; }
+            .hero-content p { font-size: 1.05rem; }
+            .service-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+            .service-card img { height: 230px; }
+            .gallery-stack { height: auto; max-height: none; }
+            .deck-inner .stack-item { width: 94%; height: 60vh; }
+            .testimonial-card { width: 100%; }
+        }
+
         @media (max-width: 768px) {
             body {
                 font-size: 16px;
@@ -846,6 +1174,14 @@
                 margin: 0;
             }
 
+            .service-card img {
+                height: 200px;
+            }
+
+            .service-stack__card {
+                height: 360px;
+            }
+
             .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 1rem;
@@ -871,7 +1207,6 @@
 
             .bubble-cluster { height: 220px; }
             .bubble { width: 180px !important; height: 180px !important; border-width: 3px !important; }
-            .bubble--expanded { width: min(86vw, 480px) !important; height: min(86vw, 480px) !important; }
         }
 
     </style>
@@ -903,7 +1238,7 @@
             <div class="hero-content">
                 <h1>Artistry in Every Braid</h1>
                 <p>Elegant styles, expertly crafted. Discover your new look with us.</p>
-                <a href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank" class="btn">Book An Appointment</a>
+                <a href="#book" class="btn" data-booking-trigger data-style="Signature Booking">Book An Appointment</a>
             </div>
         </section>
 
@@ -917,47 +1252,44 @@
                             <div class="service-stack" tabindex="0">
                     <!-- Service Card 1 -->
                         <div class="service-stack__card" data-index="0" role="group" aria-label="Smedium Knotless Braids">
-                            <img src="./assets/images/service-smedium.svg" alt="Smedium Knotless Braids" class="thumb"/>
-                            <div class="service-card__header">
-                                <h3>Smedium Knotless Braids</h3>
+                            <img src="./assets/images/card-1.jpeg" alt="Smedium Knotless Braids" class="thumb"/>
+                            <div class="">
                             </div>
                             <div class="service-card__footer">
                                 <div class="meta-row">
                                     <span class="pill price">$190</span>
                                     <span class="pill duration">3–5 hrs</span>
                                 </div>
-                                <p class="desc">Tension-free knotless braids for a sleek, natural look and long-lasting wear.</p>
-                                <a class="btn" href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank">Book This Look</a>
+                                <h3>Smedium Knotless Braids</h3>
+                                <a class="btn" href="#book" data-booking-trigger data-style="Smedium Knotless Braids">Book This Look</a>
                             </div>
                         </div>
                     <!-- Service Card 2 -->
                         <div class="service-stack__card" data-index="1" role="group" aria-label="Boho Add-On">
-                            <img src="./assets/images/service-boho.svg" alt="Boho Add-On" class="thumb"/>
-                            <div class="service-card__header">
-                                <h3>Boho Add-On</h3>
+                            <img src="./assets/images/card-2.jpg" alt="Boho Add-On" class="thumb"/>
+                            <div class="">
                             </div>
                             <div class="service-card__footer">
                                 <div class="meta-row">
                                     <span class="pill price">+ $40</span>
                                     <span class="pill duration">Add-on</span>
                                 </div>
-                                <p class="desc">Add flowing curly strands and decorative accents for a free-spirited finish.</p>
-                                <a class="btn" href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank">Add to Booking</a>
+                                <h3>Boho Add-On</h3>
+                                <a class="btn" href="#book" data-booking-trigger data-style="Boho Add-On">Add to Booking</a>
                             </div>
                         </div>
                     <!-- Service Card 3 -->
                         <div class="service-stack__card" data-index="2" role="group" aria-label="Small Knotless Braids/Twist">
-                            <img src="./assets/images/service-small.svg" alt="Small Knotless Braids/Twist" class="thumb"/>
-                            <div class="service-card__header">
-                                <h3>Small Knotless Braids / Twist</h3>
+                            <img src="./assets/images/card-3.jpg" alt="Small Knotless Braids/Twist" class="thumb"/>
+                            <div class="">
                             </div>
                             <div class="service-card__footer">
                                 <div class="meta-row">
                                     <span class="pill price">$180</span>
                                     <span class="pill duration">3–6 hrs</span>
                                 </div>
-                                <p class="desc">Intricate small braids & twists for a defined look and longevity.</p>
-                                <a class="btn" href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank">Book This Look</a>
+                                <h3>Small Knotless Braids / Twist</h3>
+                                <a class="btn" href="#book" data-booking-trigger data-style="Small Knotless Braids / Twist">Book This Look</a>
                             </div>
                         </div>
                     </div>
@@ -971,15 +1303,15 @@
             <div class="container">
                 <h2>Our Work</h2>
                 <div class="bubble-cluster" aria-label="Our Work — tap a bubble to expand">
-                            <div class="bubble" data-id="1" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage"/></div>
-                            <div class="bubble" data-id="2" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 2"/></div>
-                            <div class="bubble" data-id="3" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 3"/></div>
-                            <div class="bubble" data-id="4" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 4"/></div>
-                            <div class="bubble" data-id="5" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 5"/></div>
-                            <div class="bubble" data-id="6" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 6"/></div>
-                            <div class="bubble" data-id="7" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 7"/></div>
-                            <div class="bubble" data-id="8" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 8"/></div>
-                            <div class="bubble" data-id="9" tabindex="0"><img src="./assets/images/jj_collage.svg" alt="collage 9"/></div>
+                            <div class="bubble" data-id="1" tabindex="0"><img src="./assets/images/collage-1.jpg" alt="collage"/></div>
+                            <div class="bubble" data-id="2" tabindex="0"><img src="./assets/images/collage-2.jpeg" alt="collage 2"/></div>
+                            <div class="bubble" data-id="3" tabindex="0"><img src="./assets/images/collage-3.jpg" alt="collage 3"/></div>
+                            <div class="bubble" data-id="4" tabindex="0"><img src="./assets/images/collage-4.jpg" alt="collage 4"/></div>
+                            <div class="bubble" data-id="5" tabindex="0"><img src="./assets/images/collage-5.jpg" alt="collage 5"/></div>
+                            <div class="bubble" data-id="6" tabindex="0"><img src="./assets/images/collage-6.jpg" alt="collage 6"/></div>
+                            <div class="bubble" data-id="7" tabindex="0"><img src="./assets/images/collage-7.jpg" alt="collage 7"/></div>
+                            <div class="bubble" data-id="8" tabindex="0"><img src="./assets/images/collage-8.jpeg" alt="collage 8"/></div>
+                            <div class="bubble" data-id="9" tabindex="0"><img src="./assets/images/collage-9.jpeg" alt="collage 9"/></div>
                 </div>
             </div>
         </section>
@@ -1014,7 +1346,7 @@
                         <p style="margin-bottom:0.5rem;">A $20 deposit is required and non-refundable if an appointment is cancelled. Please cancel at least 24 hours prior to your appointment whenever possible.</p>
                         <p style="margin-bottom:0.5rem;">There is a 20 minute grace period for lateness — if you arrive later than this we may need to reschedule or shorten the service depending on availability.</p>
                         <p style="margin-bottom:0.5rem;">Payment accepted: Cash, Cash App and PayPal.</p>
-                        <a href="https://app.acuityscheduling.com/schedule.php?owner=32388943" target="_blank" class="btn" style="display:inline-block;margin-top:1rem;">Book / Manage Appointment</a>
+                        <a href="#book" class="btn" data-booking-trigger data-style="Appointment" style="display:inline-block;margin-top:1rem;">Book / Manage Appointment</a>
                     </div>
 
                     <div style="background:#fff;border-radius:12px;padding:1.5rem;box-shadow:0 10px 24px rgba(0,0,0,0.06);">
@@ -1026,6 +1358,64 @@
                 </div>
             </div>
         </section>
+
+        <!-- Booking Modal -->
+        <div class="booking-overlay" id="bookingOverlay" aria-hidden="true">
+            <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+                <button class="booking-close" aria-label="Close booking">&times;</button>
+                <div class="booking-header">
+                    <div>
+                        <div class="booking-eyebrow">Book Appointment</div>
+                        <h3 id="bookingTitle">Pick a date</h3>
+                    </div>
+                    <div class="booking-progress" aria-label="Booking progress">
+                        <span class="dot is-active" data-step-dot="date"></span>
+                        <span class="dot" data-step-dot="time"></span>
+                        <span class="dot" data-step-dot="confirm"></span>
+                    </div>
+                </div>
+                <div class="booking-body">
+                    <div class="booking-steps">
+                        <div class="booking-step is-active" data-step="date">
+                            <div class="calendar-top">
+                                <h4 id="calendarMonth">June 2025</h4>
+                                <div class="calendar-controls">
+                                    <button class="ghost-btn" type="button" data-cal-prev aria-label="Previous month">‹</button>
+                                    <button class="ghost-btn" type="button" data-cal-next aria-label="Next month">›</button>
+                                </div>
+                            </div>
+                            <div class="calendar-grid" id="calendarGrid" role="grid" aria-label="Select a date"></div>
+                        </div>
+                        <div class="booking-step" data-step="time">
+                            <div class="calendar-top">
+                                <h4>Select a time</h4>
+                                <div style="color: rgba(255,255,255,0.65);" id="chosenDateLabel"></div>
+                            </div>
+                            <div class="time-grid" id="timeGrid" role="listbox" aria-label="Select a time"></div>
+                        </div>
+                        <div class="booking-step" data-step="confirm">
+                            <div class="booking-summary" aria-live="polite">
+                                <h4>Confirmation</h4>
+                                <div class="line" id="summaryStyle">Style: —</div>
+                                <div class="line" id="summaryDate">Date: —</div>
+                                <div class="line" id="summaryTime">Time: —</div>
+                                <p style="color: rgba(255,255,255,0.7); margin-top: 0.6rem;">We’ll hold this slot while you confirm.</p>
+                            </div>
+                            <div class="booking-actions">
+                                <button class="btn primary" id="confirmBookingBtn" type="button">Confirm Booking</button>
+                                <span style="color: rgba(255,255,255,0.72); font-size: 0.95rem;">You can adjust the date/time anytime before confirming.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-aside">
+                        <h4>What to expect</h4>
+                        <p>Pick a date, then choose the time that works best for you. Confirm to lock it in.</p>
+                        <p id="selectedStyleNote">Selected look: Signature Booking</p>
+                        <p style="margin-top: .6rem; color: rgba(255,255,255,0.65); font-size: 0.92rem;">Theme is synced to the site accent. Change the theme once and it updates titles, buttons, and this modal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </main>
 
@@ -1043,6 +1433,36 @@
     </footer>
     
     <script>
+        // Theme manager: change accent + heading colors globally with one call
+        (function () {
+            const root = document.documentElement;
+            const themes = {
+                signature: {
+                    accent: '#c9a97e',
+                    heading: '#d1b3c4'
+                },
+                blush: {
+                    accent: '#f29bb2',
+                    heading: '#f7d9e3'
+                },
+                emerald: {
+                    accent: '#76d6b3',
+                    heading: '#a8edd2'
+                }
+            };
+
+            function applyTheme(name = 'signature') {
+                const t = themes[name] || themes.signature;
+                root.style.setProperty('--theme-accent', t.accent);
+                root.style.setProperty('--color-accent', t.accent);
+                root.style.setProperty('--theme-heading', t.heading);
+                root.style.setProperty('--color-secondary', t.heading);
+            }
+
+            applyTheme('signature');
+            window.applyBookingTheme = applyTheme;
+        })();
+
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
 
@@ -1075,7 +1495,209 @@
             }
         });
 
-        // Services slider: stacked card UI with swipe and keyboard controls
+        // Booking flow: calendar -> time -> confirmation with smooth transitions
+        (function () {
+            const overlay = document.getElementById('bookingOverlay');
+            if (!overlay) return;
+
+            const modal = overlay.querySelector('.booking-modal');
+            const closeBtn = overlay.querySelector('.booking-close');
+            const calendarGrid = document.getElementById('calendarGrid');
+            const calendarMonth = document.getElementById('calendarMonth');
+            const timeGrid = document.getElementById('timeGrid');
+            const chosenDateLabel = document.getElementById('chosenDateLabel');
+            const summaryDate = document.getElementById('summaryDate');
+            const summaryTime = document.getElementById('summaryTime');
+            const summaryStyle = document.getElementById('summaryStyle');
+            const selectedStyleNote = document.getElementById('selectedStyleNote');
+            const confirmBtn = document.getElementById('confirmBookingBtn');
+            const stepDots = overlay.querySelectorAll('[data-step-dot]');
+            const stepEls = overlay.querySelectorAll('.booking-step');
+            const titleEl = document.getElementById('bookingTitle');
+            const prevMonthBtn = overlay.querySelector('[data-cal-prev]');
+            const nextMonthBtn = overlay.querySelector('[data-cal-next]');
+            const triggers = document.querySelectorAll('[data-booking-trigger]');
+
+            const stepTitles = {
+                date: 'Pick a date',
+                time: 'Pick a time',
+                confirm: 'Confirm your booking'
+            };
+
+            const state = { date: null, time: null, style: 'Signature Booking' };
+            const today = new Date(); today.setHours(0,0,0,0);
+            let viewMonth = new Date(); viewMonth.setDate(1);
+
+            function isSameDay(a, b) {
+                return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+            }
+
+            function formatDate(date) {
+                if (!date) return '';
+                return date.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+            }
+
+            function formatTime(hours, minutes) {
+                const d = new Date();
+                d.setHours(hours);
+                d.setMinutes(minutes);
+                return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+            }
+
+            function generateSlots() {
+                const slots = [];
+                for (let h = 9; h <= 17; h++) {
+                    for (let m = 0; m < 60; m += 30) {
+                        if (h === 17 && m > 0) continue;
+                        slots.push(formatTime(h, m));
+                    }
+                }
+                return slots;
+            }
+
+            function setDots(step) {
+                stepDots.forEach(dot => dot.classList.toggle('is-active', dot.getAttribute('data-step-dot') === step));
+            }
+
+            function goStep(step) {
+                stepEls.forEach(el => el.classList.toggle('is-active', el.getAttribute('data-step') === step));
+                titleEl.textContent = stepTitles[step] || 'Book Appointment';
+                setDots(step);
+            }
+
+            function renderCalendar() {
+                calendarGrid.innerHTML = '';
+                calendarMonth.textContent = viewMonth.toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+
+                const startDay = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), 1);
+                const daysInMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 0).getDate();
+                const leading = startDay.getDay();
+
+                for (let i = 0; i < leading; i++) {
+                    const blank = document.createElement('div');
+                    blank.className = 'calendar-day muted';
+                    blank.setAttribute('aria-hidden', 'true');
+                    calendarGrid.appendChild(blank);
+                }
+
+                for (let day = 1; day <= daysInMonth; day++) {
+                    const dateObj = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), day);
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'calendar-day';
+                    btn.textContent = day;
+                    btn.dataset.date = dateObj.toISOString();
+                    const disabled = dateObj < today;
+                    if (disabled) { btn.classList.add('muted'); btn.disabled = true; }
+                    if (state.date && isSameDay(dateObj, state.date)) btn.classList.add('is-selected');
+                    btn.addEventListener('click', () => {
+                        if (disabled) return;
+                        state.date = dateObj;
+                        state.time = null;
+                        renderCalendar();
+                        goStep('time');
+                        renderTimes();
+                        updateSummary();
+                    });
+                    calendarGrid.appendChild(btn);
+                }
+            }
+
+            function renderTimes() {
+                timeGrid.innerHTML = '';
+                if (!state.date) {
+                    chosenDateLabel.textContent = 'Select a date to see available times';
+                    return;
+                }
+                chosenDateLabel.textContent = formatDate(state.date);
+                generateSlots().forEach(time => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'time-chip';
+                    if (state.time === time) btn.classList.add('is-selected');
+                    btn.textContent = time;
+                    btn.addEventListener('click', () => {
+                        state.time = time;
+                        goStep('confirm');
+                        renderTimes();
+                        updateSummary();
+                    });
+                    timeGrid.appendChild(btn);
+                });
+            }
+
+            function updateSummary() {
+                summaryStyle.textContent = `Style: ${state.style || '—'}`;
+                summaryDate.textContent = `Date: ${state.date ? formatDate(state.date) : '—'}`;
+                summaryTime.textContent = `Time: ${state.time || '—'}`;
+                confirmBtn.disabled = !(state.date && state.time);
+                confirmBtn.textContent = confirmBtn.disabled ? 'Confirm Booking' : 'Confirm Booking';
+            }
+
+            function openModal() {
+                overlay.classList.add('is-visible');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('booking-open');
+                viewMonth = new Date(); viewMonth.setDate(1);
+                selectedStyleNote.textContent = `Selected look: ${state.style}`;
+                confirmBtn.disabled = !(state.date && state.time);
+                confirmBtn.textContent = 'Confirm Booking';
+                goStep('date');
+                renderCalendar();
+                renderTimes();
+                updateSummary();
+                setTimeout(() => calendarGrid.querySelector('button:not(.muted)')?.focus(), 80);
+            }
+
+            function closeModal() {
+                overlay.classList.remove('is-visible');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('booking-open');
+                state.date = null;
+                state.time = null;
+                goStep('date');
+                renderCalendar();
+                renderTimes();
+                updateSummary();
+            }
+
+            triggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    state.style = trigger.dataset.style || trigger.textContent.trim();
+                    openModal();
+                });
+            });
+
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+            modal.addEventListener('click', (e) => e.stopPropagation());
+            closeBtn.addEventListener('click', closeModal);
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeModal(); });
+
+            prevMonthBtn.addEventListener('click', () => {
+                const minMonth = new Date(); minMonth.setDate(1);
+                const nextDate = new Date(viewMonth); nextDate.setMonth(viewMonth.getMonth() - 1);
+                if (nextDate >= minMonth) { viewMonth = nextDate; renderCalendar(); }
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                viewMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1);
+                renderCalendar();
+            });
+
+            confirmBtn.addEventListener('click', () => {
+                if (!(state.date && state.time)) return;
+                confirmBtn.textContent = 'Booked ✔';
+                confirmBtn.disabled = true;
+                setTimeout(() => {
+                    closeModal();
+                    confirmBtn.textContent = 'Confirm Booking';
+                    confirmBtn.disabled = false;
+                }, 700);
+            });
+        })();
+
+        // Services slider: horizontal snap with smooth scroll + nav buttons
         (function () {
             const root = document.querySelector('.services-slider');
             if (!root) return;
@@ -1084,46 +1706,32 @@
             const prevBtn = root.querySelector('.service-nav--prev');
             const nextBtn = root.querySelector('.service-nav--next');
             const items = Array.from(inner.querySelectorAll('.service-stack__card'));
-            let idx = 0;
-            const last = items.length - 1;
+            if (!inner) return;
 
-            const clamp = (n) => Math.max(0, Math.min(n, last));
+            const cardWidth = () => items[0]?.getBoundingClientRect().width || 360;
+            const scrollAmount = () => cardWidth() + 24;
 
-            function applyLayout() {
-                items.forEach((el, i) => {
-                    const diff = i - idx;
-                    el.dataset.pos = 'off';
-                    el.style.pointerEvents = 'auto';
-                    if (diff === 0) el.dataset.pos = 'center';
-                    else if (diff === -1) el.dataset.pos = 'left';
-                    else if (diff === 1) el.dataset.pos = 'right';
-                    else if (diff <= -2) el.dataset.pos = 'behind-left';
-                    else if (diff >= 2) el.dataset.pos = 'behind-right';
-                    if (Math.abs(diff) > 2) el.style.pointerEvents = 'none';
-                });
+            function scrollByDir(dir) {
+                inner.scrollBy({ left: dir * scrollAmount(), behavior: 'smooth' });
             }
 
-            function go(n) { idx = clamp(n); applyLayout(); }
-            function next() { go(idx + 1); }
-            function prev() { go(idx - 1); }
+            prevBtn && prevBtn.addEventListener('click', () => scrollByDir(-1));
+            nextBtn && nextBtn.addEventListener('click', () => scrollByDir(1));
 
-            prevBtn && prevBtn.addEventListener('click', prev);
-            nextBtn && nextBtn.addEventListener('click', next);
+            // keyboard support
+            inner.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') { e.preventDefault(); scrollByDir(-1); }
+                if (e.key === 'ArrowRight') { e.preventDefault(); scrollByDir(1); }
+            });
 
-            // clicking centers a card
-            items.forEach((el, i) => el.addEventListener('click', () => { if (i !== idx) go(i); }));
-
-            // keyboard & pointer
-            inner.addEventListener('keydown', (e) => { if (e.key === 'ArrowLeft') prev(); if (e.key === 'ArrowRight') next(); });
-
-            // pointer swipe
-            let startX = 0, dx = 0, down = false;
-            inner.addEventListener('pointerdown', (e) => { down = true; startX = e.clientX; inner.setPointerCapture && inner.setPointerCapture(e.pointerId); });
-            inner.addEventListener('pointermove', (e) => { if (!down) return; dx = e.clientX - startX; });
-            inner.addEventListener('pointerup', (e) => { down = false; if (Math.abs(dx) > 70) { if (dx < 0) next(); else prev(); } dx = 0; });
-            inner.addEventListener('pointercancel', () => { down = false; dx = 0; });
-
-            go(0);
+            // snap align first card into view on load
+            requestAnimationFrame(() => {
+                const first = items[0];
+                if (first) {
+                    const offset = first.getBoundingClientRect().left - inner.getBoundingClientRect().left;
+                    inner.scrollBy({ left: offset, behavior: 'smooth' });
+                }
+            });
         })();
 
         // Bubble cluster interaction: layout, floating animation, expand/collapse behavior
@@ -1139,25 +1747,110 @@
             overlay.setAttribute('aria-hidden', 'true');
             document.body.appendChild(overlay);
 
-            let open = null;
+            // lightbox viewer that animates out from the tapped bubble
+            const viewer = document.createElement('div');
+            viewer.className = 'bubble-viewer';
+            viewer.setAttribute('role', 'dialog');
+            viewer.setAttribute('aria-label', 'Expanded gallery image');
+            const viewerImg = document.createElement('img');
+            viewerImg.className = 'bubble-viewer__img';
+            viewer.appendChild(viewerImg);
+            document.body.appendChild(viewer);
 
-            function openBubble(el) {
-                if (open) closeBubble(open);
-                open = el;
-                el.classList.add('bubble--expanded');
-                overlay.classList.add('visible');
-                overlay.setAttribute('aria-hidden', 'false');
-                setTimeout(() => el.classList.add('animate-in'), 20);
+            let open = null;
+            let closeTimer;
+
+            // debounce helper
+            function debounce(fn, wait) {
+                let t;
+                return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
             }
 
-            function closeBubble(el) {
+            function lockPage(state) {
+                document.body.classList.toggle('bubble-lightbox-open', state);
+            }
+
+            function getTargetRect(img) {
+                const maxW = Math.min(window.innerWidth * 0.9, 1040);
+                const maxH = Math.min(window.innerHeight * 0.85, 900);
+                const ratio = (img.naturalWidth && img.naturalHeight) ? (img.naturalHeight / img.naturalWidth) : 1;
+                let width = maxW;
+                let height = width * ratio;
+                if (height > maxH) {
+                    height = maxH;
+                    width = height / ratio;
+                }
+                const left = (window.innerWidth - width) / 2;
+                const top = (window.innerHeight - height) / 2;
+                return { width, height, left, top };
+            }
+
+            function openBubble(el) {
                 if (!el) return;
-                el.classList.remove('animate-in');
-                setTimeout(() => {
-                    el.classList.remove('bubble--expanded');
-                    overlay.classList.remove('visible');
-                    overlay.setAttribute('aria-hidden', 'true');
-                }, 260);
+                const img = el.querySelector('img');
+                if (!img) return;
+
+                clearTimeout(closeTimer);
+
+                const start = img.getBoundingClientRect();
+                const target = getTargetRect(img);
+
+                viewerImg.src = img.currentSrc || img.src;
+                viewerImg.alt = img.alt || 'Gallery image';
+
+                // snap to the bubble origin before animating out
+                viewer.classList.remove('is-open');
+                viewer.style.transition = 'none';
+                viewer.style.width = start.width + 'px';
+                viewer.style.height = start.height + 'px';
+                viewer.style.left = start.left + 'px';
+                viewer.style.top = start.top + 'px';
+                viewer.offsetHeight; // force reflow so jump to origin is instant
+                viewer.style.transition = '';
+
+                bubbles.forEach(b => b.classList.remove('is-active'));
+                el.classList.add('is-active');
+
+                viewer.classList.add('is-visible');
+                overlay.classList.add('visible');
+                overlay.setAttribute('aria-hidden', 'false');
+                lockPage(true);
+
+                requestAnimationFrame(() => {
+                    viewer.style.width = target.width + 'px';
+                    viewer.style.height = target.height + 'px';
+                    viewer.style.left = target.left + 'px';
+                    viewer.style.top = target.top + 'px';
+                    viewer.classList.add('is-open');
+                });
+
+                open = el;
+            }
+
+            function closeBubble(targetEl) {
+                if (!open) return;
+                const el = targetEl || open;
+                const img = el.querySelector('img');
+                const end = img ? img.getBoundingClientRect() : null;
+
+                viewer.classList.remove('is-open');
+                if (end) {
+                    viewer.style.width = end.width + 'px';
+                    viewer.style.height = end.height + 'px';
+                    viewer.style.left = end.left + 'px';
+                    viewer.style.top = end.top + 'px';
+                }
+
+                overlay.classList.remove('visible');
+                overlay.setAttribute('aria-hidden', 'true');
+                lockPage(false);
+                bubbles.forEach(b => b.classList.remove('is-active'));
+
+                clearTimeout(closeTimer);
+                closeTimer = setTimeout(() => {
+                    viewer.classList.remove('is-visible');
+                }, 420);
+
                 open = null;
             }
 
@@ -1205,23 +1898,17 @@
                 });
             }
 
-            // debounce helper
-            function debounce(fn, wait) {
-                let t;
-                return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
-            }
-
             // wire bubble interactions (rebind safely)
             function bindBubbles() {
-                bubbles.forEach(b => {
-                    b.tabIndex = 0;
-                    // remove old handlers by cloning node to avoid duplicate listeners
-                    const clone = b.cloneNode(true);
-                    b.parentNode.replaceChild(clone, b);
-                });
                 bubbles = Array.from(cluster.querySelectorAll('.bubble'));
                 bubbles.forEach(b => {
-                    b.addEventListener('click', (e) => { e.stopPropagation(); if (b.classList.contains('bubble--expanded')) { closeBubble(b); } else { openBubble(b); } });
+                    b.tabIndex = 0;
+                    if (b.dataset.bound === 'true') return;
+                    b.dataset.bound = 'true';
+                    b.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        if (open === b) { closeBubble(b); } else { openBubble(b); }
+                    });
                     b.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); b.click(); } });
                 });
             }
@@ -1231,14 +1918,19 @@
             bindBubbles();
 
             // respond to resize
-            const onResize = debounce(() => { layoutBubbles(); }, 120);
+            const onResize = debounce(() => {
+                layoutBubbles();
+                if (open) openBubble(open);
+            }, 120);
             window.addEventListener('resize', onResize);
 
             // close when clicking overlay or pressing Escape
             overlay.addEventListener('click', () => { if (open) closeBubble(open); });
+            viewer.addEventListener('click', (e) => e.stopPropagation());
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && open) closeBubble(open); });
-            // clicking outside any bubble collapses
-            document.addEventListener('click', (e) => { if (open && !e.target.closest('.bubble')) closeBubble(open); });
+            // clicking or focusing outside the popup collapses
+            document.addEventListener('click', (e) => { if (open && !viewer.contains(e.target) && !e.target.closest('.bubble')) closeBubble(open); });
+            document.addEventListener('focusin', (e) => { if (open && !viewer.contains(e.target) && !e.target.closest('.bubble')) closeBubble(open); });
 
             // watch for DOM changes (bubbles added/removed) and relayout
             const mo = new MutationObserver(debounce(() => { layoutBubbles(); bindBubbles(); }, 80));
